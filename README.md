@@ -2,7 +2,7 @@ Päiväkirja*
 Ominaisuu
 Login/Logout
 Text input
-s lisätä fiilis päivän jälkeen
+lisätä fiilis päivän jälkeen
 Lisää automaattisesti pvm:n
 
 Tavoitteet asteittain:
