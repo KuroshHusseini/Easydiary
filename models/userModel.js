@@ -11,11 +11,17 @@ try {
 const getAllUsers = async () => {
   try {
     const [rows] = await promisePool.query(
-      'SELECT u.FName firstName, u.LName, l.StrAddress, l.City FROM location l, user u;'
+      `SELECT FName firstName,
+       LName lastName,
+        Sex sex,
+        BirthDate birthDate,
+        City city,
+        StrAddress streetAddress,
+        PostCode postCode,
+        Country country 
+        FROM user INNER JOIN location ON user.LivesID = location.LivesID;`
     )
-    /*     const [rows] = await pool.query(
-      'SELECT u.FName, u.LName, l.StrAddress, l.City FROM location l, user u;'
-    ) */
+
     return rows
   } catch (e) {
     console.log('error', e.message)

@@ -53,7 +53,13 @@ INSERT INTO location (City, StrAddress, PostCode, Country) VALUES("Helsinki", "T
 INSERT INTO user (FName, LName, Sex, Email, BirthDate, LivesID)
 VALUES ("Matti", "Kaljalainen", "female", "mattisen-äijäo@metropolia.fi", "2021-02-20 15:23:59", LAST_INSERT_ID());
 
-SELECT u.FName, u.LName, l.StrAddress, l.City 
-	FROM
-    	location l,
-        user u;
+/* Valitsee kaikki käyttäjät ja asuintiedot */
+SELECT FName firstName,
+       LName lastName,
+        Sex sex,
+        BirthDate birthDate,
+        City city,
+        StrAddress streetAddress,
+        PostCode postCode,
+        Country country 
+        FROM user INNER JOIN location ON user.LivesID = location.LivesID;
