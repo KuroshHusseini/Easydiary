@@ -14,3 +14,4 @@ Suunniteluvaiheet:
 Backend
 Frontend
 
+Sivuston kieli: englanti (?)
