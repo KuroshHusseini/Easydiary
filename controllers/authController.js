@@ -8,7 +8,7 @@ const login = (req, res) => {
   // TODO: add passport authenticate
   passport.authenticate('local', { session: false }, (err, user, info) => {
     console.log('user', user)
-    console.log('err', err)
+    console.log('error', err)
 
     if (err || !user) {
       return res.status(422).json({
