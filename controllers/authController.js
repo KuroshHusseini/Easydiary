@@ -1,3 +1,4 @@
+'use strict'
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
 const passport = require('passport')
@@ -34,7 +35,6 @@ const login = (req, res) => {
 const user_create_post = async (req, res, next) => {
   console.log('req.body', req.body)
 
-  console.log('name', req.body.name)
   console.log('username', req.body.username)
   console.log('password', req.body.password)
 

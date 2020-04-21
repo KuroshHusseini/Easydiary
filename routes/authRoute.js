@@ -19,8 +19,6 @@ router.post(
     ),
     body('sex', 'Min 4 chars, required.').isLength({ min: 4 }),
     body('birthDate', 'Incorrect date').isISO8601(),
-
-    check('name').escape(),
   ],
   authController.user_create_post,
   authController.login
