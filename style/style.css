@@ -8,15 +8,6 @@ html {
     box-sizing: inherit;
 }
 
-body, h1{
-    margin: 10px;
-    padding: 10px;
-    font-weight: normal;
-    color: rgba(0, 0, 0, 0.76);
-}
-
-
-
 body {
     border-radius: 4px;
     background-color: #5D6B6E;
@@ -24,6 +15,7 @@ body {
     font-family: tahoma;
 
 }
+
 
 .main {
     border-radius: 4px;
@@ -35,6 +27,12 @@ body {
 .top {
     border-radius: 4px;
     background-color: #000000;
+}
+
+.header .logo{
+    padding-right: 40px;
+    padding-top: 20px;
+    font-size:60px;
 }
 
 .header {
@@ -49,17 +47,10 @@ body {
 }
 
 
-h1 {
-    text-align: center;
-    color: #000000;
-    font-size: 2rem;
-    padding: 70px 0 25px;
-}
-
-
-.login {
+.login  {
     padding-right: 40px;
     padding-top: 20px;
+    padding-left: 20px;
 }
 
 .login input {
