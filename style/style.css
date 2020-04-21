@@ -54,6 +54,7 @@ body {
 }
 
 .login input {
+
     border: 1px solid #7b7880;
     border-radius: 4px;
     width: 150px;
@@ -76,33 +77,28 @@ body {
     cursor: pointer;
 }
 
-
-
-
-
 .signup .field {
-    margin-top: 30px;
+    padding-top: 15px;
+    margin-top: -2px;
     position: relative;
 }
-
-
 .signup {
+    margin: auto;
     border-radius: 4px;
     width: 400px;
-    margin: auto;
     background-color: rgba(150, 147, 155, 0.64);
     position: relative;
-    top: -71px;
-    padding: 30px;
+    top: -50px;
+    padding: 20px;
+
 }
-
-
 .signup h2 {
     color: #000000;
     font-size: 1.4rem;
 }
 
 .signup input {
+    padding-top: 0px;
     border-radius: 4px;
     display: block;
     width: 100%;
@@ -114,8 +110,9 @@ body {
 }
 
 .signup button {
+    margin-top: -10px;
     display: block;
-    width: 100%;
+    width: 100px;
     outline: none;
     background-color: #7b7880;
     border: 1px solid #5593ff;
@@ -124,10 +121,12 @@ body {
 
 
 .signup .label {
+    margin-top: 18px;
     position: absolute;
     pointer-events: none;
     left: 0;
-    top: 0;
+    top: -4px;
+    right: 0 ;
     transition: 0.2s ease all;
     color: rgba(0, 0, 0, 0.76);
 }
@@ -135,7 +134,8 @@ body {
 .signup input:focus ~ .label,
 .signup input:not(:focus):valid ~ .label {
     top: -17px;
-    font-size: .8rem;
+    margin-top: 20px;
+    font-size: .5rem;
     opacity: 1;
 }
 

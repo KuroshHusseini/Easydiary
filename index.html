@@ -25,10 +25,15 @@
 
         <div class="signup">
             <h2>SIGN UP</h2>
+
             <form class="light-border" id="add-user-form">
                 <div class="field">
                     <input type="text" required>
-                    <span class="label">Full Name</span>
+                    <span class="label" >Firstname</span>
+               </div>
+                <div class="field">
+                    <input type="text" required>
+                    <span class="label">Lastname</span>
                 </div>
                 <div class="field">
                     <input type="email" required>
@@ -37,6 +42,22 @@
                 <div class="field">
                     <input type="password" required>
                     <span class="label" pattern="(?=.*[A-Z]).{8,}">Password</span>
+                </div>
+                <div class="field">
+                    <input type="text" required>
+                    <span class="label">Birth</span>
+                </div>
+                <div class="field">
+
+                    <label class="radio-inline" style="color: aliceblue">
+                        <input type="radio" name="optradio" checked>Male
+                    </label>
+                    <label class="radio-inline" style="color: aliceblue">
+                        <input type="radio" name="optradio">Female
+                    </label>
+                    <label class="radio-inline" style="color: aliceblue">
+                        <input type="radio" name="optradio">Alien
+                    </label>
                 </div>
                 <div class="field">
                     <button type="submit">Sign up</button>
