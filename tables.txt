@@ -23,11 +23,23 @@ CREATE OR REPLACE TABLE user
   FOREIGN KEY (LivesID) REFERENCES location(LivesID)
 );
 
+CREATE TABLE public_day_entry
+(
+  PublicDayEntryID INT NOT NULL,
+  CreatedAt INT NOT NULL,
+  UpdatedAt INT NOT NULL,
+  DayEntryID INT NOT NULL,
+  UserID INT NOT NULL,
+  PRIMARY KEY (PublicDayEntryID),
+  FOREIGN KEY (DayEntryID) REFERENCES day_entry(DayEntryID),
+  FOREIGN KEY (UserID) REFERENCES user(UserID)
+);
+
 CREATE OR REPLACE TABLE day_entry
 (
   DayEntryID int AUTO_INCREMENT NOT NULL,
-  DateTime int NOT NULL,
-  NoteText int NOT NULL,
+  DateTime datetime NOT NULL,
+  NoteText datetime NOT NULL,
   UserID int NOT NULL,
   PRIMARY KEY (DayEntryID),
   FOREIGN KEY (UserID) REFERENCES user(UserID)
