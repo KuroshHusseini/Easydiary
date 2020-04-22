@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>main</title>
+    <title>Login</title>
     <link href="style/style.css" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -9,51 +9,60 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 </head>
-
-
 <body>
-<!-- Left side-->
-<div class="row no-gutters">
-    <div class="col-md-6 no-gutters">
-        <div class="leftside d-flex justify-content-center align-items-center">
+<div class="main">
+    <div class="top">
+        <div class="header">
             <div class="login">
-                <div class="form-wrapper">
-                    <h3>Login</h3>
-                    <form id="login-form" class="light-border">
-                        <div>
-                            <label>Email:</label>
-                            <input class="light-border" type="text" name="username"/>
-                        </div>
-                        <div>
-                            <label>Password:</label>
-                            <input class="light-border" type="password" name="password"/>
-                        </div>
-                        <div>
-                            <button class="light-border" type="submit">Log In</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- right side-->
-    <div class="col-md-6  no-gutters">
-        <div class="rightside d-flex justify-content-center align-items-center">
-            <div class="form-wrapper">
-                <h3>Register</h3>
-                <form class="light-border" id="add-user-form">
-                    <input class="light-border"
-                           type="text"
-                           name="name"
-                           pattern=".{3,}"
-                           placeholder="Name"
-                           required>
-                    <input class="light-border" type="email" name="username" placeholder="email" required>
-                    <input class="light-border" type="password" name="password" pattern="(?=.*[A-Z]).{8,}"
-                           placeholder="Password" required>
-                    <button class="light-border" type="submit">Save</button>
+                <form id="login-form" class="light-border">
+                    <input type="email" placeholder="Email" required>
+                    <input type="password" placeholder="password" required>
+                    <button class="light-border" type="submit">Login</button>
                 </form>
             </div>
+             <h1 class="logo" style="font-family: 'Modak', cursive;">Easydiary</h1>
+        </div>
+
+        <div class="signup">
+            <h2>SIGN UP</h2>
+
+            <form class="light-border" id="add-user-form">
+                <div class="field">
+                    <input type="text" required>
+                    <span class="label" >Firstname</span>
+               </div>
+                <div class="field">
+                    <input type="text" required>
+                    <span class="label">Lastname</span>
+                </div>
+                <div class="field">
+                    <input type="email" required>
+                    <span class="label">Email</span>
+                </div>
+                <div class="field">
+                    <input type="password" required>
+                    <span class="label" pattern="(?=.*[A-Z]).{8,}">Password</span>
+                </div>
+                <div class="field">
+                    <input type="text" required>
+                    <span class="label">Birth</span>
+                </div>
+                <div class="field">
+
+                    <label class="radio-inline" style="color: aliceblue">
+                        <input type="radio" name="optradio" checked>Male
+                    </label>
+                    <label class="radio-inline" style="color: aliceblue">
+                        <input type="radio" name="optradio">Female
+                    </label>
+                    <label class="radio-inline" style="color: aliceblue">
+                        <input type="radio" name="optradio">Alien
+                    </label>
+                </div>
+                <div class="field">
+                    <button type="submit">Sign up</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
@@ -61,6 +70,6 @@
 <script src="./js/serialize.js"></script>
 <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v1.5.0/mapbox-gl.js"></script>
 <script src="./js/mapbox.js"></script>
-<script src="./js/main5.js"></script>
+<script src="./js/main.js"></script>
 </body>
 </html>
