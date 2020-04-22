@@ -1,0 +1,82 @@
+CREATE OR REPLACE TABLE location
+(
+  LivesID int AUTO_INCREMENT NOT NULL,
+  City text,
+  StrAddress text ,
+  PostCode text,
+  Country text,
+  PRIMARY KEY (LivesID)
+);
+
+CREATE OR REPLACE TABLE user
+(
+  UserID int AUTO_INCREMENT NOT NULL,
+  FName text NOT NULL,
+  LName text NOT NULL,
+  Sex text NOT NULL,
+  Username text NOT NULL,
+  Email text NOT NULL,
+  Password text NOT NULL,
+  BirthDate datetime NOT NULL,
+  LivesID int NOT NULL,
+  PRIMARY KEY (UserID),
+  FOREIGN KEY (LivesID) REFERENCES location(LivesID)
+);
+
+CREATE TABLE public_day_entry
+(
+  PublicDayEntryID INT NOT NULL,
+  CreatedAt INT NOT NULL,
+  UpdatedAt INT NOT NULL,
+  DayEntryID INT NOT NULL,
+  UserID INT NOT NULL,
+  PRIMARY KEY (PublicDayEntryID),
+  FOREIGN KEY (DayEntryID) REFERENCES day_entry(DayEntryID),
+  FOREIGN KEY (UserID) REFERENCES user(UserID)
+);
+
+CREATE OR REPLACE TABLE day_entry
+(
+  DayEntryID int AUTO_INCREMENT NOT NULL,
+  DateTime datetime NOT NULL,
+  NoteText datetime NOT NULL,
+  UserID int NOT NULL,
+  PRIMARY KEY (DayEntryID),
+  FOREIGN KEY (UserID) REFERENCES user(UserID)
+);
+
+CREATE OR REPLACE TABLE thing
+(
+  image text NOT NULL,
+  name int NOT NULL,
+  ThingID int AUTO_INCREMENT NOT NULL,
+  DayEntryID int NOT NULL,
+  PRIMARY KEY (ThingID),
+  FOREIGN KEY (DayEntryID) REFERENCES day_entry(DayEntryID)
+);
+
+/* INSERTS AND ADDS LOCATION REFERENCE TO USER WITH LAST_INSERT_ID */
+INSERT INTO location (City) VALUES("Espoo");
+
+INSERT INTO user (FName, LName, Sex, Email, Username, Password, BirthDate, LivesID)
+VALUES ("Michael", "Lock", "male", "michalo@metropolia.fi", "michalo", "1234", "2020-04-18 19:23:59", LAST_INSERT_ID());
+
+
+/* INSERTS AND ADDS LOCATION REFERENCE TO USER WITH LAST_INSERT_ID */
+INSERT INTO location (City, StrAddress, PostCode, Country) VALUES("Helsinki", "Tepposentulpunkuja", "05623", "Finland");
+INSERT INTO user (FName, LName, Sex, Email, Username, Password, BirthDate, LivesID)
+VALUES ("Matti", "Kaljalainen", "female", "mattisen-äijäo@metropolia.fi", "matteo", "qwer", "2021-02-20 15:23:59", LAST_INSERT_ID());
+
+/* Valitsee kaikki käyttäjät ja asuintiedot */
+SELECT FName firstName,
+      LName lastName,
+      Sex sex,
+      BirthDate birthDate,
+      Email email,
+      Username username,
+      Password password,
+      City city,
+      StrAddress streetAddress,
+      PostCode postCode,
+      Country country 
+      FROM user INNER JOIN location ON user.LivesID = location.LivesID;
