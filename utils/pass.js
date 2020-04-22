@@ -14,16 +14,18 @@ passport.use(
       usernameField: 'email',
       passwordField: 'password',
     },
-    async (username, password, done) => {
-      console.log('username', username)
+    async (email, password, done) => {
+      console.log('email', email)
       console.log('password', password)
-      const params = [username]
+      const params = [email]
 
       console.log('password', password)
 
       console.log('perkule', params)
       try {
         const [user] = await userModel.getUserLogin(params)
+
+        console.log('awaited user', user)
 
         console.log('Local strategy', user)
         if (user === undefined) {

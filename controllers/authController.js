@@ -53,14 +53,6 @@ const user_create_post = async (req, res, next) => {
       ...req.body,
       password: passwordHash,
     }
-    /* 
-    const params = {
-      name: req.body.name,
-      username: req.body.username,
-      passwd: passwordHash, // TODO: save hash instead of the actual password
-    }
-
-    console.log('register', params) */
 
     if (await userModel.insertUser(params)) {
       next()

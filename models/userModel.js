@@ -3,7 +3,7 @@ const promisePool = require('../database/db').promise()
 
 const getUserLogin = async (params) => {
   try {
-    console.log('params')
+    console.log('user params', params)
     const [rows] = await promisePool.execute(
       'SELECT Email email, Username username, Password password FROM user WHERE Email = ?;',
       params
