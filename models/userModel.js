@@ -5,7 +5,7 @@ const getUserLogin = async (params) => {
   try {
     console.log('user params', params)
     const [rows] = await promisePool.execute(
-      'SELECT Email email, Username username, Password password FROM user WHERE Email = ?;',
+      'SELECT Email email, Username username, Password password, UserID userId FROM user WHERE Email = ?;',
       params
     )
 
@@ -38,9 +38,6 @@ const getAllUsers = async () => {
 
 const insertUser = async (user) => {
   try {
-    /*     const [rows] = await promisePool.query(
-      `INSERT INTO location (City, StrAddress, PostCode, Country) VALUES("Helsinki", "Katuoja 3", "0421", "Finland"); INSERT INTO user (FName, LName, Sex, Email, Username, Password, BirthDate, LivesID) VALUES ("Michael", "Lock", "male", "michalo@metropolai.fi", "angelo", "Asiat123", "21.05.2020", LAST_INSERT_ID());`
-    ) */
     const [
       rows,
     ] = await promisePool.query(
@@ -65,8 +62,26 @@ const insertUser = async (user) => {
   }
 }
 
+const getUserById = async (id) => {
+  try {
+    const [
+      rows,
+    ] = await promisePool.query(
+      `SELECT UserID id, FName firstName, LName lastName, Email email FROM user WHERE UserID = ?;`,
+      [id]
+    )
+
+    console.log('rows getUser', rows)
+    return rows[0]
+  } catch (err) {
+    console.log('error', err.message)
+    return err.message
+  }
+}
+
 module.exports = {
   getAllUsers,
   insertUser,
   getUserLogin,
+  getUserById,
 }

@@ -54,34 +54,71 @@ registerUserForm.addEventListener('submit', async (evt) => {
     body: JSON.stringify(data),
   }
 
-  const response = await fetch(url + '/login', fetchOptions)
-  console.log('login response', response)
-  if (!response.user) {
-    alert(response.message)
-  } else { */
-// save token
-/*     sessionStorage.setItem('token', response.token)
- */ // show/hide forms + cats
-/* 
-    console.log('LOGGED IN!') */
+  const response = await fetch(url + '/auth/login', fetchOptions)
 
-/*     fetchOptions = {
+  const json = await response.json()
+
+  console.log('login json response', json)
+  if (!json.user) {
+    alert(json.message)
+  } else {
+    // save token
+    sessionStorage.setItem('token', json.token)
+
+    // show
+
+    console.log(
+      'session storage.setItem(setToen',
+      sessionStorage.getItem('token')
+    ) */
+
+/*     var sendHome = url + '/home'
+    var form = document.createElement('form')
+    console.log('form', form)
+    document.body.appendChild(form)
+    form.method = 'GET'
+    form.action = sendHome
+    console.log('form and stuff', form) */
+//form.submit()
+
+/*     const jotain = await fetch(url + '/hidden', {
       method: 'GET',
+      redirect: 'follow',
       headers: {
-        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + sessionStorage.getItem('token'),
       },
-    } */
-/*     try {
-      await fetch(url + '/WADAFAK')
-    } catch (err) {
-      console.log('err', err)
-    } */
+    })
 
-/*     loginWrapper.style.display = 'none'
-    logOut.style.display = 'block'
-    main.style.display = 'block'
-    userInfo.innerHTML = `Hello ${json.user.name}`
-    getCat()
-    getUsers() */
-/*   }
-}) */
+    console.log('jotain', jotain) */
+
+/*     let xhr = new XMLHttpRequest()
+    xhr.open('POST', url + '/home', true)
+
+    xhr.setRequestHeader('Content-Type', 'application/json')
+    const accessToken = sessionStorage.getItem('token')
+
+    if (accessToken) {
+      console.log('I HAS ACCESS TOKEN!')
+      xhr.setRequestHeader('Authorization', `Bearer ${accessToken}`)
+      xhr.send()
+    } */
+/*     var sendHome = url + '/home'
+    var form = document.createElement('form')
+    document.body.appendChild(form)
+    form.method = 'GET'
+    form.head = {
+      Authorization: 'Bearer ' + sessionStorage.getItem('token'),
+    }
+    form.action = sendHome
+    console.log('form and stuff', form)
+    form.submit() */
+
+/*     await fetch(url + '/home', {
+      method: 'POST',
+      headers: {
+        Authorization: 'Bearer ' + sessionStorage.getItem('token'),
+      },
+    }) */
+
+/*     console.log('We are at home page.')
+ */
