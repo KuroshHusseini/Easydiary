@@ -1,0 +1,54 @@
+doctype html
+head
+  title Login
+  link(href='./style/index.css' rel='stylesheet')
+  link(rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css' integrity='sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh' crossorigin='anonymous')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+.main
+  .top
+    .header
+      .login
+        form#login-form.light-border(method='post' action='/login')
+          input(name='email' type='email' placeholder='Email' required='')
+          input(name='password' type='password' placeholder='password' required='')
+          button.light-border(type='submit') Login
+      h1.logo(style="font-family: 'Modak', cursive;") Easydiary
+    .signup
+      h2 SIGN UP
+      form#register-user-form.light-border(novalidate='')
+        .field
+          span First name
+          input(placeholder='Name' name='firstName' pattern='.{3,}' type='text' required='')
+        .field
+          span Last name
+          input(placeholder='Name' name='lastName' pattern='.{3,}' type='text' required='')
+        .field
+          span Username
+          input(type='text' name='username' placeholder='Username' required='')
+        .field
+          span Email
+          input(type='email' name='email' placeholder='email' required='')
+        .field
+          span Password
+          input(name='password' type='password' pattern='(?=.*[A-Z]).{8,}' required='')
+        .field
+          span Birth
+          input(name='birthDate' type='date' required='')
+        .field
+          label.radio-inline(style='color: aliceblue;')
+            input(type='radio' name='sex' value='male' checked='')
+            | Male
+          label.radio-inline(style='color: aliceblue;')
+            input(type='radio' name='sex' value='female')
+            | Female
+          label.radio-inline(style='color: aliceblue;')
+            input(type='radio' name='sex' value='other')
+            | Other
+        .field
+          button(type='submit') Sign up
+#image-modal.hide.modal
+  a.close(href='') Close
+  img(src='' alt='')
+script(src='./js/serialize.js')
+script(src='./js/index.js')
+script(src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.5.0/mapbox-gl.js')

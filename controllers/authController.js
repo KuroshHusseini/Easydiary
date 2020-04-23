@@ -26,6 +26,10 @@ const login = (req, res) => {
       }
       // generate a signed json web token with the contents of user object and return it in the response
       console.log('jwt', user)
+      res.cookie('logged', true)
+
+      console.log('COOKIE LOGGED STATUS:', req.cookies.logged)
+      res.redirect('/home')
       const token = jwt.sign(user, process.env.TOKEN)
       return res.json({ user, token })
     })
@@ -54,10 +58,15 @@ const user_create_post = async (req, res, next) => {
       password: passwordHash,
     }
 
-    if (await userModel.insertUser(params)) {
-      next()
+    const response = await userModel.insertUser(params)
+    console.log('responsius', response)
+
+    if (response.error) {
+      console.log('I AM HERE')
+      res.status(400).json({ error: 'User already exists.' })
     } else {
-      res.status(400).json({ error: 'register error' })
+      console.log('I AM NOT HERE')
+      res.status(201).json({ message: 'User successfully created.' })
     }
   }
 }

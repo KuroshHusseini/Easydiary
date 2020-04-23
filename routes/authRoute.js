@@ -1,7 +1,7 @@
 'use strict'
 const express = require('express')
 const router = express.Router()
-const { body, check } = require('express-validator')
+const { body } = require('express-validator')
 const authController = require('../controllers/authController')
 
 router.post('/login', authController.login)
@@ -20,21 +20,7 @@ router.post(
     body('sex', 'Min 4 chars, required.').isLength({ min: 4 }),
     body('birthDate', 'Incorrect date').isISO8601(),
   ],
-  authController.user_create_post,
-  authController.login
+  authController.user_create_post
 )
-/* router.post(
-  '/register',
-  [
-    body('name', 'minimum 3 characters').isLength({ min: 3 }),
-    body('username', 'email is not valid').isEmail(),
-    body('password', 'at least one upper case letter').matches(
-      '(?=.*[A-Z]).{8,}'
-    ),
-    check('name').escape(),
-  ],
-  authController.user_create_post,
-  authController.login
-) */
 
 module.exports = router

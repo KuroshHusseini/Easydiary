@@ -1,0 +1,169 @@
+html {
+  box-sizing: border-box;
+  font-size: 15px;
+  overflow: hidden;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+  border-radius: 4px;
+  background-color: #5d6b6e;
+  padding: 4rem;
+  font-family: tahoma;
+}
+
+.main {
+  border-radius: 4px;
+  width: 100%;
+  background-color: #000000;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.63);
+}
+
+.top {
+  border-radius: 4px;
+  background-color: #000000;
+}
+
+.header .logo {
+  padding-right: 40px;
+  padding-top: 20px;
+  font-size: 60px;
+}
+
+.header {
+  border-radius: 4px;
+  display: flex;
+  justify-content: space-between;
+  background-color: rgba(255, 255, 255, 0.85);
+  font-family: tahoma, serif;
+  border: 1px solid lightslategray;
+  width: 100%;
+  height: 175px;
+}
+
+.login {
+  padding-right: 40px;
+  padding-top: 20px;
+  padding-left: 20px;
+}
+
+.login input {
+  border: 1px solid #7b7880;
+  border-radius: 4px;
+  width: 150px;
+  height: 30px;
+  padding: 5px;
+  float: left;
+  outline: none;
+  left: 10px;
+}
+
+.login button {
+  border-radius: 4px;
+  outline: none;
+  float: left;
+  background-color: #000000;
+  border: 1px solid #5593ff;
+  color: white;
+  height: 30px;
+  width: 100px;
+  cursor: pointer;
+}
+
+.signup .field {
+  padding-top: 15px;
+  margin-top: -2px;
+  position: relative;
+}
+.signup {
+  margin: auto;
+  border-radius: 4px;
+  width: 400px;
+  background-color: rgba(150, 147, 155, 0.64);
+  position: relative;
+  top: -50px;
+  padding: 20px;
+}
+.signup h2 {
+  color: #000000;
+  font-size: 1.4rem;
+}
+
+.signup input {
+  padding-top: 0px;
+  border-radius: 4px;
+  display: block;
+  width: 100%;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid #999;
+  color: #000000;
+  font-size: 1rem;
+}
+
+.signup button {
+  margin-top: -10px;
+  display: block;
+  width: 100px;
+  outline: none;
+  background-color: #7b7880;
+  border: 1px solid #5593ff;
+  border-radius: 4px;
+}
+
+.signup .label {
+  margin-top: 18px;
+  position: absolute;
+  pointer-events: none;
+  left: 0;
+  top: -4px;
+  right: 0;
+  transition: 0.2s ease all;
+  color: rgba(0, 0, 0, 0.76);
+}
+
+.signup input:focus ~ .label,
+.signup input:not(:focus):valid ~ .label {
+  top: -17px;
+  margin-top: 20px;
+  font-size: 0.5rem;
+  opacity: 1;
+}
+
+/* Notification modal */
+
+.hide {
+  display: none !important;
+}
+
+.modal {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+}
+
+.modal img {
+  display: block;
+  height: 80vh;
+  margin: auto;
+  padding-top: 10vh;
+}
+
+.close {
+  position: absolute;
+  top: 1em;
+  right: 1em;
+  color: #fff;
+  text-shadow: #000;
+  font-size: 2em;
+}
+
+/* END */
