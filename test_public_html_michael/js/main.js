@@ -33,4 +33,4 @@ const getUsers = async (id) => {
   return use */
 }
 
-getUsers()
+getUsers();
