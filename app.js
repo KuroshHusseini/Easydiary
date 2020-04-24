@@ -18,6 +18,9 @@ const port = 3000
 
 const cons = require('consolidate')
 
+// Route requires
+const diaryEntryRoute = require('./routes/diaryEntryRoute')
+
 // View engine setup
 app.engine('html', cons.swig)
 app.use(express.static('views')) // TO SERVER JAVASCRIPT AND CSS FILES IN HTML!!
@@ -59,6 +62,12 @@ app.get('/', (req, res) => {
 
 //We plugin our jwt strategy as a middleware so only verified users can access this route
 app.use('/user', passport.authenticate('jwt', { session: false }), secureRoute)
+// ROUTES
+app.use(
+  '/user/diary',
+  passport.authenticate('jwt', { session: false }),
+  diaryEntryRoute
+)
 
 app.get('/setCookie/:clr', (req, res) => {
   res.cookie('color', req.params.clr).send('cookie set')
