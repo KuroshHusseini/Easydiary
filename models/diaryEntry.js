@@ -4,7 +4,7 @@ const promisePool = require('../database/db').promise()
 const getAllDiaryEntries = async (id) => {
   try {
     const [rows] = await promisePool.query(
-      `SELECT DateTime dateTime, NoteText noteText, Filename fileName FROM day_entry WHERE UserID = ?`,
+      `SELECT DateTime dateTime, NoteText noteText, Filename fileName, DayEntryID dayEntryId FROM day_entry WHERE UserID = ?`,
       id
     )
     return rows
