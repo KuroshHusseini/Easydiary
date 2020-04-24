@@ -1,11 +1,19 @@
 'use strict'
+
 const express = require('express')
 const router = express.Router()
-const {body, sanizebody} = require('express-validator')
-const diaryEntryController = require('../controllers/diaryEntryController')
+const diaryController = require('../controllers/diaryController')
 
-router.get('/', diaryEntryController.diaryEntry_list_get())
-router.get('/:id', diaryEntryController.diary_get())
-router.post('/hack', (req, res) => {
-    res.send(req.body.search)
-})
+router.get('/', diaryController.diary_entry_list_get)
+
+router.get('/:id', diaryController.diary_entry_get)
+
+router.put('/', diaryController.diary_entry_list_update)
+
+router.post('/', diaryController.diary_entry_post)
+
+router.post('/', diaryController.diary_entry_post)
+
+router.delete('/:id', diaryController.diary_entry_delete)
+
+module.exports = router

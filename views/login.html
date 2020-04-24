@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Login</title>
+    <link href="./style/index.css" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <!--     <form novalidate method="POST" action="/login">
+      <input name="email" type="email" placeholder="Email" required />
+      <input name="password" type="password" placeholder="password" required />
+      <button class="light-border" type="submit">
+        Login
+      </button>
+    </form>
+    <link href="./style/index.css" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    /> -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body>
+    <div class="main">
+      <div class="top">
+        <div class="header">
+          <div class="login">
+            <form
+              method="post"
+              action="/login"
+              id="login-form"
+              class="light-border"
+            >
+              <input name="email" type="email" placeholder="Email" required />
+              <input
+                name="password"
+                type="password"
+                placeholder="password"
+                required
+              />
+              <button class="light-border" type="submit">
+                Login
+              </button>
+            </form>
+          </div>
+          <h1 class="logo" style="font-family: 'Modak', cursive;">Easydiary</h1>
+        </div>
+
+        <div class="signup">
+          <h2>SIGN UP</h2>
+
+          <form
+            novalidate
+            id="register-user-form"
+            class="light-border"
+            id="add-user-form"
+          >
+            <div class="field">
+              <span>First name</span>
+              <input
+                placeholder="Name"
+                name="firstName"
+                pattern=".{3,}"
+                type="text"
+                required
+              />
+            </div>
+            <div class="field">
+              <span>Last name</span>
+              <input
+                placeholder="Name"
+                name="lastName"
+                pattern=".{3,}"
+                type="text"
+                required
+              />
+            </div>
+            <div class="field">
+              <span>Username</span>
+              <input
+                type="text"
+                name="username"
+                placeholder="Username"
+                required
+              />
+            </div>
+            <div class="field">
+              <span>Email</span>
+
+              <input type="email" name="email" placeholder="email" required />
+            </div>
+            <div class="field">
+              <span>Password</span>
+              <input
+                name="password"
+                type="password"
+                pattern="(?=.*[A-Z]).{8,}"
+                required
+              />
+            </div>
+            <div class="field">
+              <span>Birth</span>
+
+              <input name="birthDate" type="date" required />
+            </div>
+            <div class="field">
+              <label class="radio-inline" style="color: aliceblue;">
+                <input type="radio" name="sex" value="male" checked />Male
+              </label>
+              <label class="radio-inline" style="color: aliceblue;">
+                <input type="radio" name="sex" value="female" />Female
+              </label>
+              <label class="radio-inline" style="color: aliceblue;">
+                <input type="radio" name="sex" value="other" />Other
+              </label>
+            </div>
+            <div class="field">
+              <button type="submit">Sign up</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="hide modal" id="image-modal">
+      <a href="" class="close">Close</a>
+      <img src="" alt="" />
+    </div>
+    <script src="./js/serialize.js"></script>
+
+    <script src="./js/index.js"></script>
+
+    <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v1.5.0/mapbox-gl.js"></script>
+  </body>
+</html>

@@ -2,24 +2,24 @@
 const promisePool = require('../database/db').promise()
 
 const getUserLogin = async (params) => {
-    try {
-        console.log('params')
-        const [rows] = await promisePool.execute(
-            'SELECT Email email, Username username, Password password FROM user WHERE Email = ?;',
-            params
-        )
+  try {
+    console.log('user params', params)
+    const [rows] = await promisePool.execute(
+      'SELECT Email email, Username username, Password password, UserID userId FROM user WHERE Email = ?;',
+      params
+    )
 
-        console.log('rows', rows)
-        return rows
-    } catch (e) {
-        console.log('error', e.message)
-    }
+    console.log('rows', rows)
+    return rows
+  } catch (e) {
+    console.log('error', e.message)
+  }
 }
 
 const getAllUsers = async () => {
-    try {
-        const [rows] = await promisePool.query(
-            `SELECT FName firstName,
+  try {
+    const [rows] = await promisePool.query(
+      `SELECT FName firstName,
        LName lastName,
         Sex sex,
         BirthDate birthDate,
@@ -28,45 +28,61 @@ const getAllUsers = async () => {
         PostCode postCode,
         Country country 
         FROM user INNER JOIN location ON user.LivesID = location.LivesID;`
-        )
-        return rows
-    } catch (e) {
-        console.log('error', e.message)
-        throw e
-    }
+    )
+    return rows
+  } catch (e) {
+    console.log('error', e.message)
+    throw e
+  }
 }
 
 const insertUser = async (user) => {
-    try {
-        /*     const [rows] = await promisePool.query(
-          `INSERT INTO location (City, StrAddress, PostCode, Country) VALUES("Helsinki", "Katuoja 3", "0421", "Finland"); INSERT INTO user (FName, LName, Sex, Email, Username, Password, BirthDate, LivesID) VALUES ("Michael", "Lock", "male", "michalo@metropolai.fi", "angelo", "Asiat123", "21.05.2020", LAST_INSERT_ID());`
-        ) */
-        const [
-            rows,
-        ] = await promisePool.query(
-            `INSERT INTO location (City, StrAddress, PostCode, Country) VALUES(?, ?, ?, ?); INSERT INTO user (FName, LName, Sex, Email, Username, Password, BirthDate, LivesID) VALUES (?, ?, ?, ?, ?, ?, ?, LAST_INSERT_ID());`,
-            [
-                user.city,
-                user.strAddress,
-                user.postCode,
-                user.country,
-                user.firstName,
-                user.lastName,
-                user.sex,
-                user.email,
-                user.username,
-                user.password,
-                user.birthDate,
-            ]
-        )
-        return rows
-    } catch (err) {
-        throw err
-    }
+  try {
+    console.log('insert user', user)
+    const [
+      rows,
+    ] = await promisePool.query(
+      `INSERT INTO location (City, StrAddress, PostCode, Country) VALUES(?, ?, ?, ?); INSERT INTO user (FName, LName, Sex, Email, Username, Password, BirthDate, LivesID) VALUES (?, ?, ?, ?, ?, ?, ?, LAST_INSERT_ID());`,
+      [
+        user.city,
+        user.strAddress,
+        user.postCode,
+        user.country,
+        user.firstName,
+        user.lastName,
+        user.sex,
+        user.email,
+        user.username,
+        user.password,
+        user.birthDate,
+      ]
+    )
+    return rows
+  } catch (err) {
+    throw err
+  }
+}
+
+const getUserById = async (id) => {
+  try {
+    const [
+      rows,
+    ] = await promisePool.query(
+      `SELECT UserID id, FName firstName, LName lastName, Email email FROM user WHERE UserID = ?;`,
+      [id]
+    )
+
+    console.log('rows getUser', rows)
+    return rows[0]
+  } catch (err) {
+    console.log('error', err.message)
+    return err.message
+  }
 }
 
 module.exports = {
-    getAllUsers,
-    insertUser,
-    getUserLogin,
+  getAllUsers,
+  insertUser,
+  getUserLogin,
+  getUserById,
 }

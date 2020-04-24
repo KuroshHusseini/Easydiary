@@ -134,3 +134,36 @@ body {
   font-size: 0.5rem;
   opacity: 1;
 }
+
+/* Notification modal */
+
+.hide {
+  display: none !important;
+}
+
+.modal {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+}
+
+.modal img {
+  display: block;
+  height: 80vh;
+  margin: auto;
+  padding-top: 10vh;
+}
+
+.close {
+  position: absolute;
+  top: 1em;
+  right: 1em;
+  color: #fff;
+  text-shadow: #000;
+  font-size: 2em;
+}
+
+/* END */

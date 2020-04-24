@@ -14,16 +14,18 @@ CREATE OR REPLACE TABLE user
   FName text NOT NULL,
   LName text NOT NULL,
   Sex text NOT NULL,
-  Username text NOT NULL,
-  Email text NOT NULL,
+  Username VARCHAR(40) NOT NULL,
+  Email VARCHAR(40) NOT NULL,
   Password text NOT NULL,
   BirthDate datetime NOT NULL,
   LivesID int NOT NULL,
   PRIMARY KEY (UserID),
-  FOREIGN KEY (LivesID) REFERENCES location(LivesID)
+  FOREIGN KEY (LivesID) REFERENCES location(LivesID),
+  CONSTRAINT unique_username UNIQUE (Username),
+  CONSTRAINT unique_email UNIQUE (Email)
 );
 
-CREATE TABLE public_day_entry
+CREATE OR REPLACE TABLE public_day_entry
 (
   PublicDayEntryID INT NOT NULL,
   CreatedAt INT NOT NULL,
@@ -41,6 +43,7 @@ CREATE OR REPLACE TABLE day_entry
   DateTime datetime NOT NULL,
   NoteText text NOT NULL,
   UserID int NOT NULL,
+  Filename text,
   PRIMARY KEY (DayEntryID),
   FOREIGN KEY (UserID) REFERENCES user(UserID)
 );
@@ -66,6 +69,11 @@ VALUES ("Michael", "Lock", "male", "michalo@metropolia.fi", "michalo", "1234", "
 INSERT INTO location (City, StrAddress, PostCode, Country) VALUES("Helsinki", "Tepposentulpunkuja", "05623", "Finland");
 INSERT INTO user (FName, LName, Sex, Email, Username, Password, BirthDate, LivesID)
 VALUES ("Matti", "Kaljalainen", "female", "mattisen-äijäo@metropolia.fi", "matteo", "qwer", "2021-02-20 15:23:59", LAST_INSERT_ID());
+
+/* INSERTS AND ADDS LOCATION REFERENCE TO USER WITH LAST_INSERT_ID */
+INSERT INTO location (City, StrAddress, PostCode, Country) VALUES("Helsinki", "Tepposentulpunkuja", "05623", "Finland");
+INSERT INTO user (FName, LName, Sex, Email, Username, Password, BirthDate, LivesID)
+VALUES ("Matti", "Kaljalainen", "female", "mattisen-äijäo@metropolia.com", "matteola", "qwer", "2021-02-20 15:23:59", LAST_INSERT_ID());
 
 /* Valitsee kaikki käyttäjät ja asuintiedot */
 SELECT FName firstName,
