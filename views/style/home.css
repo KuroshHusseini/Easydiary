@@ -11,11 +11,15 @@
   margin: -5px;
 }
 
+a {
+  color: #ccc;
+  text-decoration: none; /* no underline */
+}
+
 .nav ul li {
   list-style-type: none;
   display: inline-block;
   margin-left: -5px;
-  color: #ccc;
   font-size: 25px;
   width: 200px;
   height: 60px;

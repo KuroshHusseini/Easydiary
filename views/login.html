@@ -28,15 +28,12 @@
   </head>
   <body>
     <div class="main">
-      <div class="top">
+      <div id="top">
         <div class="header">
+          <button id="test-button">PRESS ME!</button>
           <div class="login">
-            <form
-              method="post"
-              action="/login"
-              id="login-form"
-              class="light-border"
-            >
+            <form id="login-form" class="light-border">
+              <a href="/home"><h1>MOROOOO</h1></a>
               <input name="email" type="email" placeholder="Email" required />
               <input
                 name="password"
@@ -49,9 +46,8 @@
               </button>
             </form>
           </div>
-          <h1 class="logo" style="font-family: 'Modak', cursive;">Easydiary</h1>
+          <h1 class="logo">Easydiary</h1>
         </div>
-
         <div class="signup">
           <h2>SIGN UP</h2>
 
@@ -111,13 +107,13 @@
             </div>
             <div class="field">
               <label class="radio-inline" style="color: aliceblue;">
-                <input type="radio" name="sex" value="male" checked />Male
+                <input type="radio" name="gender" value="male" checked />Male
               </label>
               <label class="radio-inline" style="color: aliceblue;">
-                <input type="radio" name="sex" value="female" />Female
+                <input type="radio" name="gender" value="female" />Female
               </label>
               <label class="radio-inline" style="color: aliceblue;">
-                <input type="radio" name="sex" value="other" />Other
+                <input type="radio" name="gender" value="other" />Other
               </label>
             </div>
             <div class="field">
@@ -127,10 +123,10 @@
         </div>
       </div>
     </div>
-    <div class="hide modal" id="image-modal">
+    <!--     <div class="hide modal" id="image-modal">
       <a href="" class="close">Close</a>
       <img src="" alt="" />
-    </div>
+    </div> -->
     <script src="./js/serialize.js"></script>
 
     <script src="./js/index.js"></script>
@@ -138,3 +134,7 @@
     <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v1.5.0/mapbox-gl.js"></script>
   </body>
 </html>
+<!--               method="post"
+              action="/login" -->
+<!--               method="post"
+              action="http://localhost:3000/login" -->

@@ -59,7 +59,7 @@ const diary_entry_post = async (req, res) => {
 }
 
 const diary_entry_delete = async (req, res) => {
-  console.log('update mode diary entry id', req.params.id)
+  console.log('update mode diary entry id', Number(req.params.id))
   console.log('update mode user id', req.user.userId)
 
   const params = [req.user.userId, Number(req.params.id)]

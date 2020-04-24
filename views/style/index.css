@@ -24,12 +24,13 @@ body {
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.63);
 }
 
-.top {
+#top {
   border-radius: 4px;
   background-color: #000000;
 }
 
 .header .logo {
+  font-family: 'Modak', cursive;
   padding-right: 40px;
   padding-top: 20px;
   font-size: 60px;
@@ -137,7 +138,41 @@ body {
 
 /* Notification modal */
 
-.hide {
+.alert {
+  padding: 20px;
+  background-color: #f44336;
+  color: white;
+  opacity: 1;
+  transition: opacity 0.6s;
+  margin-bottom: 15px;
+}
+
+.alert.success {
+  background-color: #4caf50;
+}
+.alert.warning {
+  background-color: #ff9800;
+}
+
+.alert.danger {
+  background-color: #f44336;
+}
+
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.closebtn:hover {
+  color: black;
+}
+/* .hide {
   display: none !important;
 }
 
@@ -164,6 +199,6 @@ body {
   color: #fff;
   text-shadow: #000;
   font-size: 2em;
-}
+} */
 
 /* END */
