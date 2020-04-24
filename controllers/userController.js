@@ -1,6 +1,6 @@
 'use strict'
 const userModel = require('../models/userModel')
-const { validationResult } = require('express-validator')
+const {validationResult} = require('express-validator')
 
 const users = userModel.users
 
@@ -19,7 +19,7 @@ const user_post = async (req, res) => {
     console.log('user_post', req.body)
     const errors = validationResult(req)
     if (!errors.isEmpty()) {
-        return res.status(422).json({ errors: errors.array() })
+        return res.status(422).json({errors: errors.array()})
     }
 
     try {
@@ -43,7 +43,7 @@ const user_delete = async (req, res) => {
     console.log('user_put', req.parms)
     const delUser = await userModel.deleteUser(req.params.id)
     console.log('user_delete result from db', delUser)
-    res.json({ deleted: 'OK' })
+    res.json({deleted: 'OK'})
 }
 
 module.exports = {

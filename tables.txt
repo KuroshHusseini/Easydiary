@@ -39,7 +39,7 @@ CREATE OR REPLACE TABLE day_entry
 (
   DayEntryID int AUTO_INCREMENT NOT NULL,
   DateTime datetime NOT NULL,
-  NoteText datetime NOT NULL,
+  NoteText text NOT NULL,
   UserID int NOT NULL,
   PRIMARY KEY (DayEntryID),
   FOREIGN KEY (UserID) REFERENCES user(UserID)
