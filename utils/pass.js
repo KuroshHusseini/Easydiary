@@ -1,7 +1,11 @@
+'use strict'
 const passport = require('passport')
+const bcrypt = require('bcryptjs')
 const Strategy = require('passport-local').Strategy
 const userModel = require('../models/userModel')
-const bcrypt = require('bcryptjs')
+const passportJWT = require('passport-jwt')
+const JWTStrategy = passportJWT.Strategy
+const ExtractJWT = passportJWT.ExtractJwt
 
 // fake database: ****************
 const users = [
@@ -48,23 +52,17 @@ passport.serializeUser((id, done) => {
 })
 
 // deserialize: get user id from session and get all user data
-passport.deserializeUser(async (id, done) => {
-  /*   // get user data by id from getUser
-  const user = getUser(id)
-  delete user.password
+passport.deserializeUser(async (user, done) => {
+  console.log('deserialize user', user)
+  const newUser = await userModel.getUserById(user.userId)
+  delete newUser.password
   console.log('deserialize', user)
   // deserialize user by adding it to 'done()' callback
-  done(null, user) */
-  // get user data by id from getUser
-
-  const user = await userModel.getUserById(id)
-  delete user.password
-  console.log('deserialize', user)
-  // deserialize user by adding it to 'done()' callback
-  done(null, user)
+  done(null, newUser)
 })
 
 passport.use(
+  'login',
   new Strategy(
     {
       usernameField: 'email',
@@ -98,12 +96,51 @@ passport.use(
         delete user.password
 
         console.log('all is okay. Here is the userId', user.userId)
-        return done(null, user.userId)
+        console.log(' Here is the user', user)
+        return done(null, user, { message: 'Logged in Successfully' })
       } catch (err) {
         throw done(err)
       }
     }
   )
 )
+
+passport.use(
+  new JWTStrategy(
+    {
+      secretOrKey: process.env.TOKEN,
+      jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),
+    },
+    async (token, done) => {
+      try {
+        // Pass the details to the next middleware
+        return done(null, token.user)
+      } catch (error) {
+        done(error)
+      }
+    }
+  )
+)
+
+// BACKUP
+/* passport.use(
+  new JWTStrategy(
+    {
+      jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),
+      secretOrKey: process.env.TOKEN,
+    },
+    (jwtPayload, done) => {
+      //find the user in db if needed. This functionality may be omitted
+      //if you store everything you'll need in JWT payload.
+      const user = userModel.getUserById(jwtPayload.userId)
+      console.log('jwt payload and user', jwtPayload, user)
+      if (user) {
+        return done(null, user)
+      } else {
+        return done(null, false)
+      }
+    }
+  )
+) */
 
 module.exports = passport

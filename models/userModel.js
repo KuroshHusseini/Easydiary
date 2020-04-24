@@ -38,6 +38,7 @@ const getAllUsers = async () => {
 
 const insertUser = async (user) => {
   try {
+    console.log('insert user', user)
     const [
       rows,
     ] = await promisePool.query(
