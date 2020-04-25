@@ -28,10 +28,13 @@ const diary_entry_list_update = async (req, res) => {
   console.log('update mode', req.user.userId)
   const params = [
     req.body.dateTime,
+    req.body.title,
     req.body.noteText,
+    req.body.mood,
+    req.body.things,
     req.body.filename,
     req.user.userId,
-    req.body.diaryEntryId,
+    req.body.dayEntryId,
   ]
 
   const updateDiaryEntry = await diaryEntry.updateDiaryEntry(params)
@@ -49,6 +52,7 @@ const diary_entry_post = async (req, res) => {
     req.body.title,
     req.body.noteText,
     req.body.mood,
+    req.body.things,
     req.body.filename,
     req.user.userId,
   ]

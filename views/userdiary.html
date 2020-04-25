@@ -7,6 +7,8 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
     />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <title>My Diary</title>
   </head>
   <body>
@@ -48,16 +50,37 @@
 
     <header><h1>My Diary</h1></header>
     <section id="diary-list">
-      <ul>
-        <li>
-          <h1>Walking in the park</h1>
-          <p>Date: 21.05.1998</p>
-          <button>Edit</button>
-          <button>Public</button>
-        </li>
-      </ul>
+      <ul class="day-entry-list"></ul>
     </section>
-    <div className="modal">
+    <div class="hide modal" id="edit-modal">
+      <form id="edit-form">
+        <input placeholder="Title" name="title" />
+        <input type="textarea" placeholder="Note text" name="noteText" />
+        <input type="date" name="dateTime" />
+        <input placeholder="running, skiing, watching tv etc." name="things" />
+        <label> <input type="radio" value="5" name="mood" />Great </label>
+        <label> <input type="radio" value="4" name="mood" />Good </label>
+        <label>
+          <input type="radio" value="3" name="mood" checked />Okay
+        </label>
+        <label> <input type="radio" value="2" name="mood" />Bad </label>
+        <label> <input type="radio" value="1" name="mood" />Terrible </label>
+
+        <!--         <button onclick="cancel">Cancel</button>
+ -->
+        <button type="submit">Save</button>
+        <button name="cancel">Cancel</button>
+        <!-- <input placeholder="title" name="mood" /> -->
+      </form>
+      <!--       <a href="" class="close">Close</a>
+      <img src="" alt="" /> -->
+    </div>
+    <div class="hide modal" id="remove-diary-modal">
+      <h1>Remove day?</h1>
+      <button name="remove">Remove</button>
+      <button name="cancel">Cancel</button>
+    </div>
+    <!-- <div className="modal">
       <header className="modal__header">
         <h1>{props.title}</h1>
       </header>
@@ -73,7 +96,8 @@
         </button>
         )}
       </section>
-    </div>
+    </div> -->
+    <script src="./js/serialize.js"></script>
     <script src="js/userdiary.js"></script>
   </body>
 </html>

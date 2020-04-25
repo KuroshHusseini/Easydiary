@@ -44,6 +44,7 @@ CREATE OR REPLACE TABLE day_entry
   Title text NOT NULL,
   NoteText text NOT NULL,
   Mood int NOT NULL,
+  Things text,
   UserID int NOT NULL,
   Filename text,
   PRIMARY KEY (DayEntryID),
@@ -64,7 +65,7 @@ CREATE OR REPLACE TABLE thing
 INSERT INTO location (City) VALUES("Espoo");
 
 INSERT INTO user (FName, LName, Gender, Email, Username, Password, BirthDate, LivesID)
-VALUES ("Michael", "Lock", "male", "michalo@metropolia.fi", "michalo", "1234", "2020-04-18 19:23:59", LAST_INSERT_ID());
+VALUES ("Michael", "Lock", "male", "michalo@metropolia.fi", "michalo", "1234", "  ", LAST_INSERT_ID());
 
 
 /* INSERTS AND ADDS LOCATION REFERENCE TO USER WITH LAST_INSERT_ID */
