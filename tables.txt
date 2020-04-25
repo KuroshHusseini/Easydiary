@@ -41,7 +41,9 @@ CREATE OR REPLACE TABLE day_entry
 (
   DayEntryID int AUTO_INCREMENT NOT NULL,
   DateTime datetime NOT NULL,
+  Title text NOT NULL,
   NoteText text NOT NULL,
+  Mood int NOT NULL,
   UserID int NOT NULL,
   Filename text,
   PRIMARY KEY (DayEntryID),

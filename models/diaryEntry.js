@@ -4,7 +4,7 @@ const promisePool = require('../database/db').promise()
 const getAllDiaryEntries = async (id) => {
   try {
     const [rows] = await promisePool.query(
-      `SELECT DateTime dateTime, NoteText noteText, Filename fileName, DayEntryID dayEntryId FROM day_entry WHERE UserID = ?`,
+      `SELECT DateTime dateTime, Title title, NoteText noteText, Mood mood, Filename fileName, DayEntryID dayEntryId FROM day_entry WHERE UserID = ?`,
       id
     )
     return rows
@@ -32,7 +32,7 @@ const createDiaryEntry = async (params) => {
   try {
     console.log('insert diary?', params)
     const [rows] = await promisePool.query(
-      `INSERT INTO day_entry(DateTime, NoteText, Filename, UserID) VALUES (?, ?, ?, ?);`,
+      `INSERT INTO day_entry (DateTime, Title, NoteText, Mood, Filename, UserID) VALUES (?, ?, ?, ?, ?, ?);`,
       params
     )
     return rows
