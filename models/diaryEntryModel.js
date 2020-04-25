@@ -50,7 +50,7 @@ const updateDiaryEntry = async (dayEntry) => {
                 "SET DateTime = ?, NoteText = ?, userID = ? " +
                 "WHERE userID = ?")
     } catch (err) {
-        console.error("updatediary model crash", err.message)
+        console.error("update diary model crash", err.message)
     }
 }
 const deleteDiaryEntry = async (dayEntry)=>{

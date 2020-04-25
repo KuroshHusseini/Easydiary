@@ -25,12 +25,109 @@
     text-align: center;
     font-family: Calibri;
 }
-#cn-button{
-
+.diaryEntry {
+    margin: auto;
+    border-radius: 4px;
+    width: 600px;
+    height: 400px;
+    background-color: rgba(0, 0, 0, 0.32);
+    position: relative;
+    top: 10px;
+    right: -11rem;
+    padding: 20px;
 }
 
-@media screen and (max-width: 600px) {
-    .nav {
-        float: none;
-    }
+.diaryEntry h2 {
+    color: #ffffff;
+    font-size: 1.4rem;
+}
+
+.diaryEntry .titleField {
+    color: black;
+    font: italic bold 12px/18px Georgia, serif;
+    padding-top: 0;
+    padding-right: 20px;
+    margin-top: -2px;
+    position: relative;
+}
+.diaryEntry .noteField {
+    padding-top: 0;
+    padding-right: 20px;
+    padding-bottom: 120px;
+    height: 40px;
+    margin-top: 10px;
+    position: relative;
+}
+.diaryEntry .thingsIdidField {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-right: 20px;
+    margin-top: -2px;
+    position: relative;
+}
+
+
+
+.titleField input {
+    padding-top: -10px;
+    border-radius: 4px;
+    display: block;
+    width: 100%;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid #999;
+    color: #000000;
+    font-size: 1rem;
+}
+textarea {
+    font: italic bold 12px/15px Georgia, serif;
+    resize: none;
+}
+#thingsIDid{
+    font-style: oblique;
+    margin-top: -30px;
+}
+::placeholder{
+    color: black;
+}
+
+
+.diaryEntry .label {
+    margin-top: 10px;
+    position: absolute;
+    pointer-events: none;
+    left: 5px;
+    top: -10px;
+    right: 0;
+    transition: 0.2s ease all;
+    color: rgba(0, 0, 0, 0.76);
+}
+
+.diaryEntry input:focus ~ .label,
+.diaryEntry input:not(:focus):valid ~ .label {
+    top: -31px;
+    margin-top: 20px;
+    font-size: 0.5rem;
+    opacity: 1;
+}
+.diaryEntry .radioButtonField{
+    margin-top: 0;
+    margin-bottom: 20px;
+     cursor: pointer;
+    font-size: 22px;
+}
+.diaryEntry #Date{
+    background-color: white;
+    color: black;
+    border: 2px solid #008CBA;
+
+}
+.dateField .dateButtom{
+    width: 90px;
+    background-color: #000000;
+    color: white;
+    border: 2px solid #008CBA;
+}
+html {
+    background: radial-gradient(circle, black, white);
 }
