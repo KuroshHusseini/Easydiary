@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link href="style/userdiary.css" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>My Diary</title>
+  </head>
+  <body>
+    <div class="nav">
+      <ul>
+        <li>
+          <a href="logout">
+            <i class="fa fa-sign-out"> Log out </i>
+          </a>
+        </li>
+
+        <li>
+          <a href="settings">
+            <i class="fa fa-gear"> Settings</i>
+          </a>
+        </li>
+        <li>
+          <a href="diary">
+            <i class="fa fa-book">My diary</i>
+          </a>
+        </li>
+        <li>
+          <a href="home">
+            <i class="fa fa-home">Home</i>
+          </a>
+        </li>
+
+        <li>
+          <a
+            href="create"
+            class="fa fa-plus"
+            id="cn-button"
+            style="border-radius: 50%;"
+          >
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <header><h1>My Diary</h1></header>
+    <section id="diary-list">
+      <ul class="day-entry-list"></ul>
+    </section>
+    <div class="hide modal" id="edit-modal">
+      <form id="edit-form">
+        <input placeholder="Title" name="title" />
+        <input type="textarea" placeholder="Note text" name="noteText" />
+        <input type="date" name="dateTime" />
+        <input placeholder="running, skiing, watching tv etc." name="things" />
+        <label> <input type="radio" value="5" name="mood" />Great </label>
+        <label> <input type="radio" value="4" name="mood" />Good </label>
+        <label>
+          <input type="radio" value="3" name="mood" checked />Okay
+        </label>
+        <label> <input type="radio" value="2" name="mood" />Bad </label>
+        <label> <input type="radio" value="1" name="mood" />Terrible </label>
+
+        <!--         <button onclick="cancel">Cancel</button>
+ -->
+        <button type="submit">Save</button>
+        <button name="cancel">Cancel</button>
+        <!-- <input placeholder="title" name="mood" /> -->
+      </form>
+      <!--       <a href="" class="close">Close</a>
+      <img src="" alt="" /> -->
+    </div>
+    <div class="hide modal" id="remove-diary-modal">
+      <h1>Remove day?</h1>
+      <button name="remove">Remove</button>
+      <button name="cancel">Cancel</button>
+    </div>
+    <!-- <div className="modal">
+      <header className="modal__header">
+        <h1>{props.title}</h1>
+      </header>
+      <section className="modal__content">{props.children}</section>
+      <section className="modal__actions">
+        {props.canCancel && (
+        <button className="btn" onClick="{props.onCancel}">
+          Cancel
+        </button>
+        )} {props.canConfirm && (
+        <button className="btn" onClick="{props.onConfirm}">
+          {props.confirmText}
+        </button>
+        )}
+      </section>
+    </div> -->
+    <script src="./js/serialize.js"></script>
+    <script src="js/userdiary.js"></script>
+  </body>
+</html>

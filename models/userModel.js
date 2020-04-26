@@ -21,7 +21,7 @@ const getAllUsers = async () => {
     const [rows] = await promisePool.query(
       `SELECT FName firstName,
        LName lastName,
-        Sex sex,
+        Gender gnder,
         BirthDate birthDate,
         City city,
         StrAddress streetAddress,
@@ -42,7 +42,7 @@ const insertUser = async (user) => {
     const [
       rows,
     ] = await promisePool.query(
-      `INSERT INTO location (City, StrAddress, PostCode, Country) VALUES(?, ?, ?, ?); INSERT INTO user (FName, LName, Sex, Email, Username, Password, BirthDate, LivesID) VALUES (?, ?, ?, ?, ?, ?, ?, LAST_INSERT_ID());`,
+      `INSERT INTO location (City, StrAddress, PostCode, Country) VALUES(?, ?, ?, ?); INSERT INTO user (FName, LName, Gender, Email, Username, Password, BirthDate, LivesID) VALUES (?, ?, ?, ?, ?, ?, ?, LAST_INSERT_ID());`,
       [
         user.city,
         user.strAddress,
@@ -50,7 +50,7 @@ const insertUser = async (user) => {
         user.country,
         user.firstName,
         user.lastName,
-        user.sex,
+        user.gender,
         user.email,
         user.username,
         user.password,
@@ -59,7 +59,7 @@ const insertUser = async (user) => {
     )
     return rows
   } catch (err) {
-    throw err
+    return err
   }
 }
 

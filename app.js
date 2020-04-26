@@ -14,7 +14,6 @@ const { validationResult, body } = require('express-validator')
 
 const passport = require('./utils/pass')
 const app = express()
-const port = 3000
 
 const cons = require('consolidate')
 
@@ -27,38 +26,23 @@ app.use(express.static('views')) // TO SERVER JAVASCRIPT AND CSS FILES IN HTML!!
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'html')
 
-const loggedIn = (req, res, next) => {
-  console.log('logged', req.user)
-  if (req.user) {
-    next()
-  } else {
-    res.redirect('/login')
-  }
-}
-
 app.use(cors())
 app.use(express.json()) // for parsing application/json
 app.use(express.urlencoded({ extended: true })) // for parsing application/x-www-login-urlencoded
 
-app.use(
-  session({
-    secret: 'salainen kissa',
-    resave: false,
-    saveUninitialized: true,
-  })
-)
+var sess = {
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: true,
+  logged: false,
+  cookie: {},
+}
+app.use(session(sess))
 
 app.use(passport.initialize())
 app.use(passport.session())
 
-//app.set('views', './views')
-//app.set('view engine', 'pug')
-
 const secureRoute = require('./routes/secure-route')
-
-app.get('/', (req, res) => {
-  res.render('home')
-})
 
 //We plugin our jwt strategy as a middleware so only verified users can access this route
 app.use('/user', passport.authenticate('jwt', { session: false }), secureRoute)
@@ -69,22 +53,73 @@ app.use(
   diaryEntryRoute
 )
 
-app.get('/setCookie/:clr', (req, res) => {
-  res.cookie('color', req.params.clr).send('cookie set')
-})
-
-app.get('/deleteCookie', (req, res) => {
-  res.clearCookie('color')
-  res.send('cookie color cleared')
+app.get('/', (req, res) => {
+  if (sess.logged) {
+    res.render('home')
+  } else {
+    res.redirect('/login')
+  }
 })
 
 app.get('/login', (req, res) => {
   res.render('login')
 })
 
-app.get('/home', loggedIn, (req, res) => {
-  res.render('home')
+const loggedIn = (req, res, next) => {
+  console.log('logged', req.user)
+  if (req.user) {
+    next()
+  } else {
+    res.redirect('/login')
+  }
+}
+
+app.get('/home', (req, res) => {
+  if (sess.logged) {
+    res.render('home')
+  } else {
+    res.redirect('/login')
+  }
 })
+
+app.get('/diary', (req, res) => {
+  if (sess.logged) {
+    res.render('userdiary')
+  } else {
+    res.redirect('/login')
+  }
+})
+
+app.get('/settings', (req, res) => {
+  if (sess.logged) {
+    res.render('settings')
+  } else {
+    res.redirect('/login')
+  }
+})
+
+app.get('/create', (req, res) => {
+  if (sess.logged) {
+    res.render('create')
+  } else {
+    res.redirect('/login')
+  }
+})
+
+app.get('/logout', (req, res) => {
+  sess.logged = false
+  res.redirect('/')
+})
+
+/* app.post(
+  '/testi',
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+    console.log('req.user test', req.user)
+
+    res.redirect('/diary')
+  }
+) */
 
 app.post('/login', async (req, res, next) => {
   passport.authenticate('login', async (err, user, info) => {
@@ -95,6 +130,8 @@ app.post('/login', async (req, res, next) => {
       }
       req.login(user, { session: false }, async (error) => {
         if (error) return next(error)
+
+        console.log('app.post /login', user)
         //We don't want to store the sensitive information such as the
         //user password in the token so we pick only the email and id
         const body = { userId: user.userId, email: user.email }
@@ -102,6 +139,8 @@ app.post('/login', async (req, res, next) => {
         console.log('body:', body)
         //Sign the JWT token and populate the payload with the user email and id
         const token = jwt.sign({ user: body }, process.env.TOKEN)
+        // Logged in true
+        sess.logged = true
         //Send back the token to the user
         return res.json({ token })
       })
@@ -121,7 +160,7 @@ app.post(
     body('password', 'Min 8 chars, at least one capital letter').matches(
       '(?=.*[A-Z]).{8,}'
     ),
-    body('sex', 'Min 4 chars, required.').isLength({ min: 4 }),
+    body('gender', 'Min 4 chars, required.').isLength({ min: 4 }),
     body('birthDate', 'Incorrect date').isISO8601(),
   ],
   async (req, res, next) => {
@@ -147,16 +186,16 @@ app.post(
       }
 
       const response = await userModel.insertUser(params)
-      console.log('responsius', response)
 
-      if (response.error) {
+      if (response.errno) {
         console.log('User already exists')
         res.status(400).json({ error: 'User already exists.' })
       } else {
-        console.log('User successfully created')
-        res
-          .status(201)
-          .json({ message: 'User successfully created.', user: params })
+        console.log('User has been successfully created')
+        res.status(201).json({
+          message: 'User has been successfully created.',
+          user: params,
+        })
       }
     }
   }
@@ -167,7 +206,9 @@ app.get('/logout', function (req, res) {
   res.redirect('/login')
 })
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+app.listen(process.env.PORT, () =>
+  console.log(`Example app listening on port ${process.env.PORT}!`)
+)
 
 /* app.post(
   '/login',

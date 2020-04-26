@@ -17,7 +17,7 @@ const getUsers = async (id) => {
       <h2>${user.firstName} ${user.lastName}</h2>
       <h3>Tietoja</h3>
       <ul>
-        <li>Sukupuoli: ${user.sex}</li>
+        <li>Sukupuoli: ${user.gender}</li>
         <li>Syntymäaika: ${new Date(user.birthDate).toLocaleString('fi')}</li>
         <li>Kaupunki: ${user.city}</li>
         <li>Katuosoite: ${user.streetAddress}</li>

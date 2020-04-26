@@ -1,0 +1,122 @@
+/* Main navigation */
+
+.nav {
+  width: 100%;
+  padding: 5px 0;
+  background: #222;
+  border-radius: 4px;
+}
+
+.nav ul {
+  text-align: center;
+  padding: 0;
+  margin: -5px;
+}
+
+a {
+  color: #ccc;
+  text-decoration: none; /* no underline */
+}
+
+.nav ul li {
+  list-style-type: none;
+  display: inline-block;
+  margin-left: -5px;
+  font-size: 25px;
+  width: 200px;
+  height: 60px;
+  line-height: 60px;
+  border-left: 1px solid #fff;
+  cursor: pointer;
+  text-align: center;
+  font-family: Calibri;
+}
+#cn-button {
+}
+
+@media screen and (max-width: 600px) {
+  .nav {
+    float: none;
+  }
+}
+
+/* END */
+
+/* Diary entry modal */
+
+.hide {
+  display: none !important;
+}
+
+.modal {
+  width: 90%;
+  background: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+  position: fixed;
+  top: 20vh;
+  left: 5%;
+  z-index: 100;
+}
+
+.modal-header {
+  padding: 1rem;
+  background: #5101d1;
+  color: white;
+}
+
+.modal-header h1 {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.modal-content {
+  padding: 1rem;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  padding: 1rem;
+}
+
+@media (min-width: 768px) {
+  .modal {
+    width: 30rem;
+    left: calc((100% - 30rem) / 2);
+  }
+}
+
+/* Diary entry list and item */
+
+.day-entry-list {
+  width: 40rem;
+  max-width: 90%;
+  margin: 2rem auto;
+  list-style: none;
+  padding: 0;
+}
+
+.day-entry-item {
+  margin: 1rem 0;
+  padding: 1rem;
+  border: 1px solid #5101d1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.day-entry-item h1 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #5101d1;
+}
+
+.day-entry-item h2 {
+  margin: 0;
+  font-size: 1rem;
+  color: #7c7c7c;
+}
+
+.day-entry-item p {
+  margin: 0;
+}
