@@ -53,11 +53,27 @@
       <ul class="day-entry-list"></ul>
     </section>
     <div class="hide modal" id="edit-modal">
-      <form id="edit-form">
-        <input placeholder="Title" name="title" />
-        <input type="textarea" placeholder="Note text" name="noteText" />
-        <input type="date" name="dateTime" />
-        <input placeholder="running, skiing, watching tv etc." name="things" />
+      <form id="edit-form" enctype="multipart/form-data">
+        <input class="title" placeholder="Title" name="title" />
+        <input
+          class="note-text"
+          type="textarea"
+          placeholder="Note text"
+          name="noteText"
+        />
+        <img class="image" alt="image" />
+        <input
+          name="image"
+          type="file"
+          accept="image/*"
+          placeholder="Choose file"
+        />
+        <input class="date-time" type="date" name="dateTime" />
+        <input
+          class="things"
+          placeholder="running, skiing, watching tv etc."
+          name="things"
+        />
         <label> <input type="radio" value="5" name="mood" />Great </label>
         <label> <input type="radio" value="4" name="mood" />Good </label>
         <label>
@@ -79,6 +95,15 @@
       <h1>Remove day?</h1>
       <button name="remove">Remove</button>
       <button name="cancel">Cancel</button>
+    </div>
+    <div class="hide modal" id="view-diary-modal">
+      <h1 class="title">Title</h1>
+      <p class="note-text">NoteText</p>
+      <img class="image" alt="image" />
+      <h3 class="datetime">datetime</h3>
+      <h2 class="mood">mood</h2>
+      <h3 class="things">things</h3>
+      <button name="close">Close</button>
     </div>
     <!-- <div className="modal">
       <header className="modal__header">

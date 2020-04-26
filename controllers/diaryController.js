@@ -1,6 +1,7 @@
 'use strict'
 
 const diaryEntry = require('../models/diaryEntry')
+const { validationResult } = require('express-validator')
 
 const diary_entry_list_get = async (req, res) => {
   console.log('req.user.userid', req.user)
@@ -44,28 +45,39 @@ const diary_entry_list_update = async (req, res) => {
 }
 
 const diary_entry_post = async (req, res) => {
-  console.log('post mode', req.body)
-  console.log('post mode', req.user.userId)
+  console.log('post mode', req.body, req.file)
+  const errors = validationResult(req)
 
-  const params = [
-    req.body.dateTime,
-    req.body.title,
-    req.body.noteText,
-    req.body.mood,
-    req.body.things,
-    req.body.filename,
-    req.user.userId,
-  ]
+  if (!errors.isEmpty()) {
+    return res.status(422).json({ errors: errors.array() })
+  }
+  try {
+    console.log('req.file.path', req.file.path)
+    console.log('req.file.filename', req.file.filename)
 
-  const postDiaryEntry = await diaryEntry.createDiaryEntry(params)
+    const params = [
+      req.body.dateTime,
+      req.body.title,
+      req.body.noteText,
+      req.body.mood,
+      req.body.things,
+      req.file.filename,
+      req.user.userId,
+    ]
 
-  console.log('diary_entry_post and stuff', postDiaryEntry)
-  res.json(postDiaryEntry)
+    const postDiaryEntry = await diaryEntry.createDiaryEntry(params)
+
+    console.log('diary_entry_post and stuff', postDiaryEntry)
+    res.json(postDiaryEntry)
+  } catch (e) {
+    console.log('exif error', e)
+    res.status(400).json({ message: 'error' })
+  }
 }
 
 const diary_entry_delete = async (req, res) => {
-  console.log('update mode diary entry id', Number(req.params.id))
-  console.log('update mode user id', req.user.userId)
+  console.log('delete mode diary entry id', Number(req.params.id))
+  console.log('delete mode user id', req.user.userId)
 
   const params = [req.user.userId, Number(req.params.id)]
 
@@ -75,12 +87,22 @@ const diary_entry_delete = async (req, res) => {
   res.json(postDiaryEntry)
 }
 
+const image_file_validator = (value, { req }) => {
+  console.log('req.file', req.file)
+  if (!req.file) {
+    throw new Error('No image')
+  }
+  // if OK
+  return true
+}
+
 module.exports = {
   diary_entry_list_get,
   diary_entry_get,
   diary_entry_post,
   diary_entry_list_update,
   diary_entry_delete,
+  image_file_validator,
 }
 /*   res.json({
     message: 'You made it to the diary entry route',

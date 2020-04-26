@@ -4,9 +4,11 @@ const promisePool = require('../database/db').promise()
 const getAllDiaryEntries = async (id) => {
   try {
     const [rows] = await promisePool.query(
-      `SELECT DateTime dateTime, Title title, NoteText noteText, Mood mood, Things things, Filename fileName, DayEntryID dayEntryId FROM day_entry WHERE UserID = ?`,
+      `SELECT DateTime dateTime, Title title, NoteText noteText, Mood mood, Things things, Filename filename, DayEntryID dayEntryId FROM day_entry WHERE UserID = ?`,
       id
     )
+
+    console.log('what is love?', rows)
     return rows
   } catch (e) {
     console.log('error', e.message)

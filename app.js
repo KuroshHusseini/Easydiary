@@ -3,7 +3,7 @@
 // userModel
 const userModel = require('./models/userModel')
 const jwt = require('jsonwebtoken')
-const url = require('url')
+//const url = require('url')
 
 const path = require('path')
 const cors = require('cors')
@@ -20,11 +20,14 @@ const cons = require('consolidate')
 // Route requires
 const diaryEntryRoute = require('./routes/diaryEntryRoute')
 //const publicDiaryEntryRoute = require('./routes/publicDiaryEntryRoute');
-// View engine setup
+
+// View engine setup HTML!
 app.engine('html', cons.swig)
-app.use(express.static('views')) // TO SERVER JAVASCRIPT AND CSS FILES IN HTML!!
+app.use(express.static('views')) // To serve JAVASCRIPT AND CSS FILES IN HTML!!
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'html')
+
+app.use(express.static('uploads'))
 
 app.use(cors())
 app.use(express.json()) // for parsing application/json
@@ -42,10 +45,8 @@ app.use(session(sess))
 app.use(passport.initialize())
 app.use(passport.session())
 
-const secureRoute = require('./routes/secure-route')
-
 //We plugin our jwt strategy as a middleware so only verified users can access this route
-app.use('/user', passport.authenticate('jwt', { session: false }), secureRoute)
+
 // ROUTES
 app.use(
   '/user/diary',

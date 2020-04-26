@@ -109,6 +109,7 @@ a {
   margin: 0;
   font-size: 1.5rem;
   color: #5101d1;
+  cursor: pointer;
 }
 
 .day-entry-item h2 {
