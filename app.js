@@ -19,7 +19,7 @@ const cons = require('consolidate')
 
 // Route requires
 const diaryEntryRoute = require('./routes/diaryEntryRoute')
-
+//const publicDiaryEntryRoute = require('./routes/publicDiaryEntryRoute');
 // View engine setup
 app.engine('html', cons.swig)
 app.use(express.static('views')) // TO SERVER JAVASCRIPT AND CSS FILES IN HTML!!

@@ -16,6 +16,29 @@ const getUserLogin = async (params) => {
   }
 }
 
+const updateUserLogin = async (params) => {
+  try {
+    console.log('user params', params)
+    const [rows] = await promisePool.execute(
+      'SELECT Email ' +
+        'email, ' +
+        'Username username, ' +
+        'Password password, ' +
+        'UserID userId ' +
+        'FROM' +
+        ' user ' +
+        'WHERE' +
+        ' Email = ?;',
+      params
+    )
+
+    console.log('rows', rows)
+    return rows
+  } catch (e) {
+    console.log('error', e.message)
+  }
+}
+
 const getAllUsers = async () => {
   try {
     const [rows] = await promisePool.query(
@@ -27,7 +50,12 @@ const getAllUsers = async () => {
         StrAddress streetAddress,
         PostCode postCode,
         Country country 
-        FROM user INNER JOIN location ON user.LivesID = location.LivesID;`
+        FROM 
+        user 
+        INNER JOIN 
+        location 
+        ON
+        user.LivesID = location.LivesID;`
     )
     return rows
   } catch (e) {
@@ -65,10 +93,16 @@ const insertUser = async (user) => {
 
 const getUserById = async (id) => {
   try {
-    const [
-      rows,
-    ] = await promisePool.query(
-      `SELECT UserID id, FName firstName, LName lastName, Email email FROM user WHERE UserID = ?;`,
+    const [rows] = await promisePool.query(
+      `SELECT 
+      UserID id, 
+      FName firstName, 
+      LName lastName, 
+      Email email 
+      FROM
+       user 
+      WHERE 
+      UserID = ?;`,
       [id]
     )
 

@@ -4,7 +4,13 @@ const promisePool = require('../database/db').promise()
 const getAllUserDiaryEntry = async (params) => {
     try {
         const [rows] = await promisePool.execute(
-            `SELECT Datetime, NoteText, UserID FROM Day_Entry where UserID = ?`,
+            `SELECT Datetime,
+             NoteText, 
+             UserID 
+             FROM
+             day_entry 
+             WHERE
+             UserID = ?`,
             params
         )
         console.log('rows', rows)
@@ -17,7 +23,7 @@ const getAllUserDiaryEntry = async (params) => {
 const getUserDiaryEntry = async (userID) => {
     try {
         const [rows] = await promisePool.execute(
-            `SELECT * FROM Day_Entry where UserID = ?`, [userID]
+            `SELECT * FROM day_entry WHERE UserID = ?`, [userID]
         )
         console.log('rows', rows)
         return rows
@@ -50,7 +56,7 @@ const updateDiaryEntry = async (dayEntry) => {
                 "SET DateTime = ?, NoteText = ?, userID = ? " +
                 "WHERE userID = ?")
     } catch (err) {
-        console.error("updatediary model crash", err.message)
+        console.error("update diary model crash", err.message)
     }
 }
 const deleteDiaryEntry = async (dayEntry)=>{
