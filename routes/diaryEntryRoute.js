@@ -2,7 +2,7 @@
 
 const express = require('express')
 const router = express.Router()
-const diaryController = require('../controllers/diaryController')
+const diaryController = require('../controllers/publicDiaryController')
 
 router.get('/', diaryController.diary_entry_list_get)
 

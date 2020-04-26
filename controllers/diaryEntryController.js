@@ -42,7 +42,7 @@ const diary_put = async (res, req) => {
     res.status(204).send();
 }
 const diary_delete = async (req, res) => {
-    console.log('diary_put', req.parms);
+    console.log('diary_put', req.params);
     const delediary = await diaryEntryModel.deleteDiaryEntry(req.params.id);
     console.log('cat_delete result from db', delediary);
     res.json({deleted: 'OK'});

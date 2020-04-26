@@ -5,8 +5,16 @@ const getUserLogin = async (params) => {
   try {
     console.log('user params', params)
     const [rows] = await promisePool.execute(
-      'SELECT Email email, Username username, Password password, UserID userId FROM user WHERE Email = ?;',
-      params
+        'SELECT Email ' +
+            'email, ' +
+            'Username username, ' +
+            'Password password, ' +
+            'UserID userId ' +
+            'FROM' +
+            ' user ' +
+            'WHERE' +
+            ' Email = ?;',
+          params
     )
 
     console.log('rows', rows)
