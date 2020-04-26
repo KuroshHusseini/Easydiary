@@ -1,7 +1,7 @@
 'use strict'
 const promisePool = require('../database/db').promise()
 
-const getUserLogin = async (params) => {
+const updateUserLogin = async (params) => {
   try {
     console.log('user params', params)
     const [rows] = await promisePool.execute(
@@ -35,7 +35,12 @@ const getAllUsers = async () => {
         StrAddress streetAddress,
         PostCode postCode,
         Country country 
-        FROM user INNER JOIN location ON user.LivesID = location.LivesID;`
+        FROM 
+        user 
+        INNER JOIN 
+        location 
+        ON
+        user.LivesID = location.LivesID;`
     )
     return rows
   } catch (e) {
@@ -50,7 +55,22 @@ const insertUser = async (user) => {
     const [
       rows,
     ] = await promisePool.query(
-      `INSERT INTO location (City, StrAddress, PostCode, Country) VALUES(?, ?, ?, ?); INSERT INTO user (FName, LName, Sex, Email, Username, Password, BirthDate, LivesID) VALUES (?, ?, ?, ?, ?, ?, ?, LAST_INSERT_ID());`,
+      `INSERT INTO location (
+      City, 
+      StrAddress, 
+      PostCode, 
+      Country) 
+      VALUES(?, ?, ?, ?); 
+      INSERT INTO user (
+      FName,
+      LName, 
+      Sex, 
+      Email, 
+      Username, 
+      Password, 
+      BirthDate, 
+      LivesID) 
+      VALUES (?, ?, ?, ?, ?, ?, ?, LAST_INSERT_ID());`,
       [
         user.city,
         user.strAddress,
@@ -76,7 +96,15 @@ const getUserById = async (id) => {
     const [
       rows,
     ] = await promisePool.query(
-      `SELECT UserID id, FName firstName, LName lastName, Email email FROM user WHERE UserID = ?;`,
+      `SELECT 
+      UserID id, 
+      FName firstName, 
+      LName lastName, 
+      Email email 
+      FROM
+       user 
+      WHERE 
+      UserID = ?;`,
       [id]
     )
 
