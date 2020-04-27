@@ -16,7 +16,7 @@ addDiaryEntryForm.addEventListener('submit', async (evt) => {
   const options = {
     method: 'POST',
     headers: {
-      Authorization: 'Bearer ' + sessionStorage.getItem('token'),
+      Authorization: 'Bearer ' + localStorage.getItem('token'),
     },
     body: fd,
   }

@@ -72,9 +72,6 @@ registerUserForm.addEventListener('submit', async (evt) => {
     console.log(successMessage)
 
     closeBtnFunc(successMessage, 'success')
-    /*     console.log('json.token', json.token)
-    localStorage.setItem('token', json.token) */
-    //sessionStorage.setItem('token', json.token)
   }
 })
 
@@ -113,83 +110,3 @@ loginForm.addEventListener('submit', async (evt) => {
     throw err
   }
 })
-//const json = await response.json()
-
-//console.log('login json response', json) */
-/*     if (!json) {
-      alert('No response.')
-    } else {
-      console.log('AM I HERE?')
-      location.reload() */
-// save token
-//console.log('json token', json.token)
-//localStorage.setItem('token', json.token)
-
-// Refresh the page
-
-//console.log(
-//  'session storage.setItem(setToen',
-//  sessionStorage.getItem('token')
-//)
-//location.reload()
-// show
-//      console.log(
-// 'session storage.setItem(setToen',
-//   sessionStorage.getItem('token')
-// )
-/*     }
-  } catch (err) {
-    console.log('err message', err.message)
-  }
-}) */
-
-/*     var sendHome = url + '/home'
-    var form = document.createElement('form')
-    console.log('form', form)
-    document.body.appendChild(form)
-    form.method = 'GET'
-    form.action = sendHome
-    console.log('form and stuff', form) */
-//form.submit()
-
-/*     const jotain = await fetch(url + '/hidden', {
-      method: 'GET',
-      redirect: 'follow',
-      headers: {
-        Authorization: 'Bearer ' + sessionStorage.getItem('token'),
-      },
-    })
-
-    console.log('jotain', jotain) */
-
-/*     let xhr = new XMLHttpRequest()
-    xhr.open('POST', url + '/home', true)
-
-    xhr.setRequestHeader('Content-Type', 'application/json')
-    const accessToken = sessionStorage.getItem('token')
-
-    if (accessToken) {
-      console.log('I HAS ACCESS TOKEN!')
-      xhr.setRequestHeader('Authorization', `Bearer ${accessToken}`)
-      xhr.send()
-    } */
-/*     var sendHome = url + '/home'
-    var form = document.createElement('form')
-    document.body.appendChild(form)
-    form.method = 'GET'
-    form.head = {
-      Authorization: 'Bearer ' + sessionStorage.getItem('token'),
-    }
-    form.action = sendHome
-    console.log('form and stuff', form)
-    form.submit() */
-
-/*     await fetch(url + '/home', {
-      method: 'POST',
-      headers: {
-        Authorization: 'Bearer ' + sessionStorage.getItem('token'),
-      },
-    }) */
-
-/*     console.log('We are at home page.')
- */

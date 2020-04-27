@@ -57,6 +57,8 @@ const diary_entry_post = async (req, res) => {
     console.log('req.file.path', req.file.path)
     console.log('req.file.filename', req.file.filename)
 
+    console.log('thumbnails', req.file.filename)
+
     const thumb = await makeThumbnail(
       req.file.path,
       './thumbnails/' + req.file.filename
@@ -74,7 +76,7 @@ const diary_entry_post = async (req, res) => {
       req.body.mood,
       req.body.things,
       req.file.filename,
-      coords,
+      coords.toString(),
       req.user.userId,
     ]
 

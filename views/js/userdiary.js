@@ -3,6 +3,9 @@
 const url = 'http://localhost:3000' // change url when uploading to server
 const diaryList = document.querySelector('#diary-list ul')
 
+// Backdrop
+const backDrop = document.querySelector('.backdrop')
+
 // Logout
 const logOut = document.querySelector('#logout-anchor')
 logOut.addEventListener('click', () => {
@@ -29,6 +32,8 @@ console.log('cancelEditModal', cancelEditModal)
 console.log('cancelRemoveModal', cancelRemoveModal)
 
 const closeAllModals = () => {
+  backDrop.classList.add('hide')
+
   viewModal.classList.add('hide')
   editModal.classList.add('hide')
   removeModal.classList.add('hide')
@@ -39,7 +44,7 @@ const cancelEditFunc = () => {
   console.log('This is cancel edit func!')
   editForm.removeAttribute('id')
 
-  editModal.classList.add('hide')
+  closeAllModals()
 }
 
 cancelEditModal.addEventListener('click', cancelEditFunc)
@@ -54,9 +59,12 @@ const showEditDiaryModal = (dayEntry) => {
   editForm.querySelector('.title').value = dayEntry.title
   editForm.querySelector('.note-text').value = dayEntry.noteText
 
+  console.log('dayEntry.filename', dayEntry.filename)
+
   dayEntry.filename
-    ? (editForm.querySelector('.image').src = dayEntry.filename)
-    : (editForm.querySelector('.image').src = '../images/no-image.jpg')
+    ? (editModal.querySelector('.image').src =
+        url + '/thumbnails/' + dayEntry.filename)
+    : (editModal.querySelector('.image').src = '../images/no-image.jpg')
 
   editForm.querySelector('.date-time').value = new Date(
     dayEntry.dateTime
@@ -71,7 +79,9 @@ const showEditDiaryModal = (dayEntry) => {
   editForm.querySelector('.things').value = dayEntry.things
 
   console.log("editForm's id", editForm.id)
+
   editModal.classList.remove('hide')
+  backDrop.classList.remove('hide')
 }
 
 // View diary entry
@@ -91,6 +101,7 @@ const viewDiaryModal = (dayEntry) => {
   viewModal.querySelector('.things').innerHTML = dayEntry.things
 
   viewModal.classList.remove('hide')
+  backDrop.classList.remove('hide')
 }
 
 closeViewModal.addEventListener('click', () => {
@@ -107,7 +118,7 @@ removeSelectedDiary.addEventListener('click', async () => {
     credentials: 'same-origin', // include, *same-origin, omit
     headers: {
       'Content-Type': 'application/json',
-      Authorization: 'Bearer ' + sessionStorage.getItem('token'),
+      Authorization: 'Bearer ' + localStorage.getItem('token'),
     },
     redirect: 'follow', // manual, *follow, error
     referrer: 'no-referrer', // no-referrer, *client
@@ -123,6 +134,7 @@ removeSelectedDiary.addEventListener('click', async () => {
 
   const json = await response.json()
   console.log('updated response', json)
+
   getDiaryEntries()
 })
 
@@ -143,6 +155,7 @@ const showRemoveDiaryModal = (id) => {
 
   console.log("removeSelectedDiary's id", removeSelectedDiary.id)
   removeModal.classList.remove('hide')
+  backDrop.classList.remove('hide')
 }
 
 const createDiaryListItem = (diaryEntries) => {
@@ -169,15 +182,13 @@ const createDiaryListItem = (diaryEntries) => {
     }
 
     const editBtn = document.createElement('button')
+    editBtn.className = 'btn'
     editBtn.innerHTML = 'Edit'
 
     editBtn.addEventListener('click', () => showEditDiaryModal(diaryEntry))
-    // BAKCUP
-    /*     editBtn.addEventListener('click', () =>
-      showEditDiaryModal(diaryEntry.dayEntryId)
-    ) */
 
     const removeBtn = document.createElement('button')
+    removeBtn.className = 'btn'
     removeBtn.innerHTML = 'Remove'
 
     removeBtn.addEventListener('click', () =>
@@ -194,12 +205,12 @@ const createDiaryListItem = (diaryEntries) => {
 }
 
 const getDiaryEntries = async () => {
-  console.log('Get token:', sessionStorage.getItem('token'))
+  console.log('Get token:', localStorage.getItem('token'))
 
   try {
     const options = {
       headers: {
-        Authorization: 'Bearer ' + sessionStorage.getItem('token'),
+        Authorization: 'Bearer ' + localStorage.getItem('token'),
       },
     }
     const response = await fetch(url + '/user/diary', options)
@@ -216,15 +227,6 @@ editForm.addEventListener('submit', async (evt) => {
   evt.preventDefault()
   const fd = new FormData(editForm)
 
-  /*   let data = serializeJson(editForm)
-
-  const mood = Number(
-    editForm.querySelector('label input[name = "mood"]:checked').value
-  )
-
-  data = { ...data, mood, dayEntryId: Number(editForm.id) } */
-
-  // console.log('What does data look like?', data)
   const options = {
     method: 'PUT', // *GET, POST, PUT, DELETE, etc.
     /*     mode: 'cors', // no-cors, *cors, same-origin
@@ -232,7 +234,7 @@ editForm.addEventListener('submit', async (evt) => {
     credentials: 'same-origin', // include, *same-origin, omit
  */ headers: {
       /*       'Content-Type': 'application/json',
-       */ Authorization: 'Bearer ' + sessionStorage.getItem('token'),
+       */ Authorization: 'Bearer ' + localStorage.getItem('token'),
     },
     /*     redirect: 'follow', // manual, *follow, error
     referrer: 'no-referrer', // no-referrer, *client
