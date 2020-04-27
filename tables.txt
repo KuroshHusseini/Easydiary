@@ -45,8 +45,9 @@ CREATE OR REPLACE TABLE day_entry
   NoteText text NOT NULL,
   Mood int NOT NULL,
   Things text,
-  UserID int NOT NULL,
   Filename text,
+  Coords VARCHAR(20),
+  UserID int NOT NULL,
   PRIMARY KEY (DayEntryID),
   FOREIGN KEY (UserID) REFERENCES user(UserID)
 );

@@ -2,6 +2,12 @@ const url = 'http://localhost:3000' // change url when uploading to server
 
 const addDiaryEntryForm = document.querySelector('#add-diary-entry-form')
 
+// Logout
+const logOut = document.querySelector('#logout-anchor')
+logOut.addEventListener('click', () => {
+  localStorage.removeItem('token')
+})
+
 addDiaryEntryForm.addEventListener('submit', async (evt) => {
   evt.preventDefault()
 
@@ -15,11 +21,15 @@ addDiaryEntryForm.addEventListener('submit', async (evt) => {
     body: fd,
   }
 
-  console.log(options)
-  const response = await fetch(url + '/user/diary', options)
-  const json = await response.json()
+  try {
+    console.log(options)
+    const response = await fetch(url + '/user/diary', options)
+    const json = await response.json()
 
-  console.log('updated response', json)
+    //console.log('updated response', json)
+  } catch (err) {
+    throw err
+  }
 })
 
 console.log('addDiaryNEtyafgosa', addDiaryEntryForm)

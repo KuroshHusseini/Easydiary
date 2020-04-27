@@ -95,63 +95,53 @@ loginForm.addEventListener('submit', async (evt) => {
     const response = await fetch(url + '/login', fetchOptions)
 
     const json = await response.json()
-
-    console.log('login json response', json)
-    if (!json) {
-      alert('No response.')
-    } else {
-      // save token
-
-      console.log('json token', json.token)
+    console.log('jsonwebtoken', json)
+    if (json) {
       localStorage.setItem('token', json.token)
-      sessionStorage.setItem('token', json.token)
+    } else {
+      alert('No jsonwebtoken.')
+    }
 
-      console.log(
-        'session storage.setItem(setToen',
-        sessionStorage.getItem('token')
-      )
-      // show
-      //      console.log(
-      // 'session storage.setItem(setToen',
-      //   sessionStorage.getItem('token')
-      // )
+    if (response) {
+      // location.reload()
+      window.location.href = '/home'
     }
   } catch (err) {
     console.log('err message', err.message)
+    alert('No response. Incorrect credentials, perhaps?')
+
+    throw err
   }
 })
+//const json = await response.json()
 
-const testButton = document.querySelector('#test-button')
-testButton.addEventListener('click', async (evt) => {
-  evt.preventDefault()
-  const fetchOptions = {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    headers: {
-      Authorization: 'Bearer ' + sessionStorage.getItem('token'),
-    },
-  }
-  try {
-    const response = await fetch(url + '/testi', fetchOptions)
-
-    if (!response) {
-      alert('Error happened')
-    }
-    /*   const json = await response.json()
-  
-    console.log('login json response', json)
-    if (!json) {
+//console.log('login json response', json) */
+/*     if (!json) {
       alert('No response.')
     } else {
-      // save token
-  
-    } */
+      console.log('AM I HERE?')
+      location.reload() */
+// save token
+//console.log('json token', json.token)
+//localStorage.setItem('token', json.token)
+
+// Refresh the page
+
+//console.log(
+//  'session storage.setItem(setToen',
+//  sessionStorage.getItem('token')
+//)
+//location.reload()
+// show
+//      console.log(
+// 'session storage.setItem(setToen',
+//   sessionStorage.getItem('token')
+// )
+/*     }
   } catch (err) {
     console.log('err message', err.message)
   }
-})
+}) */
 
 /*     var sendHome = url + '/home'
     var form = document.createElement('form')

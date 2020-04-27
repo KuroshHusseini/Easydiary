@@ -1,6 +1,8 @@
 'use strict'
 
 const diaryEntry = require('../models/diaryEntry')
+const makeThumbnail = require('../utils/resize').makeThumbnail
+const imageMeta = require('../utils/imageMeta')
 const { validationResult } = require('express-validator')
 
 const diary_entry_list_get = async (req, res) => {
@@ -55,6 +57,16 @@ const diary_entry_post = async (req, res) => {
     console.log('req.file.path', req.file.path)
     console.log('req.file.filename', req.file.filename)
 
+    const thumb = await makeThumbnail(
+      req.file.path,
+      './thumbnails/' + req.file.filename
+    )
+
+    console.log('thumb', thumb)
+
+    const coords = await imageMeta.getCoordinates(req.file.path)
+
+    console.log('new coords', coords)
     const params = [
       req.body.dateTime,
       req.body.title,
@@ -62,6 +74,7 @@ const diary_entry_post = async (req, res) => {
       req.body.mood,
       req.body.things,
       req.file.filename,
+      coords,
       req.user.userId,
     ]
 

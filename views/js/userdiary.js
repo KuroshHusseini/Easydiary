@@ -1,8 +1,13 @@
 'use strict'
 
 const url = 'http://localhost:3000' // change url when uploading to server
-
 const diaryList = document.querySelector('#diary-list ul')
+
+// Logout
+const logOut = document.querySelector('#logout-anchor')
+logOut.addEventListener('click', () => {
+  localStorage.removeItem('token')
+})
 
 // Edit diary
 const editModal = document.querySelector('#edit-modal')
@@ -30,7 +35,6 @@ const closeAllModals = () => {
 }
 
 // Cancel and view edit diary entry modal
-
 const cancelEditFunc = () => {
   console.log('This is cancel edit func!')
   editForm.removeAttribute('id')
@@ -78,7 +82,8 @@ const viewDiaryModal = (dayEntry) => {
   viewModal.querySelector('.note-text').innerHTML = dayEntry.noteText
 
   dayEntry.filename
-    ? (viewModal.querySelector('.image').src = url + '/' + dayEntry.filename)
+    ? (viewModal.querySelector('.image').src =
+        url + '/thumbnails/' + dayEntry.filename)
     : (viewModal.querySelector('.image').src = '../images/no-image.jpg')
 
   viewModal.querySelector('.datetime').innerHTML = dayEntry.dateTime
@@ -159,7 +164,7 @@ const createDiaryListItem = (diaryEntries) => {
 
     if (diaryEntry.filename) {
       const img = document.createElement('img')
-      img.src = url + '/' + diaryEntry.filename
+      img.src = url + '/thumbnails/' + diaryEntry.filename
       img.alt = diaryEntry.title
     }
 

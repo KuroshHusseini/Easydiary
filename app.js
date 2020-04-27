@@ -19,6 +19,7 @@ const cons = require('consolidate')
 
 // Route requires
 const diaryEntryRoute = require('./routes/diaryEntryRoute')
+const authRoute = require('./routes/authRoute')
 //const publicDiaryEntryRoute = require('./routes/publicDiaryEntryRoute');
 
 // View engine setup HTML!
@@ -27,13 +28,14 @@ app.use(express.static('views')) // To serve JAVASCRIPT AND CSS FILES IN HTML!!
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'html')
 
+app.use('/thumbnails', express.static('thumbnails'))
 app.use(express.static('uploads'))
 
 app.use(cors())
 app.use(express.json()) // for parsing application/json
 app.use(express.urlencoded({ extended: true })) // for parsing application/x-www-login-urlencoded
 
-var sess = {
+/* var sess = {
   secret: 'keyboard cat',
   resave: false,
   saveUninitialized: true,
@@ -43,9 +45,76 @@ var sess = {
 app.use(session(sess))
 
 app.use(passport.initialize())
+app.use(passport.session()) */
+
+app.use(
+  session({
+    secret: 'salainen kissa',
+    resave: false,
+    saveUninitialized: false,
+  })
+)
+
+app.use(passport.initialize())
 app.use(passport.session())
 
 //We plugin our jwt strategy as a middleware so only verified users can access this route
+
+const loggedIn = (req, res, next) => {
+  console.log('logged', req.user)
+  if (req.user) {
+    next()
+  } else {
+    res.redirect('/login')
+  }
+}
+
+/* app.use(
+  '/user/diary',
+  passport.authenticate('jwt', { session: false }),
+  diaryEntryRoute
+) */
+
+app.get('/', loggedIn, (req, res) => {
+  res.redirect('/home')
+})
+
+app.get('/login', (req, res) => {
+  if (req.user) {
+    res.redirect('/home')
+  } else {
+    res.render('login')
+  }
+})
+/* app.get('/', loggedIn, (req, res) => {
+  console.log('E.T. go home')
+  res.render('home')
+}) */
+
+app.get('/home', loggedIn, (req, res) => {
+  console.log('Render home')
+  res.render('home')
+})
+
+app.get('/settings', loggedIn, (req, res) => {
+  console.log('Render home')
+  res.render('settings')
+})
+
+app.get('/diary', loggedIn, (req, res) => {
+  console.log('Render home')
+  res.render('userdiary')
+})
+
+app.get('/create', loggedIn, (req, res) => {
+  console.log('Render home')
+  res.render('create')
+})
+
+app.get('/logout', function (req, res) {
+  req.logout()
+  res.redirect('/login')
+})
 
 // ROUTES
 app.use(
@@ -53,8 +122,14 @@ app.use(
   passport.authenticate('jwt', { session: false }),
   diaryEntryRoute
 )
+app.use('/', authRoute)
 
-app.get('/', (req, res) => {
+/* app.get('/login', (req, res) => {
+  res.render('login')
+}) */
+
+/* app.get('/', loggedIn, (req, res) => {
+  console.log('where is req.user!??!?!?', req.user)
   if (sess.logged) {
     res.render('home')
   } else {
@@ -66,16 +141,9 @@ app.get('/login', (req, res) => {
   res.render('login')
 })
 
-const loggedIn = (req, res, next) => {
-  console.log('logged', req.user)
-  if (req.user) {
-    next()
-  } else {
-    res.redirect('/login')
-  }
-}
+app.get('/home', loggedIn, (req, res) => {
+  console.log('where /home is req.user!??!?!?', req.user)
 
-app.get('/home', (req, res) => {
   if (sess.logged) {
     res.render('home')
   } else {
@@ -110,7 +178,7 @@ app.get('/create', (req, res) => {
 app.get('/logout', (req, res) => {
   sess.logged = false
   res.redirect('/')
-})
+}) */
 
 /* app.post(
   '/testi',
@@ -122,7 +190,79 @@ app.get('/logout', (req, res) => {
   }
 ) */
 
-app.post('/login', async (req, res, next) => {
+/* app.post('/login', async (req, res, next) => {
+  passport.authenticate('login', async (err, user, info) => {
+    try {
+      if (err || !user) {
+        const error = new Error('An Error occurred')
+        return next(error)
+      }
+      req.login(user, { session: false }, async (error) => {
+        if (error) return next(error)
+
+        console.log('app.post /login', user)
+        //We don't want to store the sensitive information such as the
+        //user password in the token so we pick only the email and id
+        const body = { userId: user.userId, email: user.email }
+
+        console.log('body:', body)
+        //Sign the JWT token and populate the payload with the user email and id
+        const token = jwt.sign({ user: body }, process.env.TOKEN)
+        // Logged in true
+        //sess.logged = true
+        //Send back the token to the user
+        return res.json({ token })
+        //console.log('success')
+        //console.log('req.user success', req.user)
+        //res.redirect('/')
+      })
+    } catch (error) {
+      return next(error)
+    }
+  })(req, res, next)
+}) */
+
+//16.56 BACKUP 27.04
+/* app.post(
+  '/login',
+  passport.authenticate('login', { failureRedirect: '/login' }),
+  (req, res) => {
+    console.log('success')
+    console.log('req.user success', req.user)
+
+    try {
+      if (req.err || !req.user) {
+        const error = new Error('An Error occurred')
+        return next(error)
+      }
+      req.login(req.user, { session: false }, async (error) => {
+        if (error) return next(error)
+
+        console.log('app.post /login', req.user)
+        //We don't want to store the sensitive information such as the
+        //user password in the token so we pick only the email and id
+        const body = { userId: req.user.userId, email: req.user.email }
+
+        console.log('body:', body)
+        //Sign the JWT token and populate the payload with the user email and id
+        const token = jwt.sign({ user: body }, process.env.TOKEN)
+        // Logged in true
+        //sess.logged = true
+        //Send back the token to the user
+        return res.json({ token })
+        //console.log('success')
+        //console.log('req.user success', req.user)
+        //res.redirect('/')
+      })
+    } catch (error) {
+      return next(error)
+    }
+
+    //res.redirect('/')
+  }
+) */
+
+/* app.post('/login', async (req, res, next) => {
   passport.authenticate('login', async (err, user, info) => {
     try {
       if (err || !user) {
@@ -149,9 +289,9 @@ app.post('/login', async (req, res, next) => {
       return next(error)
     }
   })(req, res, next)
-})
+}) */
 
-app.post(
+/* app.post(
   '/register',
   [
     body('firstName', 'Min 3 chars, required').isLength({ min: 3 }),
@@ -201,11 +341,11 @@ app.post(
     }
   }
 )
-
-app.get('/logout', function (req, res) {
+ */
+/* app.get('/logout', function (req, res) {
   req.logout()
   res.redirect('/login')
-})
+})  */
 
 app.listen(process.env.PORT, () =>
   console.log(`Example app listening on port ${process.env.PORT}!`)

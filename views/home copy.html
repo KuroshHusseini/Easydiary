@@ -1,104 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <link href="style/home.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+  <head>
+    <meta charset="UTF-8" />
+    <link href="style/home.css" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+    />
     <title>Home</title>
-</head>
-<body>
-
-<div class="nav">
-    <ul>
+  </head>
+  <body>
+    <div class="nav">
+      <ul>
         <li><i class="fa fa-sign-out"> Log out </i></li>
         <li><i class="fa fa-gear"> Settings</i></li>
         <li><i class="fa fa-book"> My diary</i></li>
         <li><i class="fa fa-home"></i> Home</li>
         <li>
-            <button class="fa fa-plus" id="cn-button" style="border-radius: 50%"></button>
+          <button
+            class="fa fa-plus"
+            id="cn-button"
+            style="border-radius: 50%;"
+          ></button>
         </li>
-
-    </ul>
-</div>
-<div class=" background">
-
-    <div class="diaryEntry">
-        <h2>Create new diary entry</h2>
-        <form
-                class="light-border"
-                id="add-user-form">
-
-            <div class="titleField">
-
-                <input
-                        type="text"
-                        required>
-                <span
-                        class="label">Title</span>
-            </div>
-
-            <div class="noteField">
-                <textarea placeholder="Write your note :)" cols="77" rows="8" style="border-radius: 4px"></textarea>
-            </div>
-
-            <div class="thingsIdidField">
-                <textarea id="thingsIDid" placeholder="Things I did" cols="50" rows="3"
-                          style="border-radius: 4px"></textarea>
-            </div>
-
-            <div class="radioButtonField">
-
-                <label
-                        class="radio-inline"
-                        style="color: greenyellow">
-                    <input
-                            type="radio"
-                            name="optradio"
-                            checked>Great
-                </label>
-
-                <label
-                        class="radio-inline"
-                        style="color: green">
-                    <input
-                            type="radio"
-                            name="optradio">Happy
-                </label>
-
-                <label
-                        class="radio-inline"
-                        style="color: orange">
-                    <input
-                            type="radio"
-                            name="optradio">Okay
-                </label>
-
-                <label
-                        class="radio-inline"
-                        style="color: red">
-                    <input
-                            type="radio"
-                            name="optradio">Bad
-                </label>
-                <label
-                        class="radio-inline"
-                        style="color: darkred">
-                    <input
-                            type="radio"
-                            name="optradio">Awful
-                </label>
-
-            </div>
-            <div class="dateField">
-                <form action="/action_page.php">
-                    <label class="dateText" for="Date" style="color: white">Date: </label>
-                    <input type="date" id="Date" name="date" style="border-radius: 4px">
-                    <input class="dateButtom" type="submit" style="border-radius: 4px">
-                </form>
-            </div>
-        </form>
+      </ul>
     </div>
-</div>
-<script src="js/home.js"></script>
-</body>
+    <div class="background">
+      <div class="diaryEntry">
+        <h2>Create new diary entry</h2>
+        <form class="light-border" id="add-user-form">
+          <div class="titleField">
+            <input type="text" required />
+            <span class="label">Title</span>
+          </div>
+
+          <div class="noteField">
+            <textarea
+              placeholder="Write your note :)"
+              cols="77"
+              rows="8"
+              style="border-radius: 4px;"
+            ></textarea>
+          </div>
+
+          <div class="thingsIdidField">
+            <textarea
+              id="thingsIDid"
+              placeholder="Things I did"
+              cols="50"
+              rows="3"
+              style="border-radius: 4px;"
+            ></textarea>
+          </div>
+
+          <div class="radioButtonField">
+            <label class="radio-inline" style="color: greenyellow;">
+              <input type="radio" name="optradio" checked />Great
+            </label>
+
+            <label class="radio-inline" style="color: green;">
+              <input type="radio" name="optradio" />Happy
+            </label>
+
+            <label class="radio-inline" style="color: orange;">
+              <input type="radio" name="optradio" />Okay
+            </label>
+
+            <label class="radio-inline" style="color: red;">
+              <input type="radio" name="optradio" />Bad
+            </label>
+            <label class="radio-inline" style="color: darkred;">
+              <input type="radio" name="optradio" />Awful
+            </label>
+          </div>
+          <div class="dateField">
+            <form action="/action_page.php">
+              <label class="dateText" for="Date" style="color: white;"
+                >Date:
+              </label>
+              <input
+                type="date"
+                id="Date"
+                name="date"
+                style="border-radius: 4px;"
+              />
+              <input
+                class="dateButtom"
+                type="submit"
+                style="border-radius: 4px;"
+              />
+            </form>
+          </div>
+        </form>
+      </div>
+    </div>
+    <script src="js/home.js"></script>
+  </body>
 </html>
