@@ -3,8 +3,6 @@
 <head>
     <title>Login</title>
     <link href="style/login.css" rel="stylesheet">
-    <!--ei saa olla frame wokki --><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Modak&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -24,27 +22,16 @@
                       class="light-border"
                       enctype="multipart/form-data">
 
-                    <input
-                            type="email"
-                            placeholder="Email"
-                            required>
 
-                    <input
-                            type="password"
-                            placeholder="password"
-                            required>
-                    <button
-                            class="light-border"
-                            type="submit">Login
-                    </button>
+                    <input type="email" id="email" placeholder="Enter email" name="email">
+                    <input type="password" id="pwd" placeholder="Enter password" name="pswd">
+                    <button type="submit">Log in</button>
+
                 </form>
 
             </div>
 
-            <h1
-                    class="logo"
-                    style="font-family: 'Modak',
-                     cursive;">Easydiary</h1>
+            <h1 class="logo">Easydiary</h1>
         </div>
 
         <div class="signup">
@@ -95,7 +82,7 @@
                             class="label">Birth</span>
                 </div>
 
-                <div class="field">
+                <div class="gender">
 
                     <label
                             class="radio-inline"
