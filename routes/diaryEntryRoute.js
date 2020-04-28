@@ -26,7 +26,22 @@ router.get('/', diaryController.diary_entry_list_get)
 
 router.get('/:id', diaryController.diary_entry_get)
 
-router.put('/', diaryController.diary_entry_list_update)
+router.put(
+  '/',
+  upload.single('image'),
+  [
+    body('dateTime', 'cannot be empty').isLength({ min: 1 }),
+    body('title', 'cannot be empty').isLength({ min: 1 }),
+    body('noteText', 'cannot be empty').isLength({ min: 1 }),
+    body('mood', 'must be number').isNumeric(),
+    check('image').custom(diaryController.image_file_validator),
+    //check('things').custom(catController.cat_file_validator), // cat_file_validator checks only req.file
+  ],
+  (req, res) => {
+    console.log('tiedosto: ', req.file)
+    diaryController.diary_entry_list_update(req, res)
+  }
+)
 
 //router.post('/', diaryController.diary_entry_post)
 
@@ -37,7 +52,7 @@ router.post(
     body('dateTime', 'cannot be empty').isLength({ min: 1 }),
     body('title', 'cannot be empty').isLength({ min: 1 }),
     body('noteText', 'cannot be empty').isLength({ min: 1 }),
-    body('mood', 'must be number').isNumeric().isLength({ min: 1, max: 5 }),
+    body('mood', 'must be number').isNumeric(),
     check('image').custom(diaryController.image_file_validator),
     //check('things').custom(catController.cat_file_validator), // cat_file_validator checks only req.file
   ],

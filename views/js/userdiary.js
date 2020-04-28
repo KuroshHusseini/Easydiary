@@ -225,8 +225,12 @@ const getDiaryEntries = async () => {
 
 editForm.addEventListener('submit', async (evt) => {
   evt.preventDefault()
-  const fd = new FormData(editForm)
 
+  const fd = new FormData(editForm)
+  fd.append('dayEntryId', editForm.getAttribute('id'))
+
+  console.log('FD type', typeof fd)
+  //console.log('Harasoo', editForm.getAttribute('id'))
   const options = {
     method: 'PUT', // *GET, POST, PUT, DELETE, etc.
     /*     mode: 'cors', // no-cors, *cors, same-origin
@@ -240,6 +244,11 @@ editForm.addEventListener('submit', async (evt) => {
     referrer: 'no-referrer', // no-referrer, *client
  */ body: fd,
 
+    /* body: {
+      ...fd,
+      dayEntryId: editForm.getAttribute('id'),
+    }, */
+
     /*     body: JSON.stringify(data), // body data type must match "Content-Type" header
      */
   }
@@ -248,7 +257,7 @@ editForm.addEventListener('submit', async (evt) => {
   const response = await fetch(url + '/user/diary', options)
   const json = await response.json()
 
-  editForm.removeAttribute('id')
+  //editForm.removeAttribute('id')
 
   closeAllModals()
 

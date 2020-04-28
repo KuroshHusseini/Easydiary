@@ -44,6 +44,8 @@ const createDiaryEntry = async (params) => {
 }
 const updateDiaryEntry = async (params) => {
   try {
+    /*       `INSERT INTO day_entry (DateTime, Title, NoteText, Mood, Things, Filename, Coords, UserID) VALUES (?, ?, ?, ?, ?, ?, ?, ?);`,
+     */
     console.log('update diary? ', params)
     const [rows] = await promisePool.query(
       `UPDATE day_entry SET DateTime = ?, Title = ?, NoteText = ?, Mood = ?, Things = ?, Filename = ?, Coords = ? WHERE UserID = ? AND DayEntryID = ?`,
