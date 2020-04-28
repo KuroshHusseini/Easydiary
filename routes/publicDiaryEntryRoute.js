@@ -4,17 +4,14 @@ const express = require('express')
 const router = express.Router()
 const publicDiaryController = require('../controllers/publicDiaryController')
 
-router.get('/', publicDiaryController.publicDiaryEntry_list_get)
+router.get('/', publicDiaryController.publicDiaryEntry_list_get) // 1. FIRST
 
-router.get('/:id', publicDiaryController.publicDiary_get)
+//router.get('/:id', publicDiaryController.publicDiary_get)
 
-//dont know how to do
-router.put('/', publicDiaryController.publicDiaryEntry_list_update);
+//router.put('/', publicDiaryController.publicDiaryEntry_list_update)
 
-router.post('/', publicDiaryController.publicDiary_post)
+router.post('/', publicDiaryController.publicDiary_post) // 2. THEN THIS!
 
-router.post('/', publicDiaryController.publicDiary_post)
-
-router.delete('/:id', publicDiaryController.publicDiary_delete)
+//router.delete('/:id', publicDiaryController.publicDiary_delete)
 
 module.exports = router

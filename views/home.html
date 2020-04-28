@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link href="style/home.css" rel="stylesheet" />
+    <link href="style/index.css" rel="stylesheet" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
@@ -49,6 +49,52 @@
     </div>
 
     <header><h1>Home</h1></header>
+    <section id="diary-list">
+      <ul class="day-entry-list"></ul>
+    </section>
+    <div class="hide backdrop"></div>
+    <div class="hide modal" id="view-diary-modal">
+      <header class="modal-header">
+        <h1>
+          View modal
+        </h1>
+      </header>
+      <section class="modal-content">
+        <div class="form-control">
+          <label for="title">
+            <h1 class="title">Title</h1>
+          </label>
+        </div>
+        <div class="form-control">
+          <label for="note-text">
+            <p class="note-text">Note text</p>
+          </label>
+        </div>
+        <div class="form-control">
+          <label for="image">
+            <img class="image" alt="image" />
+          </label>
+        </div>
+        <div class="form-control">
+          <label for="datetime">
+            <h3 class="datetime">Datetime</h3>
+          </label>
+        </div>
+        <div class="form-control">
+          <label for="mood">
+            <h2 class="mood">Mood</h2>
+          </label>
+        </div>
+        <div class="form-control">
+          <label for="things">
+            <h3 class="things">Things</h3>
+          </label>
+        </div>
+      </section>
+      <section class="modal-actions">
+        <button class="btn" name="close">Close</button>
+      </section>
+    </div>
     <script src="js/home.js"></script>
   </body>
 </html>

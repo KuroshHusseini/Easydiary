@@ -12,6 +12,7 @@ const cons = require('consolidate')
 
 // Route requires
 const diaryEntryRoute = require('./routes/diaryEntryRoute')
+const publicDiaryEntryRoute = require('./routes/publicDiaryEntryRoute')
 const authRoute = require('./routes/authRoute')
 const pageRoute = require('./routes/pageRoute')
 //const publicDiaryEntryRoute = require('./routes/publicDiaryEntryRoute');
@@ -49,10 +50,16 @@ app.use(middleware.requestLogger)
 app.use('/', pageRoute)
 
 app.use(
-  '/user/diary',
+  '/diary/user',
   passport.authenticate('jwt', { session: false }),
   diaryEntryRoute
 )
+app.use(
+  '/diary/all',
+  passport.authenticate('jwt', { session: false }),
+  publicDiaryEntryRoute
+)
+
 app.use('/', authRoute)
 
 app.listen(process.env.PORT, () =>

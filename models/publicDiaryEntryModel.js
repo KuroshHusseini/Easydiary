@@ -4,6 +4,27 @@ const promisePool = require('../database/db').promise()
 const getAllPublicDayEntry = async (params) => {
   try {
     const [rows] = await promisePool.execute(
+      `SELECT Username username,
+       Title title,
+       NoteText noteText,
+       Filename filename,
+       DateTime dateTime,
+       Things things,
+       Mood mood
+        FROM public_day_entry
+          INNER JOIN day_entry ON public_day_entry.DayEntryID = day_entry.DayEntryID
+          INNER JOIN user ON day_entry.UserID = user.userID;`,
+      params
+    )
+    console.log('rows', rows)
+    return rows
+  } catch (err) {
+    console.log('error', err.message)
+  }
+}
+/* const getAllPublicDayEntry = async (params) => {
+  try {
+    const [rows] = await promisePool.execute(
       `SELECT PublicDayEntryID,
              CreatedAt, 
              UpdatedAt,
@@ -21,7 +42,7 @@ const getAllPublicDayEntry = async (params) => {
   } catch (err) {
     console.log('error', err.message)
   }
-}
+} */
 
 const getPublicDayEntry = async (dayEntryID, userID) => {
   try {

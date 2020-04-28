@@ -1,16 +1,13 @@
 'use strict'
 
 const url = 'http://localhost:3000' // change url when uploading to server
+
+/* DOM elements */
+
 const diaryList = document.querySelector('#diary-list ul')
 
 // Backdrop
 const backDrop = document.querySelector('.backdrop')
-
-// Logout
-const logOut = document.querySelector('#logout-anchor')
-logOut.addEventListener('click', () => {
-  localStorage.removeItem('token')
-})
 
 // Edit diary
 const editModal = document.querySelector('#edit-modal')
@@ -30,6 +27,16 @@ console.log('modal', editModal)
 console.log('editForm', editForm)
 console.log('cancelEditModal', cancelEditModal)
 console.log('cancelRemoveModal', cancelRemoveModal)
+
+/* END */
+
+/* FUNCTIONS */
+
+// Logout
+const logOut = document.querySelector('#logout-anchor')
+logOut.addEventListener('click', () => {
+  localStorage.removeItem('token')
+})
 
 const closeAllModals = () => {
   backDrop.classList.add('hide')
@@ -126,7 +133,7 @@ removeSelectedDiary.addEventListener('click', async () => {
 
   console.log(options)
   const response = await fetch(
-    url + '/user/diary/' + removeSelectedDiary.id,
+    url + '/diary/user/' + removeSelectedDiary.id,
     options
   )
 
@@ -213,7 +220,7 @@ const getDiaryEntries = async () => {
         Authorization: 'Bearer ' + localStorage.getItem('token'),
       },
     }
-    const response = await fetch(url + '/user/diary', options)
+    const response = await fetch(url + '/diary/user', options)
     const diaryEntries = await response.json()
 
     console.log('diaryEntries', diaryEntries)
@@ -254,7 +261,7 @@ editForm.addEventListener('submit', async (evt) => {
   }
 
   console.log(options)
-  const response = await fetch(url + '/user/diary', options)
+  const response = await fetch(url + '/diary/user', options)
   const json = await response.json()
 
   //editForm.removeAttribute('id')

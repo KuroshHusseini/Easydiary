@@ -2,8 +2,6 @@
 const publicDiaryEntryModel = require('../models/publicDiaryEntryModel')
 const { validationResult } = require('express-validator')
 
-const publicDiaryEntry = publicDiaryEntryModel.publicDiary
-
 const publicDiaryEntry_list_get = async (req, res) => {
   const publicDiaries = await publicDiaryEntryModel.getAllPublicDayEntry()
   res.json(publicDiaries)
