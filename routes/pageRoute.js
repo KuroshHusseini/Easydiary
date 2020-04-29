@@ -37,6 +37,11 @@ router.get('/diary', loggedIn, (req, res) => {
   res.render('userdiary')
 })
 
+router.get('/statistics', loggedIn, (req, res) => {
+  console.log('Render diary')
+  res.render('statistics')
+})
+
 router.get('/create', loggedIn, (req, res) => {
   console.log('Render create')
   res.render('create')

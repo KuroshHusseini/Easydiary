@@ -1,56 +1,84 @@
-html {
-  box-sizing: border-box;
+html body {
+  width: 100%;
   font-size: 15px;
   overflow: hidden;
-}
-
-*,
-*:before,
-*:after {
-  box-sizing: inherit;
+  background-color: black;
 }
 
 body {
-  border-radius: 4px;
-  background-color: #5d6b6e;
-  padding: 4rem;
-  font-family: tahoma;
+  font-family: Arial, Helvetica, sans-serif;
+}
+* {
+  box-sizing: border-box;
 }
 
-.main {
-  border-radius: 4px;
-  width: 100%;
-  background-color: #000000;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.63);
+.form-inline {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
 }
 
-#top {
-  border-radius: 4px;
+.form-inline label {
+  margin: 5px 10px 5px 0;
+}
+
+.form-inline input {
+  vertical-align: middle;
+  margin: 5px 10px 5px 0;
+  padding: 10px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+}
+
+.form-inline button {
+  padding: 10px 20px;
+  background-color: dodgerblue;
+  border: 1px solid #ddd;
+  color: white;
+  cursor: pointer;
+}
+
+.form-inline button:hover {
+  background-color: royalblue;
+}
+
+@media (max-width: 800px) {
+  .form-inline input {
+    margin: 10px;
+  }
+
+  .form-inline {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+.top {
   background-color: #000000;
 }
 
 .header .logo {
-  font-family: 'Modak', cursive;
   padding-right: 40px;
-  padding-top: 20px;
+  padding-top: 10px;
   font-size: 60px;
 }
 
 .header {
-  border-radius: 4px;
+  left: 0;
   display: flex;
   justify-content: space-between;
   background-color: rgba(255, 255, 255, 0.85);
   font-family: tahoma, serif;
   border: 1px solid lightslategray;
   width: 100%;
-  height: 175px;
+  max-height: 8.5rem;
 }
 
 .login {
   padding-right: 40px;
   padding-top: 20px;
   padding-left: 20px;
+  align-items: flex-end;
 }
 
 .login input {
@@ -58,10 +86,9 @@ body {
   border-radius: 4px;
   width: 150px;
   height: 30px;
-  padding: 5px;
+  padding: 10px;
   float: left;
   outline: none;
-  left: 10px;
 }
 
 .login button {
@@ -75,19 +102,13 @@ body {
   width: 100px;
   cursor: pointer;
 }
-
-.signup .field {
-  padding-top: 15px;
-  margin-top: -2px;
-  position: relative;
-}
 .signup {
   margin: auto;
   border-radius: 4px;
-  width: 400px;
+  width: 550px;
   background-color: rgba(150, 147, 155, 0.64);
   position: relative;
-  top: -50px;
+  top: -40px;
   padding: 20px;
 }
 .signup h2 {
@@ -95,24 +116,32 @@ body {
   font-size: 1.4rem;
 }
 
+.signup .field {
+  padding-top: 13px;
+  margin-top: -2px;
+  position: relative;
+}
+
 .signup input {
-  padding-top: 0px;
   border-radius: 4px;
+  padding-top: 0;
   display: block;
   width: 100%;
   border: none;
   outline: none;
   border-bottom: 1px solid #999;
   color: #000000;
-  font-size: 1rem;
+  font-size: 1.2rem;
 }
 
 .signup button {
-  margin-top: -10px;
+  margin-top: -5px;
   display: block;
   width: 100px;
+  height: 30px;
   outline: none;
-  background-color: #7b7880;
+  color: white;
+  background-color: #000000;
   border: 1px solid #5593ff;
   border-radius: 4px;
 }
@@ -128,47 +157,22 @@ body {
   color: rgba(0, 0, 0, 0.76);
 }
 
+.signup .gender {
+  border: none;
+  display: flex;
+  flex-direction: row;
+  margin-left: -0;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+input[type='radio'] {
+  float: right;
+}
+
 .signup input:focus ~ .label,
 .signup input:not(:focus):valid ~ .label {
   top: -17px;
   margin-top: 20px;
   font-size: 0.5rem;
   opacity: 1;
-}
-
-/* Notification modal */
-
-.alert {
-  padding: 20px;
-  background-color: #f44336;
-  color: white;
-  opacity: 1;
-  transition: opacity 0.6s;
-  margin-bottom: 15px;
-}
-
-.alert.success {
-  background-color: #4caf50;
-}
-.alert.warning {
-  background-color: #ff9800;
-}
-
-.alert.danger {
-  background-color: #f44336;
-}
-
-.closebtn {
-  margin-left: 15px;
-  color: white;
-  font-weight: bold;
-  float: right;
-  font-size: 22px;
-  line-height: 20px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.closebtn:hover {
-  color: black;
 }

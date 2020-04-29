@@ -27,11 +27,13 @@ const removeSelectedDiary = removeModal.querySelector('button[name = "remove"')
 const cancelRemoveModal = removeModal.querySelector('button[name = "cancel"')
 
 // Remove from public
-const removeFromPublic = document.querySelector('#remove-public-diary-modal')
-const removePublicSelectedDiary = removeFromPublic.querySelector(
+const removeFromPublicDiary = document.querySelector(
+  '#remove-public-diary-modal'
+)
+const removePublicSelectedDiary = removeFromPublicDiary.querySelector(
   'button[name = "remove"'
 )
-const cancelPublicRemoveModal = removeFromPublic.querySelector(
+const cancelPublicRemoveModal = removeFromPublicDiary.querySelector(
   'button[name = "cancel"'
 )
 
@@ -104,7 +106,7 @@ const closeAllModals = () => {
   viewModal.classList.add('hide')
   editModal.classList.add('hide')
   removeModal.classList.add('hide')
-  removeFromPublic.classList.add('hide')
+  removeFromPublicDiary.classList.add('hide')
   publishModal.classList.add('hide')
 }
 
@@ -252,7 +254,7 @@ const showRemoveFromPublicModal = (id) => {
   removePublicSelectedDiary.setAttribute('id', id)
 
   console.log("showRemoveFromPublicModal's id", removePublicSelectedDiary.id)
-  removeFromPublic.classList.remove('hide')
+  removeFromPublicDiary.classList.remove('hide')
   backDrop.classList.remove('hide')
 }
 
@@ -387,7 +389,6 @@ const createDiaryListItem = (userDayEntries, publicDayEntries) => {
     const editBtn = document.createElement('button')
     editBtn.className = 'btn'
     editBtn.innerHTML = 'Edit'
-
     editBtn.addEventListener('click', () => showEditDiaryModal(dayEntry))
 
     // Remove
@@ -397,12 +398,13 @@ const createDiaryListItem = (userDayEntries, publicDayEntries) => {
 
     let publishBtn, alreadyPublished
 
-    if (
-      publicDayEntries.some((entry) => entry.dayEntryId === dayEntry.dayEntryId)
-    ) {
+    const isPublished = publicDayEntries.some(
+      (entry) => entry.dayEntryId === dayEntry.dayEntryId
+    )
+
+    if (isPublished) {
       alreadyPublished = document.createElement('h2')
       alreadyPublished.innerHTML = 'Already published'
-      console.log('SAME!')
 
       removeBtn.addEventListener('click', () =>
         showRemoveFromPublicModal(dayEntry.dayEntryId)
@@ -420,6 +422,8 @@ const createDiaryListItem = (userDayEntries, publicDayEntries) => {
       removeBtn.addEventListener('click', () =>
         showRemoveDiaryModal(dayEntry.dayEntryId)
       )
+
+      //editBtn.addEventListener('click', () => showEditDiaryModal(dayEntry))
     }
 
     div.appendChild(h1)
@@ -431,64 +435,6 @@ const createDiaryListItem = (userDayEntries, publicDayEntries) => {
     li.appendChild(removeBtn)
     diaryList.appendChild(li)
   })
-
-  /*   diaryEntries.forEach((diaryEntry) => {
-    const li = document.createElement('li')
-    li.className = 'day-entry-item'
-
-    const div = document.createElement('div')
-
-    const h1 = document.createElement('h1')
-    h1.innerHTML = diaryEntry.title
-
-    h1.addEventListener('click', () => viewDiaryModal(diaryEntry))
-
-    const h2 = document.createElement('h2')
-    h2.innerHTML = diaryEntry.dateTime
-      ? new Date(diaryEntry.dateTime).toLocaleDateString()
-      : '(Date not available)'
-
-    if (diaryEntry.filename) {
-      const img = document.createElement('img')
-      img.src = url + '/thumbnails/' + diaryEntry.filename
-      img.alt = diaryEntry.title
-    }
-
-    // Edit
-    const editBtn = document.createElement('button')
-    editBtn.className = 'btn'
-    editBtn.innerHTML = 'Edit'
-
-    editBtn.addEventListener('click', () => showEditDiaryModal(diaryEntry))
-
-    // Publish
-    const publishBtn = document.createElement('button')
-    publishBtn.className = 'btn'
-    publishBtn.innerHTML = 'Publish'
-
-    publishBtn.addEventListener('click', () =>
-      showPublishDiaryModal(diaryEntry.dayEntryId)
-    )
-
-    // Remove
-    const removeBtn = document.createElement('button')
-    removeBtn.className = 'btn'
-    removeBtn.innerHTML = 'Remove'
-
-    removeBtn.addEventListener('click', () =>
-      showRemoveDiaryModal(diaryEntry.dayEntryId)
-    )
-
-    div.appendChild(h1)
-    div.appendChild(h2)
-    li.appendChild(div)
-    li.appendChild(editBtn)
-    li.appendChild(publishBtn)
-    li.appendChild(removeBtn)
-
-
-    diaryList.appendChild(li)
-  }) */
 }
 
 const getDiaryEntries = async () => {
@@ -503,22 +449,6 @@ const getDiaryEntries = async () => {
   createDiaryListItem(userDayEntries, publicDayEntries)
 }
 
-//const filteredResults =
-//const filteredResults =
-//createDiaryListItem(result)
-
-/*   try {
-    const options = {
-      headers: {
-        Authorization: 'Bearer ' + localStorage.getItem('token'),
-      },
-    }
-    const response = await fetch(url + '/diary/user', options)
-    const diaryEntries = await response.json()
-
-    console.log('diaryEntries', diaryEntries)
-    createDiaryListItem(diaryEntries) */
-
 editForm.addEventListener('submit', async (evt) => {
   evt.preventDefault()
 
@@ -526,27 +456,12 @@ editForm.addEventListener('submit', async (evt) => {
   fd.append('dayEntryId', editForm.getAttribute('id'))
 
   console.log('FD type', typeof fd)
-  //console.log('Harasoo', editForm.getAttribute('id'))
   const options = {
-    method: 'PUT', // *GET, POST, PUT, DELETE, etc.
-    /*     mode: 'cors', // no-cors, *cors, same-origin
-    cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-    credentials: 'same-origin', // include, *same-origin, omit
- */ headers: {
-      /*       'Content-Type': 'application/json',
-       */ Authorization: 'Bearer ' + localStorage.getItem('token'),
+    method: 'PUT',
+    headers: {
+      Authorization: 'Bearer ' + localStorage.getItem('token'),
     },
-    /*     redirect: 'follow', // manual, *follow, error
-    referrer: 'no-referrer', // no-referrer, *client
- */ body: fd,
-
-    /* body: {
-      ...fd,
-      dayEntryId: editForm.getAttribute('id'),
-    }, */
-
-    /*     body: JSON.stringify(data), // body data type must match "Content-Type" header
-     */
+    body: fd,
   }
 
   console.log(options)

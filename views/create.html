@@ -2,7 +2,10 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link href="style/create.css" rel="stylesheet" />
+    <link href="style/index.css" rel="stylesheet" />
+
+    <!--     <link href="style/create.css" rel="stylesheet" />
+ -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
@@ -24,6 +27,9 @@
           <a href="settings">
             <i class="fa fa-gear"> Settings</i>
           </a>
+        </li>
+        <li>
+          <a href="statistics"> <i class="fa fa-line-chart">Statistics</i> </a>
         </li>
         <li>
           <a href="diary">
@@ -50,18 +56,19 @@
 
     <div class="background">
       <div class="diaryEntry">
-        <h2>Create new diary entry</h2>
         <form
           enctype="multipart/form-data"
           class="light-border"
           id="add-diary-entry-form"
         >
-          <div class="titleField">
-            <input name="title" type="text" required />
-            <span class="label">Title</span>
+          <div class="form-control">
+            <label for="title">Title</label>
+
+            <!--             <input name="title" type="text" required />
+            <span class="label">Title</span> -->
           </div>
 
-          <div class="noteField">
+          <div class="form-control">
             <textarea
               placeholder="Write your note :)"
               name="noteText"
@@ -70,7 +77,7 @@
               style="border-radius: 4px;"
             ></textarea>
           </div>
-          <div class="imageUploadField">
+          <div class="form-control">
             <input
               name="image"
               type="file"
@@ -78,7 +85,7 @@
               placeholder="Choose file"
             />
           </div>
-          <div class="thingsIdidField">
+          <div class="form-control">
             <textarea
               name="things"
               id="thingsIDid"
@@ -89,7 +96,7 @@
             ></textarea>
           </div>
 
-          <div class="radioButtonField">
+          <div class="form-control">
             <label class="radio-inline" style="color: greenyellow;">
               <input type="radio" name="mood" value="5" checked />Great
             </label>
@@ -109,21 +116,19 @@
               <input type="radio" name="mood" value="1" />Awful
             </label>
           </div>
-          <div class="dateField">
-            <form action="/action_page.php">
-              <label class="dateText" for="Date" style="color: white;"
-                >Date:
-              </label>
-              <input
-                name="dateTime"
-                type="date"
-                id="Date"
-                name="date"
-                style="border-radius: 4px;"
-              />
-              <br />
-              <input type="submit" style="border-radius: 4px;" />
-            </form>
+          <div class="form-control">
+            <label class="dateText" for="Date" style="color: white;"
+              >Date:
+            </label>
+            <input
+              name="dateTime"
+              type="date"
+              id="Date"
+              name="date"
+              style="border-radius: 4px;"
+            />
+            <br />
+            <input type="submit" style="border-radius: 4px;" />
           </div>
         </form>
       </div>
