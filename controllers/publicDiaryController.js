@@ -14,7 +14,8 @@ const publicDiary_get = async (req, res) => {
 }
 
 const publicDiary_post = async (req, res) => {
-  console.log('PublicDiary_post', req.body, req.file)
+  console.log('PublicDiary_post', req.body)
+
   let errors = validationResult(req)
 
   if (!errors.isEmpty()) {
@@ -22,9 +23,17 @@ const publicDiary_post = async (req, res) => {
   }
 
   try {
-    const publicDiary = await diaryEntryModel.insertDiaryEntry(req.body)
-    console.log('inserted', user)
-    res.send(`added public diary: ${publicDiary.userId}`)
+    const params = [
+      req.body.createdAt,
+      req.body.updatedAt,
+      req.body.dayEntryId,
+      req.user.userId,
+    ]
+
+    const publicDiary = await publicDiaryEntryModel.createPublicDayEntry(params)
+    console.log('inserted', publicDiary)
+    res.send(`added public diary: ${publicDiary.insertId}`)
+    //res.send(`added public diary: ${publicDiary.userId}`)
   } catch (err) {
     console.error('problem with publicDiary_post in diaryEntryController', err)
     res.status(500).send(`database insert error: ${err.message}`)
@@ -46,8 +55,13 @@ const publicDiary_put = async (res, req) => {
 
 const publicDiary_delete = async (req, res) => {
   console.log('publicDiary_put', req.params)
+
+  const params = [req.user.userId, Number(req.params.id)]
+
+  console.log('publicDiary params', params)
+
   const delePublicDiary = await publicDiaryEntryModel.deletePublicDiaryEntry(
-    req.params.id
+    params
   )
   console.log('publicDiary_delete result from db', delePublicDiary)
   res.json({ deleted: 'OK' })

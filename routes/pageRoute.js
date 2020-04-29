@@ -28,17 +28,17 @@ router.get('/home', loggedIn, (req, res) => {
 })
 
 router.get('/settings', loggedIn, (req, res) => {
-  console.log('Render home')
+  console.log('Render settings')
   res.render('settings')
 })
 
 router.get('/diary', loggedIn, (req, res) => {
-  console.log('Render home')
+  console.log('Render diary')
   res.render('userdiary')
 })
 
 router.get('/create', loggedIn, (req, res) => {
-  console.log('Render home')
+  console.log('Render create')
   res.render('create')
 })
 

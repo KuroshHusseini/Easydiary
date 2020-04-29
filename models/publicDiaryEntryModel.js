@@ -10,7 +10,8 @@ const getAllPublicDayEntry = async (params) => {
        Filename filename,
        DateTime dateTime,
        Things things,
-       Mood mood
+       Mood mood,
+       public_day_entry.DayEntryId dayEntryId
         FROM public_day_entry
           INNER JOIN day_entry ON public_day_entry.DayEntryID = day_entry.DayEntryID
           INNER JOIN user ON day_entry.UserID = user.userID;`,
@@ -22,6 +23,26 @@ const getAllPublicDayEntry = async (params) => {
     console.log('error', err.message)
   }
 }
+/*   try {
+    const [rows] = await promisePool.execute(
+      `SELECT Username username,
+       Title title,
+       NoteText noteText,
+       Filename filename,
+       DateTime dateTime,
+       Things things,
+       Mood mood
+        FROM public_day_entry
+          INNER JOIN day_entry ON public_day_entry.DayEntryID = day_entry.DayEntryID
+          INNER JOIN user ON day_entry.UserID = user.userID;`,
+      params
+    )
+    console.log('rows', rows)
+    return rows
+  } catch (err) {
+    console.log('error', err.message)
+  }
+} */
 /* const getAllPublicDayEntry = async (params) => {
   try {
     const [rows] = await promisePool.execute(
@@ -61,19 +82,18 @@ const getPublicDayEntry = async (dayEntryID, userID) => {
   }
 }
 
-const createPublicDayEntry = async (publicDayEntry) => {
+const createPublicDayEntry = async (params) => {
   try {
-    console.log('Create diary?', publicDayEntry)
+    console.log('create public diary?', params)
     const [rows] = await promisePool.query(
       `INSERT INTO public_day_entry
-             (PublicDayEntryID,
-             CreatedAt,
+            (CreatedAt,
              UpdatedAt, 
              DayEntryID, 
              UserID) 
              VALUES
-             (?, ?, ?, ?, ?);`,
-      publicDayEntry
+             (?, ?, ?, ?);`,
+      params
     )
     return rows
   } catch (err) {
@@ -97,16 +117,14 @@ const updatePublicDayEntry = async (publicDayEntry) => {
     console.error('update publicDayEntry model crash', err.message)
   }
 }
-const deletePublicDiaryEntry = async (entry) => {
+const deletePublicDiaryEntry = async (params) => {
   try {
-    console.log('delete Diary?', entry)
+    console.log('delete Diary?', params)
     const [rows] = await promisePool.query(
-      'DELETE ' +
-        'FROM public_day_entry ' +
-        'WHERE' +
-        'DayEntryID = ? AND userID = ?',
-      [entry]
+      `DELETE FROM public_day_entry WHERE UserID = ? AND DayEntryID = ?;`,
+      params
     )
+    return rows
   } catch (err) {
     console.error('deletePublicDayEntry model', err.message)
   }

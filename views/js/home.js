@@ -10,6 +10,8 @@ const backDrop = document.querySelector('.backdrop')
 const viewModal = document.querySelector('#view-diary-modal')
 const closeViewModal = viewModal.querySelector('button[name = "close"')
 
+console.log('closeViewModal', closeViewModal)
+
 // Logout
 const logOut = document.querySelector('#logout-anchor')
 logOut.addEventListener('click', () => {

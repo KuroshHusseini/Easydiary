@@ -124,81 +124,39 @@
         </section>
       </form>
     </div>
-    <!--     <div class="hide modal" id="edit-modal">
-      <header class="modal-header">
-        <h1>Edit diary</h1>
-      </header>
-      <section class="modal-content">
-        <form id="edit-form" enctype="multipart/form-data">
-          <div class="form-control">
-            <label for="title">Title</label>
-            <input class="title" placeholder="Title" name="title" />
-          </div>
-          <div class="form-control">
-            <label for="Note text">Note text</label>
-            <input
-              class="note-text"
-              type="textarea"
-              placeholder="Note text"
-              name="noteText"
-            />
-          </div>
-          <div class="form-control">
-            <label for="image">
-              Image
-            </label>
-            <img class="image" alt="image" />
-          </div>
-          <div class="form-control">
-            <label for="file">
-              <input
-                name="image"
-                type="file"
-                accept="image/*"
-                placeholder="Choose file"
-              />
-            </label>
-          </div>
-          <div class="form-control">
-            <label for="date">
-              Date
-            </label>
-            <input class="date-time" type="date" name="dateTime" />
-          </div>
-
-          <div class="form-control">
-            <label for="things">Things I did</label>
-            <input
-              class="things"
-              placeholder="running, skiing, watching tv etc."
-              name="things"
-            />
-          </div>
-          <div class="form-control">
-            <label for="mood"> Mood </label
-            ><label> <input type="radio" value="5" name="mood" />Great </label>
-            <label> <input type="radio" value="4" name="mood" />Good </label>
-            <label>
-              <input type="radio" value="3" name="mood" checked />Okay
-            </label>
-            <label> <input type="radio" value="2" name="mood" />Bad </label>
-            <label>
-              <input type="radio" value="1" name="mood" />Terrible
-            </label>
-          </div>
-        </form>
-      </section>
-      <section class="modal-actions">
-        <button class="btn" type="submit">Save</button>
-        <button class="btn" name="cancel">Cancel</button>
-      </section>
-    </div> -->
     <div class="hide modal" id="remove-diary-modal">
       <header class="modal-header">
         <h1>Remove day?</h1>
       </header>
       <section class="modal-actions">
         <button class="btn" name="remove">Remove</button>
+        <button class="btn" name="cancel">Cancel</button>
+      </section>
+    </div>
+    <div class="hide modal" id="publish-diary-modal">
+      <header class="modal-header">
+        <h1>Publish day?</h1>
+      </header>
+      <section class="modal-actions">
+        <button class="btn" name="publish">Publish</button>
+        <button class="btn" name="cancel">Cancel</button>
+      </section>
+    </div>
+    <div class="hide modal" id="remove-public-diary-modal">
+      <header class="modal-header">
+        <h1>Remove day from public?</h1>
+      </header>
+      <section class="modal-actions">
+        <button class="btn" name="remove">Remove</button>
+        <button class="btn" name="cancel">Cancel</button>
+      </section>
+    </div>
+    <div class="hide modal" id="publish-diary-modal">
+      <header class="modal-header">
+        <h1>Publish day?</h1>
+      </header>
+      <section class="modal-actions">
+        <button class="btn" name="publish">Publish</button>
         <button class="btn" name="cancel">Cancel</button>
       </section>
     </div>

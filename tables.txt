@@ -34,7 +34,8 @@ CREATE OR REPLACE TABLE public_day_entry
   UserID INT NOT NULL,
   PRIMARY KEY (PublicDayEntryID),
   FOREIGN KEY (DayEntryID) REFERENCES day_entry(DayEntryID),
-  FOREIGN KEY (UserID) REFERENCES user(UserID)
+  FOREIGN KEY (UserID) REFERENCES user(UserID),
+  CONSTRAINT unique_dayEntryId UNIQUE (DayEntryID)
 );
 
 CREATE OR REPLACE TABLE day_entry

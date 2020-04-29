@@ -3,11 +3,27 @@ const promisePool = require('../database/db').promise()
 
 const getAllDiaryEntries = async (id) => {
   try {
+    /*     const [rows] = await promisePool.query(
+      `SELECT DateTime dateTime,
+      Title title, NoteText noteText,
+      Filename filename,
+      Mood mood, Things things,
+      Coords coords,
+      day_entry.DayEntryID dayEntryId,
+      public_day_entry.DayEntryID publicDayEntryId FROM day_entry, public_day_entry WHERE day_entry.UserID = ?;`,
+      id
+    ) */
     const [rows] = await promisePool.query(
       `SELECT DateTime dateTime, Title title, NoteText noteText, Mood mood, Things things, Filename filename, Coords coords, DayEntryID dayEntryId FROM day_entry WHERE UserID = ?`,
       id
     )
-
+    /* SELECT DateTime dateTime,
+Title title, NoteText noteText,
+Filename filename,
+Mood mood, Things things,
+Coords coords,
+day_entry.DayEntryID dayEntryId,
+public_day_entry.DayEntryID publicDayEntryId FROM day_entry, public_day_entry; */
     console.log('what is love?', rows)
     return rows
   } catch (e) {
