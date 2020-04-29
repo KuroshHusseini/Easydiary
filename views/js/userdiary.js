@@ -313,11 +313,15 @@ publishSelectedDiary.addEventListener('click', async () => {
     console.log('publish diary response', response)
 
     publishSelectedDiary.removeAttribute('id')
-
-    getDiaryEntries()
+    console.log(
+      'publishSelectedDiary after publishing',
+      publishSelectedDiary.id
+    )
   } catch (error) {
     console.log('error.message', error.message)
   }
+
+  getDiaryEntries()
 })
 
 cancelPublishModal.addEventListener('click', () => {
