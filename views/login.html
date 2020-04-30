@@ -9,21 +9,6 @@
       integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
       crossorigin="anonymous"
     />
-    <!--     <form novalidate method="POST" action="/login">
-      <input name="email" type="email" placeholder="Email" required />
-      <input name="password" type="password" placeholder="password" required />
-      <button class="light-border" type="submit">
-        Login
-      </button>
-    </form>
-    <link href="./style/index.css" rel="stylesheet" />
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
-      crossorigin="anonymous"
-    /> -->
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
   <body>
@@ -46,79 +31,82 @@
           </div>
           <h1 class="logo">Easydiary</h1>
         </div>
-        <div class="signup">
-          <h2>SIGN UP</h2>
+      </div>
+      <div class="signup">
+        <h2>SIGN UP</h2>
 
-          <form
-            novalidate
-            id="register-user-form"
-            class="light-border"
-            id="add-user-form"
-          >
-            <div class="field">
-              <span>First name</span>
-              <input
-                placeholder="Name"
-                name="firstName"
-                pattern=".{3,}"
-                type="text"
-                required
-              />
-            </div>
-            <div class="field">
-              <span>Last name</span>
-              <input
-                placeholder="Name"
-                name="lastName"
-                pattern=".{3,}"
-                type="text"
-                required
-              />
-            </div>
-            <div class="field">
-              <span>Username</span>
-              <input
-                type="text"
-                name="username"
-                placeholder="Username"
-                required
-              />
-            </div>
-            <div class="field">
-              <span>Email</span>
+        <form
+          novalidate
+          id="register-user-form"
+          class="light-border"
+          id="add-user-form"
+        >
+          <div class="field">
+            <span>First name</span>
+            <input
+              placeholder="Name"
+              name="firstName"
+              pattern=".{3,}"
+              type="text"
+              required
+            />
+          </div>
+          <div class="field">
+            <span>Last name</span>
+            <input
+              placeholder="Name"
+              name="lastName"
+              pattern=".{3,}"
+              type="text"
+              required
+            />
+          </div>
+          <div class="field">
+            <span>Username</span>
+            <input
+              type="text"
+              name="username"
+              placeholder="Username"
+              required
+            />
+          </div>
+          <div class="field">
+            <span>Email</span>
 
-              <input type="email" name="email" placeholder="email" required />
-            </div>
-            <div class="field">
-              <span>Password</span>
-              <input
-                name="password"
-                type="password"
-                pattern="(?=.*[A-Z]).{8,}"
-                required
-              />
-            </div>
-            <div class="field">
-              <span>Birth</span>
+            <input type="email" name="email" placeholder="Email" required />
+          </div>
+          <div class="field">
+            <span>Password</span>
+            <input
+              placeholder="Password"
+              name="password"
+              type="password"
+              pattern="(?=.*[A-Z]).{8,}"
+              required
+            />
+          </div>
+          <div class="field">
+            <span>Birth</span>
 
-              <input name="birthDate" type="date" required />
-            </div>
-            <div class="field">
-              <label class="radio-inline" style="color: aliceblue;">
-                <input type="radio" name="gender" value="male" checked />Male
-              </label>
-              <label class="radio-inline" style="color: aliceblue;">
-                <input type="radio" name="gender" value="female" />Female
-              </label>
-              <label class="radio-inline" style="color: aliceblue;">
-                <input type="radio" name="gender" value="other" />Other
-              </label>
-            </div>
-            <div class="field">
-              <button type="submit">Sign up</button>
-            </div>
-          </form>
-        </div>
+            <input name="birthDate" type="date" required />
+          </div>
+          <div class="field">
+            <label class="male">
+              <input type="radio" name="gender" value="male" checked />
+              Male
+            </label>
+            <label for="female">
+              <input type="radio" name="gender" value="female" />
+              Female
+            </label>
+            <label for="other">
+              <input type="radio" name="gender" value="other" /> Other
+            </label>
+          </div>
+          <div class="field">
+            <button type="submit">Sign up</button>
+          </div>
+        </form>
       </div>
     </div>
     <!--     <div class="hide modal" id="image-modal">
