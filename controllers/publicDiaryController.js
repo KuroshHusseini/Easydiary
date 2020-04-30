@@ -7,18 +7,15 @@ const publicDiaryEntry_list_get = async (req, res) => {
   res.json(publicDiaries)
 }
 
-
 const selectBySearch = async (req, res) => {
-  console.log('Public diary select by search parameter', req.params)
-  const searchPublicDiary = await publicDiaryEntryModel(req.params.id)
+  console.log('Public diary select by search body', req.body)
+  console.log('Public diary select by search params', req.params)
+  console.log('Public diary select by search query', req.query.bytitle)
+  console.log('Public diary select by search query', req.query)
+  const searchPublicDiary = await publicDiaryEntryModel.selectBySearch(
+    req.query.bytitle
+  )
   res.json(searchPublicDiary)
-}
-
-
-const publicDiary_get = async (req, res) => {
-  console.log('Public diary id parameter', req.params)
-  const publicDiary = await publicDiaryEntryModel(req.params.id)
-  res.json(publicDiary)
 }
 
 const publicDiary_post = async (req, res) => {
@@ -48,7 +45,7 @@ const publicDiary_post = async (req, res) => {
   }
 }
 
-const publicDiary_put = async (res, req) => {
+/* const publicDiary_put = async (res, req) => {
   console.log('publicDiary_put', req.body)
   let error = validationResult(req)
   if (!error.isEmpty()) {
@@ -59,7 +56,7 @@ const publicDiary_put = async (res, req) => {
   )
   console.log('publicDiary_put result from db', upPublicDiary)
   res.status(204).send()
-}
+} */
 
 const publicDiary_delete = async (req, res) => {
   console.log('publicDiary_put', req.params)
@@ -77,9 +74,7 @@ const publicDiary_delete = async (req, res) => {
 
 module.exports = {
   publicDiary_delete,
-  publicDiary_put,
   publicDiary_post,
-  publicDiary_get,
   publicDiaryEntry_list_get,
-  selectBySearch
+  selectBySearch,
 }

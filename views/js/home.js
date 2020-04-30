@@ -2,6 +2,7 @@ const url = 'http://localhost:3000' // change url when uploading to server
 
 /* DOM elements */
 const diaryList = document.querySelector('#diary-list ul')
+const searchForm = document.querySelector('#search-form')
 
 // Backdrop
 const backDrop = document.querySelector('.backdrop')
@@ -21,6 +22,38 @@ logOut.addEventListener('click', () => {
 /* END */
 
 /* FUNCTIONS AND LISTENERS */
+
+searchForm.addEventListener('submit', async (evt) => {
+  evt.preventDefault()
+
+  const data = serializeJson(searchForm)
+
+  const options = {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+      Authorization: 'Bearer ' + localStorage.getItem('token'),
+    },
+  }
+
+  console.log('searchForm data', data)
+  console.log('searchForm data', data.search)
+  try {
+    //console.log(options)
+    const response = await fetch(
+      url + '/diary/all/search?bytitle=' + data.search,
+      options
+    )
+    const diaryEntries = await response.json()
+
+    console.log('search results', diaryEntries)
+    createDiaryListItems(diaryEntries)
+  } catch (error) {
+    console.log('error.message', error.message)
+  }
+
+  console.log('Search button has been clicked')
+})
 
 closeViewModal.addEventListener('click', () => {
   closeAllModals()
@@ -45,7 +78,9 @@ const viewDiaryModal = (dayEntry) => {
         url + '/thumbnails/' + dayEntry.filename)
     : (viewModal.querySelector('.image').src = '../images/no-image.jpg')
 
-  viewModal.querySelector('.datetime').innerHTML = dayEntry.dateTime
+  viewModal.querySelector('.datetime').innerHTML = new Date(
+    dayEntry.dateTime
+  ).toLocaleDateString('de-FI')
   viewModal.querySelector('.mood').innerHTML = dayEntry.mood
   viewModal.querySelector('.things').innerHTML = dayEntry.things
 
@@ -54,7 +89,7 @@ const viewDiaryModal = (dayEntry) => {
 }
 
 // Create diary list item
-const createDiaryListItem = (diaryEntries) => {
+const createDiaryListItems = (diaryEntries) => {
   diaryList.innerHTML = ''
 
   diaryEntries.forEach((diaryEntry) => {
@@ -69,7 +104,7 @@ const createDiaryListItem = (diaryEntries) => {
 
     const h2 = document.createElement('h2')
     h2.innerHTML = diaryEntry.dateTime
-      ? new Date(diaryEntry.dateTime).toLocaleDateString()
+      ? new Date(diaryEntry.dateTime).toLocaleDateString('de-FI')
       : '(Date not available)'
 
     if (diaryEntry.filename) {
@@ -108,7 +143,7 @@ const getDiaryEntries = async () => {
     }
     const response = await fetch(url + '/diary/all', options)
     const diaryEntries = await response.json()
-    createDiaryListItem(diaryEntries)
+    createDiaryListItems(diaryEntries)
   } catch (err) {
     console.log('err.message', err.message)
   }

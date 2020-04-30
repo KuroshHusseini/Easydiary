@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <link href="style/index.css" rel="stylesheet" />
+    <link href="style/home.css" rel="stylesheet" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
@@ -48,7 +49,18 @@
         </li>
       </ul>
     </div>
-    <section id="search"></section>
+
+    <section id="search">
+      <form id="search-form">
+        <input
+          name="search"
+          class="search-term"
+          placeholder="Search for user diary"
+        />
+        <button class="search-button"><i class="fa fa-search"></i></button>
+      </form>
+    </section>
+
     <section id="diary-list">
       <ul class="day-entry-list"></ul>
     </section>
@@ -95,6 +107,7 @@
         <button class="btn" name="close">Close</button>
       </section>
     </div>
+    <script src="js/serialize.js"></script>
     <script src="js/home.js"></script>
   </body>
 </html>
