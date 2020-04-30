@@ -7,6 +7,14 @@ const publicDiaryEntry_list_get = async (req, res) => {
   res.json(publicDiaries)
 }
 
+
+const selectBySearch = async (req, res) => {
+  console.log('Public diary select by search parameter', req.params)
+  const searchPublicDiary = await publicDiaryEntryModel(req.params.id)
+  res.json(searchPublicDiary)
+}
+
+
 const publicDiary_get = async (req, res) => {
   console.log('Public diary id parameter', req.params)
   const publicDiary = await publicDiaryEntryModel(req.params.id)
@@ -73,4 +81,5 @@ module.exports = {
   publicDiary_post,
   publicDiary_get,
   publicDiaryEntry_list_get,
+  selectBySearch
 }

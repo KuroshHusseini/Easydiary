@@ -6,7 +6,7 @@ const { body } = require('express-validator')
 const publicDiaryController = require('../controllers/publicDiaryController')
 
 router.get('/', publicDiaryController.publicDiaryEntry_list_get) // 1. FIRST
-
+router.get('/',publicDiaryController.selectBySearch)
 //router.get('/:id', publicDiaryController.publicDiary_get)
 
 //router.put('/', publicDiaryController.publicDiaryEntry_list_update)
