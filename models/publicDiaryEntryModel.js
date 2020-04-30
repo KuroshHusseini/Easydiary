@@ -5,16 +5,16 @@ const getAllPublicDayEntry = async (params) => {
     try {
         const [rows] = await promisePool.execute(
             `SELECT Username username,
-       Title title,
-       NoteText noteText,
-       Filename filename,
-       DateTime dateTime,
-       Things things,
-       Mood mood,
-       public_day_entry.DayEntryId dayEntryId
-        FROM public_day_entry
-          INNER JOIN day_entry ON public_day_entry.DayEntryID = day_entry.DayEntryID
-          INNER JOIN user ON day_entry.UserID = user.userID;`,
+                  Title title,
+                  NoteText noteText,
+                  Filename filename,
+                  DateTime dateTime,
+                  Things things,
+                  Mood mood,
+                  public_day_entry.DayEntryId dayEntryId
+                  FROM public_day_entry
+                  INNER JOIN day_entry ON public_day_entry.DayEntryID = day_entry.DayEntryID
+                  INNER JOIN user ON day_entry.UserID = user.userID;`,
             params
         )
         console.log('rows', rows)
@@ -28,10 +28,22 @@ const getAllPublicDayEntry = async (params) => {
 const selectBySearch = async (params) => {
     try {
         const [rows] = await promisePool.execute(
-            `SELECT * FROM   
-                 public_day_entry 
-                 WHERE
-                 title = ?;`,
+            `SELECT Username username,
+                  Title title,
+                  NoteText noteText,
+                  Filename filename,
+                  DateTime dateTime,
+                  Things things,
+                  Mood mood,
+                  public_day_entry.DayEntryId dayEntryId         
+                  FROM public_day_entry 
+                  INNER JOIN day_entry          
+                  ON 
+                  public_day_entry.DayEntryID = day_entry.DayEntryID    
+                  WHERE 
+                  public_day_entry.title 
+                  LIKE '%?%';
+`,
             params
         )
         console.log('rows', rows)
