@@ -15,6 +15,9 @@ const diaryEntryRoute = require('./routes/diaryEntryRoute')
 const publicDiaryEntryRoute = require('./routes/publicDiaryEntryRoute')
 const authRoute = require('./routes/authRoute')
 const pageRoute = require('./routes/pageRoute')
+
+// Settings
+const settingsRoute = require('./routes/settingsRoute')
 //const publicDiaryEntryRoute = require('./routes/publicDiaryEntryRoute');
 
 const middleware = require('./utils/middleware')
@@ -58,6 +61,12 @@ app.use(
   '/diary/all',
   passport.authenticate('jwt', { session: false }),
   publicDiaryEntryRoute
+)
+
+app.use(
+  '/user/settings',
+  passport.authenticate('jwt', { session: false }),
+  settingsRoute
 )
 
 app.use('/', authRoute)

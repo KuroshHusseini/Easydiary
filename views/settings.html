@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <link href="style/index.css" rel="stylesheet" />
+    <link href="style/settings.css" rel="stylesheet" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
@@ -51,7 +52,41 @@
       </ul>
     </div>
 
-    <header><h1>Settings</h1></header>
-    <script src="js/home.js"></script>
+    <div id="settings-section">
+      <h1>Change home address</h1>
+      <form id="home-name-form" enctype="multipart/form-data">
+        <div class="form-control">
+          <label for="street-address">Street address</label>
+          <input
+            class="street-address"
+            placeholder="Street address"
+            name="strAddress"
+          />
+        </div>
+        <div class="form-control">
+          <label for="city">City</label>
+          <input class="city" placeholder="City" name="city" />
+        </div>
+        <div class="form-control">
+          <label for="post-code">Post code</label>
+          <input class="post-code" placeholder="Post code" name="postCode" />
+        </div>
+        <h1>Change name</h1>
+        <div class="form-control">
+          <label for="first-name">First name</label>
+
+          <input class="first-name" placeholder="First name" name="firstName" />
+        </div>
+        <div class="form-control">
+          <label for="Last name">Last name</label>
+          <input class="last-name" placeholder="Last name" name="lastName" />
+        </div>
+        <section id="settings-actions">
+          <button class="btn" type="submit">Save</button>
+        </section>
+      </form>
+    </div>
+    <script src="./js/serialize.js"></script>
+    <script src="js/settings.js"></script>
   </body>
 </html>
