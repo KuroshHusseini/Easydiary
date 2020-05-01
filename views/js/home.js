@@ -107,6 +107,9 @@ const createDiaryListItems = (diaryEntries) => {
       ? new Date(diaryEntry.dateTime).toLocaleDateString('de-FI')
       : '(Date not available)'
 
+    const author = document.createElement('h2')
+    author.innerHTML = 'Author ' + diaryEntry.username
+
     if (diaryEntry.filename) {
       const img = document.createElement('img')
       img.src = url + '/thumbnails/' + diaryEntry.filename
@@ -122,11 +125,10 @@ const createDiaryListItems = (diaryEntries) => {
 
     div.appendChild(h1)
     div.appendChild(h2)
+    div.appendChild(author)
     li.appendChild(div)
 
     li.appendChild(viewBtn)
-    //li.appendChild(removeBtn)
-
     diaryList.appendChild(li)
   })
 }

@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <link href="style/index.css" rel="stylesheet" />
+    <link href="style/userdiary.css" rel="stylesheet" />
     <!--     <link href="style/userdiary.css" rel="stylesheet" />
   -->
     <link
@@ -105,7 +106,45 @@
               name="things"
             />
           </div>
-          <div class="form-control">
+          <label for="mood">Mood</label>
+          <div class="wrapper">
+            <div class="grid-header">
+              <div class="header-item"></div>
+              <div class="header-item">
+                <div>Great</div>
+              </div>
+              <div class="header-item">Happy</div>
+              <div class="header-item">Okay</div>
+              <div class="header-item">Bad</div>
+              <div class="header-item">Awful</div>
+            </div>
+            <div class="mood-flex-control">
+              <div class="flex-item">
+                Please tell us how you are feeling today
+              </div>
+              <label class="flex-item">
+                <input type="radio" value="5" name="mood" />
+                <span></span>
+              </label>
+              <label class="flex-item">
+                <input type="radio" value="4" name="mood" />
+                <span></span>
+              </label>
+              <label class="flex-item">
+                <input type="radio" value="3" name="mood" />
+                <span></span>
+              </label>
+              <label class="flex-item">
+                <input type="radio" value="2" name="mood" />
+                <span></span>
+              </label>
+              <label class="flex-item">
+                <input type="radio" value="1" name="mood" />
+                <span></span>
+              </label>
+            </div>
+          </div>
+          <!-- <div class="form-control">
             <label for="mood"> Mood </label
             ><label> <input type="radio" value="5" name="mood" />Great </label>
             <label> <input type="radio" value="4" name="mood" />Good </label>
@@ -116,7 +155,7 @@
             <label>
               <input type="radio" value="1" name="mood" />Terrible
             </label>
-          </div>
+          </div> -->
         </section>
         <section class="modal-actions">
           <button class="btn" type="submit">Save</button>
