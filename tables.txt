@@ -25,19 +25,6 @@ CREATE OR REPLACE TABLE user
   CONSTRAINT unique_email UNIQUE (Email)
 );
 
-CREATE OR REPLACE TABLE public_day_entry
-(
-  PublicDayEntryID INT AUTO_INCREMENT NOT NULL,
-  CreatedAt datetime NOT NULL,
-  UpdatedAt datetime,
-  DayEntryID INT NOT NULL,
-  UserID INT NOT NULL,
-  PRIMARY KEY (PublicDayEntryID),
-  FOREIGN KEY (DayEntryID) REFERENCES day_entry(DayEntryID),
-  FOREIGN KEY (UserID) REFERENCES user(UserID),
-  CONSTRAINT unique_dayEntryId UNIQUE (DayEntryID)
-);
-
 CREATE OR REPLACE TABLE day_entry
 (
   DayEntryID int AUTO_INCREMENT NOT NULL,
@@ -51,6 +38,19 @@ CREATE OR REPLACE TABLE day_entry
   UserID int NOT NULL,
   PRIMARY KEY (DayEntryID),
   FOREIGN KEY (UserID) REFERENCES user(UserID)
+);
+
+CREATE OR REPLACE TABLE public_day_entry
+(
+  PublicDayEntryID INT AUTO_INCREMENT NOT NULL,
+  CreatedAt datetime NOT NULL,
+  UpdatedAt datetime,
+  DayEntryID INT NOT NULL,
+  UserID INT NOT NULL,
+  PRIMARY KEY (PublicDayEntryID),
+  FOREIGN KEY (DayEntryID) REFERENCES day_entry(DayEntryID),
+  FOREIGN KEY (UserID) REFERENCES user(UserID),
+  CONSTRAINT unique_dayEntryId UNIQUE (DayEntryID)
 );
 
 /*

@@ -2,6 +2,7 @@
 
 const url = 'http://localhost:3000' // change url when uploading to server
 
+console.log('Hello do you copy?')
 /* DOM elements */
 
 const diaryList = document.querySelector('#diary-list ul')
@@ -133,14 +134,25 @@ const showEditDiaryModal = (dayEntry) => {
 
   console.log('dayEntry.filename', dayEntry.filename)
 
+  console.log('image dom', editModal.querySelector('.image'))
+
   dayEntry.filename
     ? (editModal.querySelector('.image').src =
         url + '/thumbnails/' + dayEntry.filename)
     : (editModal.querySelector('.image').src = '../images/no-image.jpg')
 
-  editForm.querySelector('.date-time').value = new Date(
+  console.log('image dom after', editModal.querySelector('.image'))
+
+  console.log('dayEntry.dateTime', dayEntry.dateTime.substring(0, 10))
+
+  editForm.querySelector('.date-time').value = dayEntry.dateTime.substring(
+    0,
+    10
+  )
+
+  /*   editForm.querySelector('.date-time').value = new Date(
     dayEntry.dateTime
-  ).toLocaleDateString()
+  ).toLocaleDateString() */
 
   editForm.querySelectorAll('input[name="mood"]').forEach((mood) => {
     if (mood.value == dayEntry.mood) {
@@ -168,7 +180,10 @@ const viewDiaryModal = (dayEntry) => {
         url + '/thumbnails/' + dayEntry.filename)
     : (viewModal.querySelector('.image').src = '../images/no-image.jpg')
 
-  viewModal.querySelector('.datetime').innerHTML = dayEntry.dateTime
+  viewModal.querySelector('.datetime').innerHTML = dayEntry.dateTime.substring(
+    0,
+    10
+  )
   viewModal.querySelector('.mood').innerHTML = dayEntry.mood
   viewModal.querySelector('.things').innerHTML = dayEntry.things
 
@@ -185,15 +200,15 @@ removeSelectedDiary.addEventListener('click', async () => {
 
   const options = {
     method: 'DELETE', // *GET, POST, PUT, DELETE, etc.
-    mode: 'cors', // no-cors, *cors, same-origin
+    /*     mode: 'cors', // no-cors, *cors, same-origin
     cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-    credentials: 'same-origin', // include, *same-origin, omit
+    credentials: 'same-origin', // include, *same-origin, omit */
     headers: {
       'Content-Type': 'application/json',
       Authorization: 'Bearer ' + localStorage.getItem('token'),
     },
-    redirect: 'follow', // manual, *follow, error
-    referrer: 'no-referrer', // no-referrer, *client
+    /*     redirect: 'follow', // manual, *follow, error
+    referrer: 'no-referrer', // no-referrer, *client */
   }
 
   console.log(options)
@@ -354,6 +369,7 @@ const createDiaryListItem = (userDayEntries, publicDayEntries) => {
   diaryList.innerHTML = ''
 
   userDayEntries.forEach((dayEntry) => {
+    console.log('dayEntry ja näin', dayEntry)
     const li = document.createElement('li')
     li.className = 'day-entry-item'
 
@@ -362,6 +378,7 @@ const createDiaryListItem = (userDayEntries, publicDayEntries) => {
     const h1 = document.createElement('h1')
     h1.innerHTML = dayEntry.title
 
+    console.log('h1.innerHTML not working?', h1)
     h1.addEventListener('click', () => viewDiaryModal(dayEntry))
 
     const h2 = document.createElement('h2')

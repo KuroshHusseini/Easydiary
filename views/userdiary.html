@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <link href="style/index.css" rel="stylesheet" />
     <!--     <link href="style/userdiary.css" rel="stylesheet" />
- -->
+  -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
@@ -53,9 +53,9 @@
       </ul>
     </div>
 
-    <section id="diary-list">
+    <div id="diary-list">
       <ul class="day-entry-list"></ul>
-    </section>
+    </div>
     <div class="hide backdrop"></div>
     <div class="hide modal" id="edit-modal">
       <header class="modal-header">
@@ -68,29 +68,27 @@
             <input class="title" placeholder="Title" name="title" />
           </div>
           <div class="form-control">
-            <label for="Note text">Note text</label>
-            <input
-              class="note-text"
-              type="textarea"
-              placeholder="Note text"
-              name="noteText"
-            />
+            <label for="note-text">Note text</label>
+            <textarea class="note-text" placeholder="Note text" name="noteText">
+            </textarea>
           </div>
           <div class="form-control">
             <label for="image">
               Image
             </label>
-            <img class="image" alt="image" />
+            <img
+              class="image"
+              width="160px"
+              height="160px"
+              src="images/no-image.jpg"
+              alt="image"
+            />
           </div>
           <div class="form-control">
             <label for="file">
-              <input
-                name="image"
-                type="file"
-                accept="image/*"
-                placeholder="Choose file"
-              />
+              Image file
             </label>
+            <input name="image" type="file" accept="image/*" />
           </div>
           <div class="form-control">
             <label for="date">
@@ -153,15 +151,6 @@
         <button class="btn" name="cancel">Cancel</button>
       </section>
     </div>
-    <div class="hide modal" id="publish-diary-modal">
-      <header class="modal-header">
-        <h1>Publish day?</h1>
-      </header>
-      <section class="modal-actions">
-        <button class="btn" name="publish">Publish</button>
-        <button class="btn" name="cancel">Cancel</button>
-      </section>
-    </div>
     <div class="hide modal" id="view-diary-modal">
       <header class="modal-header">
         <h1>
@@ -170,41 +159,44 @@
       </header>
       <section class="modal-content">
         <div class="form-control">
-          <label for="title">
-            <h1 class="title">Title</h1>
-          </label>
+          <label for="title">Title</label>
+          <h1 class="title">Title</h1>
         </div>
         <div class="form-control">
-          <label for="note-text">
-            <p class="note-text">Note text</p>
-          </label>
+          <label for="note-text">Notes </label>
+          <p class="note-text">
+            Note text
+          </p>
         </div>
         <div class="form-control">
-          <label for="image">
-            <img class="image" alt="image" />
-          </label>
+          <label for="image">Image file</label>
+          <img
+            class="image"
+            width="160px"
+            height="160px"
+            src="images/no-image.jpg"
+            alt="image"
+          />
+        </div>
+
+        <div class="form-control">
+          <label for="mood">Mood</label>
+        </div>
+        <h2 class="mood">Mood</h2>
+        <div class="form-control">
+          <label for="things">Things I did</label>
+          <h3 class="things">Things</h3>
         </div>
         <div class="form-control">
-          <label for="datetime">
-            <h3 class="datetime">Datetime</h3>
-          </label>
-        </div>
-        <div class="form-control">
-          <label for="mood">
-            <h2 class="mood">Mood</h2>
-          </label>
-        </div>
-        <div class="form-control">
-          <label for="things">
-            <h3 class="things">Things</h3>
-          </label>
+          <label for="datetime">Date</label>
+          <h3 class="datetime">Datetime</h3>
         </div>
       </section>
       <section class="modal-actions">
         <button class="btn" name="close">Close</button>
       </section>
     </div>
-    <script src="./js/serialize.js"></script>
+    <script src="js/serialize.js"></script>
     <script src="js/userdiary.js"></script>
   </body>
 </html>

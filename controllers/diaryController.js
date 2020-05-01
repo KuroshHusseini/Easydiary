@@ -36,7 +36,7 @@ const diary_entry_list_update = async (req, res) => {
   if (!errors.isEmpty()) {
     return res.status(422).json({ errors: errors.array() })
   }
-  try {
+  /*   try {
     console.log('req.file.path', req.file.path)
     console.log('req.file.filename', req.file.filename)
 
@@ -60,6 +60,41 @@ const diary_entry_list_update = async (req, res) => {
       req.body.things,
       req.file.filename,
       coords.toString(),
+      req.user.userId,
+      req.body.dayEntryId,
+    ]
+ */
+  try {
+    let thumb, coords
+
+    if (req.file) {
+      console.log('req.file.path', req.file.path)
+      console.log('req.file.filename', req.file.filename)
+
+      console.log('thumbnails', req.file.filename)
+
+      thumb = await makeThumbnail(
+        req.file.path,
+        './thumbnails/' + req.file.filename
+      )
+
+      console.log('thumb', thumb)
+
+      coords = await imageMeta.getCoordinates(req.file.path)
+
+      console.log('new coords', coords)
+    }
+
+    console.log('wazis', req.file)
+
+    const params = [
+      req.body.dateTime,
+      req.body.title,
+      req.body.noteText,
+      req.body.mood,
+      req.body.things,
+      req.file ? req.file.filename : undefined,
+      coords ? coords.toString() : undefined,
       req.user.userId,
       req.body.dayEntryId,
     ]
@@ -98,29 +133,36 @@ const diary_entry_post = async (req, res) => {
     return res.status(422).json({ errors: errors.array() })
   }
   try {
-    console.log('req.file.path', req.file.path)
-    console.log('req.file.filename', req.file.filename)
+    let thumb, coords
 
-    console.log('thumbnails', req.file.filename)
+    if (req.file) {
+      console.log('req.file.path', req.file.path)
+      console.log('req.file.filename', req.file.filename)
 
-    const thumb = await makeThumbnail(
-      req.file.path,
-      './thumbnails/' + req.file.filename
-    )
+      console.log('thumbnails', req.file.filename)
 
-    console.log('thumb', thumb)
+      thumb = await makeThumbnail(
+        req.file.path,
+        './thumbnails/' + req.file.filename
+      )
 
-    const coords = await imageMeta.getCoordinates(req.file.path)
+      console.log('thumb', thumb)
 
-    console.log('new coords', coords)
+      coords = await imageMeta.getCoordinates(req.file.path)
+
+      console.log('new coords', coords)
+    }
+
+    console.log('wazis', req.file)
+
     const params = [
       req.body.dateTime,
       req.body.title,
       req.body.noteText,
       req.body.mood,
       req.body.things,
-      req.file.filename,
-      coords.toString(),
+      req.file ? req.file.filename : undefined,
+      coords ? coords.toString() : undefined,
       req.user.userId,
     ]
 
