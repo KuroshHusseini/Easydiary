@@ -55,6 +55,20 @@ WHERE t1.a = 'blah'; */
   }
 }
 
+const updateUserPassword = async (params) => {
+  try {
+    console.log('settings user password update params', params)
+    const [rows] = await promisePool.query(
+      `UPDATE user SET Password = ? WHERE UserID = ?;`,
+      params
+    )
+    console.log('rows', rows)
+    return rows
+  } catch (e) {
+    console.log('error', e.message)
+  }
+}
+
 const updateAllUsers = async () => {
   try {
     const [rows] = await promisePool.query(
@@ -117,6 +131,7 @@ const deleteUser = async (id) => {
 module.exports = {
   updateAllUsers,
   updateUserSettings,
+  updateUserPassword,
   getUserSettings,
   deleteUser,
 }

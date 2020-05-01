@@ -5,6 +5,10 @@ const url = 'http://localhost:3000'
 /* DOM elements */
 const homeNameForm = document.querySelector('#home-name-form')
 
+const changePasswdForm = document.querySelector('#change-password-form')
+
+/* END */
+
 console.log('homeNameForm', homeNameForm)
 
 const initializeFormValues = (userSettings) => {
@@ -70,6 +74,20 @@ homeNameForm.addEventListener('submit', async (evt) => {
   } catch (err) {
     throw err
   }
+})
+
+changePasswdForm.addEventListener('submit', (evt) => {
+  evt.preventDefault()
+
+  const oldPwd = changePasswdForm.querySelector('.old-password').value
+  const newPwd = changePasswdForm.querySelector('.new-password').value
+  const retypePwd = changePasswdForm.querySelector('.retype-password').value
+
+  if (newPwd.trim() === retypePwd.trim()) {
+    console.log('SUCCESS!!')
+  }
+
+  console.log(oldPwd, newPwd, retypePwd)
 })
 
 fetchUserSettings()
