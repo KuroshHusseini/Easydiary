@@ -26,6 +26,7 @@ addDiaryEntryForm.addEventListener('submit', async (evt) => {
     const response = await fetch(url + '/diary/user', options)
     const json = await response.json()
 
+    window.location.href = url + '/diary'
     console.log('updated response', json)
   } catch (err) {
     throw err

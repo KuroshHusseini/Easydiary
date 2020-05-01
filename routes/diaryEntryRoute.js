@@ -30,11 +30,11 @@ router.put(
   '/',
   upload.single('image'),
   [
-    body('dateTime', 'cannot be empty').isLength({ min: 1 }),
     body('title', 'cannot be empty').isLength({ min: 1 }),
     body('noteText', 'cannot be empty').isLength({ min: 1 }),
-    body('mood', 'must be number').isNumeric(),
-    check('image').custom(diaryController.image_file_validator),
+    body('mood', 'must be number').isNumeric({ no_symbols: false }),
+    //check('image').custom(diaryController.image_file_validator),
+    body('dateTime', 'Incorrect date').isISO8601(),
     //check('things').custom(catController.cat_file_validator), // cat_file_validator checks only req.file
   ],
   (req, res) => {
@@ -53,7 +53,7 @@ router.post(
     body('title', 'cannot be empty').isLength({ min: 1 }),
     body('noteText', 'cannot be empty').isLength({ min: 1 }),
     body('mood', 'must be number').isNumeric(),
-    check('image').custom(diaryController.image_file_validator),
+    //check('image').custom(diaryController.image_file_validator),
     //check('things').custom(catController.cat_file_validator), // cat_file_validator checks only req.file
   ],
   (req, res) => {
