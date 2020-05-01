@@ -5,7 +5,7 @@ const router = express.Router()
 const multer = require('multer')
 const upload = multer({ dest: './uploads/', fileFilter })
 const diaryController = require('../controllers/diaryController')
-const { body, check } = require('express-validator')
+const { body } = require('express-validator')
 
 // dont save if not image: (needs to be hoisted, that's why not arrow function)
 function fileFilter(req, file, done) {
@@ -30,11 +30,11 @@ router.put(
   '/',
   upload.single('image'),
   [
-    body('title', 'cannot be empty').isLength({ min: 1 }),
-    body('noteText', 'cannot be empty').isLength({ min: 1 }),
-    body('mood', 'must be number').isNumeric({ no_symbols: false }),
+    body('title', 'Title cannot be empty.').isLength({ min: 1 }),
+    body('noteText', 'Note text cannot be empty.').isLength({ min: 1 }),
+    body('mood', 'Mood must be number.').isNumeric({ no_symbols: false }),
+    body('dateTime', 'Incorrect date.').isISO8601(),
     //check('image').custom(diaryController.image_file_validator),
-    body('dateTime', 'Incorrect date').isISO8601(),
     //check('things').custom(catController.cat_file_validator), // cat_file_validator checks only req.file
   ],
   (req, res) => {
@@ -43,18 +43,15 @@ router.put(
   }
 )
 
-//router.post('/', diaryController.diary_entry_post)
-
 router.post(
   '/',
   upload.single('image'),
   [
-    body('dateTime', 'cannot be empty').isLength({ min: 1 }),
-    body('title', 'cannot be empty').isLength({ min: 1 }),
-    body('noteText', 'cannot be empty').isLength({ min: 1 }),
-    body('mood', 'must be number').isNumeric(),
-    //check('image').custom(diaryController.image_file_validator),
-    //check('things').custom(catController.cat_file_validator), // cat_file_validator checks only req.file
+    body('title', 'Title cannot be empty.').isLength({ min: 1 }),
+    body('noteText', 'Note text cannot be empty.').isLength({ min: 1 }),
+    body('mood', 'Mood must be number.').isNumeric({ no_symbols: false }),
+    body('dateTime', 'Date cannot be empty.').isLength({ min: 1 }),
+    //check('image').custom(diaryController.image_file_validator), // cat_file_validator checks only req.file
   ],
   (req, res) => {
     console.log('tiedosto: ', req.file)

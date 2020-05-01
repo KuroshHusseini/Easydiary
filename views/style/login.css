@@ -58,6 +58,7 @@ body {
 }
 
 .header .logo {
+  color: white;
   padding-right: 40px;
   padding-top: 10px;
   font-size: 60px;

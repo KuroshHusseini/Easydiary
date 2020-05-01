@@ -9,30 +9,6 @@ const getUserLogin = async (params) => {
       params
     )
 
-    console.log('rows', rows)
-    return rows
-  } catch (e) {
-    console.log('error', e.message)
-  }
-}
-
-const updateUserLogin = async (params) => {
-  try {
-    console.log('user params', params)
-    const [rows] = await promisePool.execute(
-      'SELECT Email ' +
-        'email, ' +
-        'Username username, ' +
-        'Password password, ' +
-        'UserID userId ' +
-        'FROM' +
-        ' user ' +
-        'WHERE' +
-        ' Email = ?;',
-      params
-    )
-
-    console.log('rows', rows)
     return rows
   } catch (e) {
     console.log('error', e.message)
@@ -70,7 +46,7 @@ const insertUser = async (user) => {
     const [
       rows,
     ] = await promisePool.query(
-      `INSERT INTO location (City, StrAddress, PostCode, Country) VALUES(?, ?, ?, ?); INSERT INTO user (FName, LName, Gender, Email, Username, Password, BirthDate, LivesID) VALUES (?, ?, ?, ?, ?, ?, ?, LAST_INSERT_ID());`,
+      'INSERT INTO location (City, StrAddress, PostCode, Country) VALUES(?, ?, ?, ?); INSERT INTO user (FName, LName, Gender, Email, Username, Password, BirthDate, LivesID) VALUES (?, ?, ?, ?, ?, ?, ?, LAST_INSERT_ID());',
       [
         user.city,
         user.strAddress,
@@ -106,7 +82,6 @@ const getUserById = async (id) => {
       [id]
     )
 
-    console.log('rows getUser', rows)
     return rows[0]
   } catch (err) {
     console.log('error', err.message)

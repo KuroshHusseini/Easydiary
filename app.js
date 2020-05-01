@@ -18,7 +18,6 @@ const pageRoute = require('./routes/pageRoute')
 
 // Settings
 const settingsRoute = require('./routes/settingsRoute')
-//const publicDiaryEntryRoute = require('./routes/publicDiaryEntryRoute');
 
 const middleware = require('./utils/middleware')
 
@@ -49,7 +48,6 @@ app.use(passport.session())
 app.use(middleware.requestLogger)
 
 // ROUTES
-
 app.use('/', pageRoute)
 
 app.use(

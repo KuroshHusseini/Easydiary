@@ -2,7 +2,7 @@
 
 const url = 'http://localhost:3000' // change url when uploading to server
 
-const closeBtnFunc = (message, status = 'danger') => {
+const alertNotification = (message, status = 'danger') => {
   const newAlert = document.createElement('div')
   newAlert.className = `alert ${status}`
   newAlert.innerHTML = `
@@ -17,7 +17,6 @@ const closeBtnFunc = (message, status = 'danger') => {
   closeBtn.onclick = function () {
     const div = closeBtn.parentElement
 
-    console.log('DIVIUS', div)
     div.style.opacity = '0'
     setTimeout(() => {
       div.style.display = 'none'
@@ -63,15 +62,13 @@ registerUserForm.addEventListener('submit', async (evt) => {
   if (!json.user) {
     const errorMessage = json.map((error) => `${error.msg}.`).join(' ')
     console.log(errorMessage)
-    closeBtnFunc(errorMessage, 'danger')
+    alertNotification(errorMessage, 'danger')
   } else {
-    // save token
-
     const successMessage = `${json.message} Welcome aboard ${json.user.username}!`
     console.log('response', successMessage)
     console.log(successMessage)
 
-    closeBtnFunc(successMessage, 'success')
+    alertNotification(successMessage, 'success')
   }
 })
 
@@ -100,7 +97,6 @@ loginForm.addEventListener('submit', async (evt) => {
     }
 
     if (response) {
-      // location.reload()
       window.location.href = '/home'
     }
   } catch (err) {

@@ -4,7 +4,7 @@ const promisePool = require('../database/db').promise()
 const getAllDiaryEntries = async (id) => {
   try {
     const [rows] = await promisePool.query(
-      `SELECT DateTime dateTime, Title title, NoteText noteText, Mood mood, Things things, Filename filename, Coords coords, DayEntryID dayEntryId FROM day_entry WHERE UserID = ?`,
+      'SELECT DateTime dateTime, Title title, NoteText noteText, Mood mood, Things things, Filename filename, Coords coords, DayEntryID dayEntryId FROM day_entry WHERE UserID = ?',
       id
     )
     console.log('what is love?', rows)
@@ -19,10 +19,9 @@ const getDiaryEntry = async (params) => {
   try {
     console.log('getDiaryEntry', params)
     const [rows] = await promisePool.execute(
-      `SELECT * FROM day_entry WHERE UserID = ? AND DayEntryID = ?`,
+      'SELECT * FROM day_entry WHERE UserID = ? AND DayEntryID = ?',
       params
     )
-    console.log('rows', rows)
     return rows
   } catch (err) {
     console.log('error', err.message)
@@ -33,7 +32,7 @@ const createDiaryEntry = async (params) => {
   try {
     console.log('insert diary?', params)
     const [rows] = await promisePool.query(
-      `INSERT INTO day_entry (DateTime, Title, NoteText, Mood, Things, Filename, Coords, UserID) VALUES (?, ?, ?, ?, ?, ?, ?, ?);`,
+      'INSERT INTO day_entry (DateTime, Title, NoteText, Mood, Things, Filename, Coords, UserID) VALUES (?, ?, ?, ?, ?, ?, ?, ?);',
       params
     )
     return rows
@@ -43,11 +42,9 @@ const createDiaryEntry = async (params) => {
 }
 const updateDiaryEntry = async (params) => {
   try {
-    /*       `INSERT INTO day_entry (DateTime, Title, NoteText, Mood, Things, Filename, Coords, UserID) VALUES (?, ?, ?, ?, ?, ?, ?, ?);`,
-     */
     console.log('update diary? ', params)
     const [rows] = await promisePool.query(
-      `UPDATE day_entry SET DateTime = ?, Title = ?, NoteText = ?, Mood = ?, Things = ?, Filename = ?, Coords = ? WHERE UserID = ? AND DayEntryID = ?`,
+      'UPDATE day_entry SET DateTime = ?, Title = ?, NoteText = ?, Mood = ?, Things = ?, Filename = ?, Coords = ? WHERE UserID = ? AND DayEntryID = ?',
       params
     )
     return rows
@@ -59,7 +56,7 @@ const deleteDiaryEntry = async (params) => {
   try {
     console.log('delete Diary?', params)
     const [rows] = await promisePool.query(
-      `DELETE FROM day_entry WHERE UserID = ? AND DayEntryID = ?;`,
+      'DELETE FROM day_entry WHERE UserID = ? AND DayEntryID = ?;',
       params
     )
     return rows

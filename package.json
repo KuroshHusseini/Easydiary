@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "lint": "eslint .",
     "dev": "nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -28,5 +29,8 @@
     "pug": "^2.0.4",
     "sharp": "^0.25.2",
     "swig": "^1.4.2"
+  },
+  "devDependencies": {
+    "eslint": "^6.8.0"
   }
 }

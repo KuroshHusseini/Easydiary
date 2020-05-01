@@ -36,34 +36,7 @@ const diary_entry_list_update = async (req, res) => {
   if (!errors.isEmpty()) {
     return res.status(422).json({ errors: errors.array() })
   }
-  /*   try {
-    console.log('req.file.path', req.file.path)
-    console.log('req.file.filename', req.file.filename)
 
-    console.log('thumbnails', req.file.filename)
-
-    const thumb = await makeThumbnail(
-      req.file.path,
-      './thumbnails/' + req.file.filename
-    )
-
-    console.log('thumb', thumb)
-
-    const coords = await imageMeta.getCoordinates(req.file.path)
-
-    console.log('new coords', coords)
-    const params = [
-      req.body.dateTime,
-      req.body.title,
-      req.body.noteText,
-      req.body.mood,
-      req.body.things,
-      req.file.filename,
-      coords.toString(),
-      req.user.userId,
-      req.body.dayEntryId,
-    ]
- */
   try {
     let thumb, coords
 
@@ -80,7 +53,8 @@ const diary_entry_list_update = async (req, res) => {
 
       console.log('thumb', thumb)
 
-      coords = await imageMeta.getCoordinates(req.file.path)
+      if (req.file.format === 'jpeg')
+        coords = await imageMeta.getCoordinates(req.file.path)
 
       console.log('new coords', coords)
     }
@@ -107,22 +81,6 @@ const diary_entry_list_update = async (req, res) => {
     console.log('exif error', e)
     res.status(400).json({ message: 'error' })
   }
-
-  /*   const params = [
-    req.body.dateTime,
-    req.body.title,
-    req.body.noteText,
-    req.body.mood,
-    req.body.things,
-    req.body.filename,
-    req.user.userId,
-    req.body.dayEntryId,
-  ]
-
-  const updateDiaryEntry = await diaryEntry.updateDiaryEntry(params)
-
-  console.log('updatedDiary', updateDiaryEntry)
-  res.json(updateDiaryEntry) */
 }
 
 const diary_entry_post = async (req, res) => {
@@ -148,7 +106,8 @@ const diary_entry_post = async (req, res) => {
 
       console.log('thumb', thumb)
 
-      coords = await imageMeta.getCoordinates(req.file.path)
+      if (req.file.format === 'jpeg')
+        coords = await imageMeta.getCoordinates(req.file.path)
 
       console.log('new coords', coords)
     }
@@ -205,11 +164,3 @@ module.exports = {
   diary_entry_delete,
   image_file_validator,
 }
-/*   res.json({
-    message: 'You made it to the diary entry route',
-    user: req.user,
-    token: req.get('Authorization'),
-  }) */
-
-/*   const diaryEntries = await diaryEntry.getAllDiaryEntries(req.body.id)
-  res.json(diaryEntries) */

@@ -26,7 +26,20 @@ addDiaryEntryForm.addEventListener('submit', async (evt) => {
     const response = await fetch(url + '/diary/user', options)
     const json = await response.json()
 
-    window.location.href = url + '/diary'
+    console.log('create response', json)
+
+    if (json.errors) {
+      const errorMessage = json.errors.map((error) => `${error.msg}.`).join(' ')
+      console.log(errorMessage)
+      alert(errorMessage)
+    } else {
+      const successMessage = 'Diary entry created.'
+      console.log('response', successMessage)
+      alert(successMessage)
+
+      window.location.href = url + '/diary'
+    }
+
     console.log('updated response', json)
   } catch (err) {
     throw err

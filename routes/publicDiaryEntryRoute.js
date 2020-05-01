@@ -12,7 +12,7 @@ router.post(
   '/',
   [body('createdAt', 'Incorrect date format').isISO8601()],
   publicDiaryController.publicDiary_post
-) // 2. THEN THIS!
+)
 
 router.delete('/:id', publicDiaryController.publicDiary_delete)
 

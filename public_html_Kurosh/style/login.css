@@ -1,13 +1,16 @@
-html body{
+html body {
   width: 100%;
   font-size: 15px;
   overflow: hidden;
   background-color: black;
 }
 
-
-body {font-family: Arial, Helvetica, sans-serif;}
-* {box-sizing: border-box;}
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+* {
+  box-sizing: border-box;
+}
 
 .form-inline {
   display: flex;
@@ -77,7 +80,6 @@ body {font-family: Arial, Helvetica, sans-serif;}
   padding-top: 20px;
   padding-left: 20px;
   align-items: flex-end;
-
 }
 
 .login input {
@@ -89,7 +91,6 @@ body {font-family: Arial, Helvetica, sans-serif;}
   float: left;
   outline: none;
 }
-
 
 .login button {
   border-radius: 4px;
@@ -157,7 +158,6 @@ body {font-family: Arial, Helvetica, sans-serif;}
   color: rgba(0, 0, 0, 0.76);
 }
 
-
 .signup .gender {
   border: none;
   display: flex;
@@ -166,10 +166,9 @@ body {font-family: Arial, Helvetica, sans-serif;}
   margin-top: 20px;
   margin-bottom: 20px;
 }
-input[type='radio'] { float: right; }
-
-
-
+input[type='radio'] {
+  float: right;
+}
 
 .signup input:focus ~ .label,
 .signup input:not(:focus):valid ~ .label {

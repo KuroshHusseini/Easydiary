@@ -45,19 +45,6 @@ const publicDiary_post = async (req, res) => {
   }
 }
 
-/* const publicDiary_put = async (res, req) => {
-  console.log('publicDiary_put', req.body)
-  let error = validationResult(req)
-  if (!error.isEmpty()) {
-    return res.status(422).json({ errors: error.array() })
-  }
-  const upPublicDiary = await publicDiaryEntryModel.updatePublicDayEntry(
-    req.body
-  )
-  console.log('publicDiary_put result from db', upPublicDiary)
-  res.status(204).send()
-} */
-
 const publicDiary_delete = async (req, res) => {
   console.log('publicDiary_put', req.params)
 
