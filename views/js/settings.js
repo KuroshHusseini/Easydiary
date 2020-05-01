@@ -76,18 +76,31 @@ homeNameForm.addEventListener('submit', async (evt) => {
   }
 })
 
-changePasswdForm.addEventListener('submit', (evt) => {
+changePasswdForm.addEventListener('submit', async (evt) => {
   evt.preventDefault()
 
-  const oldPwd = changePasswdForm.querySelector('.old-password').value
-  const newPwd = changePasswdForm.querySelector('.new-password').value
-  const retypePwd = changePasswdForm.querySelector('.retype-password').value
+  const data = serializeJson(changePasswdForm)
 
-  if (newPwd.trim() === retypePwd.trim()) {
-    console.log('SUCCESS!!')
+  const options = {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: 'Bearer ' + localStorage.getItem('token'),
+    },
+    body: JSON.stringify(data),
   }
 
-  console.log(oldPwd, newPwd, retypePwd)
+  try {
+    console.log('options', options)
+
+    const response = await fetch(url + '/user/settings/password', options)
+    const json = await response.json()
+
+    console.log('updated password', json)
+    window.location.href = url + '/settings'
+  } catch (error) {
+    console.log('error.message', error.message)
+  }
 })
 
 fetchUserSettings()

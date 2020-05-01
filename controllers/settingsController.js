@@ -28,9 +28,15 @@ const settings_update = async (req, res) => {
 }
 
 const settings_update_password = async (req, res) => {
+  console.log('settings update pwd user', req.body)
   const { oldPwd, newPwd, retypePwd } = req.body
+  const email = [req.user.email]
 
-  const [user] = await userModel.getUserLogin(req.user.email)
+  console.log('OldPwd', typeof oldPwd)
+  console.log('newPwd', typeof newPwd)
+  console.log('retypePwd', typeof retypePwd)
+
+  const [user] = await userModel.getUserLogin(email)
 
   if (!bcrypt.compareSync(oldPwd, user.password)) {
     return res.json({ error: 'Incorrect password.' })
