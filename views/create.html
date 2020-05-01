@@ -1,115 +1,141 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link href="style/index.css" rel="stylesheet" />
-    <link href="style/create.css" rel="stylesheet" />
+<head>
+    <meta charset="UTF-8"/>
+    <link href="style/index.css" rel="stylesheet"/>
+    <link href="style/create.css" rel="stylesheet"/>
 
     <!--     <link href="style/create.css" rel="stylesheet" />
  -->
     <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
     />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
     <title>Create</title>
-  </head>
-  <body>
-    <div class="nav">
-      <ul>
+</head>
+<body>
+<div class="nav">
+    <ul>
         <li>
-          <a id="logout-anchor" href="logout">
-            <i class="fa fa-sign-out"> Log out </i>
-          </a>
+            <a id="logout-anchor" href="logout">
+                <i class="fa fa-sign-out"> Log out </i>
+            </a>
         </li>
 
         <li>
-          <a href="settings">
-            <i class="fa fa-gear"> Settings</i>
-          </a>
+            <a href="settings">
+                <i class="fa fa-gear"> Settings</i>
+            </a>
         </li>
         <li>
-          <a href="statistics"> <i class="fa fa-line-chart">Statistics</i> </a>
+            <a href="statistics"> <i class="fa fa-line-chart">Statistics</i> </a>
         </li>
         <li>
-          <a href="diary">
-            <i class="fa fa-book">My diary</i>
-          </a>
+            <a href="diary">
+                <i class="fa fa-book">My diary</i>
+            </a>
         </li>
         <li>
-          <a href="home">
-            <i class="fa fa-home">Home</i>
-          </a>
+            <a href="home">
+                <i class="fa fa-home">Home</i>
+            </a>
         </li>
 
         <li>
-          <a href="create" class="fa fa-plus" id="cn-button"> </a>
+            <a href="create" class="fa fa-plus" id="cn-button"> </a>
         </li>
-      </ul>
-    </div>
+    </ul>
+</div>
 
-    <div class="background">
-      <div id="create">
+<div class="background">
+    <div id="create">
         <form
-          enctype="multipart/form-data"
-          class="light-border"
-          id="add-diary-entry-form"
+                enctype="multipart/form-data"
+                class="light-border"
+                id="add-diary-entry-form"
         >
-          <div class="form-control">
-            <label for="title">Title *</label>
-            <input name="title" required />
-          </div>
+            <div class="form-control">
+                <label for="title">Title *</label>
+                <input name="title" required/>
+            </div>
 
-          <div class="form-control">
-            <label for="title">Note text *</label>
-            <textarea
-              placeholder="Write your note :)"
-              name="noteText"
-              cols="77"
-              rows="8"
-              required
-            ></textarea>
-          </div>
-          <div class="form-control">
-            <label for="image">Upload image (optional)</label>
-            <input
-              name="image"
-              type="file"
-              accept="image/*"
-              placeholder="Choose file"
-            />
-          </div>
-          <div class="form-control">
-            <label for="things">Things I did (optional)</label>
-            <textarea
-              name="things"
-              id="thingsIDid"
-              placeholder="Things I did"
-              cols="50"
-              rows="3"
-            ></textarea>
-          </div>
+            <div class="form-control">
+                <label for="title">Note text *</label>
+                <textarea
+                        placeholder="Write your note :)"
+                        name="noteText"
+                        cols="77"
+                        rows="8"
+                        required
+                ></textarea>
+            </div>
+            <div class="form-control">
+                <label for="image">Upload image (optional)</label>
+                <input
+                        name="image"
+                        type="file"
+                        accept="image/*"
+                        placeholder="Choose file"
+                />
+            </div>
+            <div class="form-control">
+                <label for="things">Things I did (optional)</label>
+                <textarea
+                        name="things"
+                        id="thingsIDid"
+                        placeholder="Things I did"
+                        cols="50"
+                        rows="3"
+                ></textarea>
+            </div>
 
-          <div class="form-control">
-            <label for="mood">Mood</label>
 
-            <input type="radio" name="mood" value="5" />Great
-            <input type="radio" name="mood" value="4" />Happy
-            <input type="radio" name="mood" value="3" checked />Okay
-            <input type="radio" name="mood" value="2" />Bad
-            <input type="radio" name="mood" value="1" />Awful
-          </div>
-          <div class="form-control">
-            <label for="datetime">Date *</label>
-            <input name="dateTime" type="date" id="Date" name="date" required />
-            <br />
-            <input type="submit" />
-          </div>
+                <div class="mood">Mood</div>
+                <div class="wrapper">
+
+                    <div class="grid-header">
+                        <div class="header-item"></div>
+                        <div class="header-item">
+                            <div>Great</div>
+                        </div>
+                        <div class="header-item">Happy</div>
+                        <div class="header-item">Okay</div>
+                        <div class="header-item">Bad</div>
+                        <div class="header-item">Awful</div>
+                    </div>
+                    <div class="form-control">
+                        <div class="flex-item">Please tell us how you are feeling today</div>
+                        <label class="flex-item">
+                            <input type="radio" value="critical" name="priority"> <span></span>
+                        </label>
+                        <label class="flex-item">
+                            <input type="radio" value="high" name="priority"> <span></span>
+                        </label>
+                        <label class="flex-item">
+                            <input type="radio" value="medium" name="priority"> <span></span>
+                        </label>
+                        <label class="flex-item">
+                            <input type="radio" value="low" name="priority"> <span></span>
+                        </label>
+                        <label class="flex-item">
+                            <input type="radio" value="lowlow" name="priority"> <span></span>
+                        </label>
+                    </div>
+                </div>
+
+
+            <div class="form-control">
+                <label for="datetime">Date *</label>
+                <input name="dateTime" type="date" id="Date" name="date" required/>
+                <br/>
+                <input type="submit"/>
+            </div>
         </form>
-      </div>
     </div>
+</div>
 
-    <script src="js/create.js"></script>
-  </body>
+<script src="js/create.js"></script>
+</body>
 </html>
