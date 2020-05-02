@@ -1,15 +1,17 @@
+<ul>
 	Features:
-   •	Create account
-   •	Log in
-   •	Log out
-   •	Settings
-   •	Modify your information
-   •	Create diary
+   <li>•	Create account</li>
+   <li>•	Log in</li>
+   <li>•	Log out</li>
+   <li>•	Settings</li>
+   <li>•	Modify your information</li>
+   <li>•	Create diary</li>
       	Title
       	Note
       	 Image
       	Mood
       	Date
-   •	Modify diary
-   •	Search diary
-   •	Check Statistics(uses Google API)
+   <li>•	Modify diary</li>
+   <li>•	Search diary</li>
+   <li>•	Check Statistics(uses Google API)</li>
+<ul>
