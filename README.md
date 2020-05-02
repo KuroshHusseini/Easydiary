@@ -47,7 +47,7 @@ $ npm start
 ### Diagram
 Here is an ER diagram of how the entities are related to each other and what kind of data is stored in the database.
 <p align = "center">
-<img src="readme_images/ER-diagram.png" alt="hackathon_diagram" width="300">
+<img src="readme_images/ER-diagram.png" alt="hackathon_diagram" width="480">
 </p>
 
 ### Change log
