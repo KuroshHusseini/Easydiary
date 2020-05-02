@@ -1,0 +1,11 @@
+#settings-section {
+  width: 40rem;
+  margin: auto;
+  padding: 1rem;
+}
+
+#settings-actions {
+  display: flex;
+  justify-content: flex-end;
+  padding: 1rem;
+}

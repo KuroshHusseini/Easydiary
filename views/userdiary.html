@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link href="style/index.css" rel="stylesheet" />
+    <link href="style/userdiary.css" rel="stylesheet" />
+    <!--     <link href="style/userdiary.css" rel="stylesheet" />
+  -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>My Diary</title>
+  </head>
+  <body>
+    <div class="nav">
+      <ul>
+        <li>
+          <a id="logout-anchor" href="logout">
+            <i class="fa fa-sign-out"> Log out </i>
+          </a>
+        </li>
+
+        <li>
+          <a href="settings">
+            <i class="fa fa-gear"> Settings</i>
+          </a>
+        </li>
+        <li>
+          <a href="statistics"> <i class="fa fa-line-chart">Statistics</i> </a>
+        </li>
+        <li>
+          <a href="diary">
+            <i class="fa fa-book">My diary</i>
+          </a>
+        </li>
+        <li>
+          <a href="home">
+            <i class="fa fa-home">Home</i>
+          </a>
+        </li>
+
+        <li>
+          <a
+            href="create"
+            class="fa fa-plus"
+            id="cn-button"
+            style="border-radius: 50%;"
+          >
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div id="diary-list">
+      <ul class="day-entry-list"></ul>
+    </div>
+    <div class="hide backdrop"></div>
+    <div class="hide modal" id="edit-modal">
+      <header class="modal-header">
+        <h1>Edit diary</h1>
+      </header>
+      <form id="edit-form" enctype="multipart/form-data">
+        <section class="modal-content">
+          <div class="form-control">
+            <label for="title">Title</label>
+            <input class="title" placeholder="Title" name="title" />
+          </div>
+          <div class="form-control">
+            <label for="note-text">Note text</label>
+            <textarea class="note-text" placeholder="Note text" name="noteText">
+            </textarea>
+          </div>
+          <div class="form-control">
+            <label for="image">
+              Image
+            </label>
+            <img
+              class="image"
+              width="160px"
+              height="160px"
+              src="images/no-image.jpg"
+              alt="image"
+            />
+          </div>
+          <div class="form-control">
+            <label for="file">
+              Image file
+            </label>
+            <input name="image" type="file" accept="image/*" />
+          </div>
+          <div class="form-control">
+            <label for="date">
+              Date
+            </label>
+            <input class="date-time" type="date" name="dateTime" />
+          </div>
+
+          <div class="form-control">
+            <label for="things">Things I did</label>
+            <input
+              class="things"
+              placeholder="running, skiing, watching tv etc."
+              name="things"
+            />
+          </div>
+          <label for="mood">Mood</label>
+          <div class="wrapper">
+            <div class="grid-header">
+              <div class="header-item"></div>
+              <div class="header-item">
+                <div>Great</div>
+              </div>
+              <div class="header-item">Happy</div>
+              <div class="header-item">Okay</div>
+              <div class="header-item">Bad</div>
+              <div class="header-item">Awful</div>
+            </div>
+            <div class="mood-flex-control">
+              <div class="flex-item">
+                Please tell us how you are feeling today
+              </div>
+              <label class="flex-item">
+                <input type="radio" value="5" name="mood" />
+                <span></span>
+              </label>
+              <label class="flex-item">
+                <input type="radio" value="4" name="mood" />
+                <span></span>
+              </label>
+              <label class="flex-item">
+                <input type="radio" value="3" name="mood" />
+                <span></span>
+              </label>
+              <label class="flex-item">
+                <input type="radio" value="2" name="mood" />
+                <span></span>
+              </label>
+              <label class="flex-item">
+                <input type="radio" value="1" name="mood" />
+                <span></span>
+              </label>
+            </div>
+          </div>
+          <!-- <div class="form-control">
+            <label for="mood"> Mood </label
+            ><label> <input type="radio" value="5" name="mood" />Great </label>
+            <label> <input type="radio" value="4" name="mood" />Good </label>
+            <label>
+              <input type="radio" value="3" name="mood" checked />Okay
+            </label>
+            <label> <input type="radio" value="2" name="mood" />Bad </label>
+            <label>
+              <input type="radio" value="1" name="mood" />Terrible
+            </label>
+          </div> -->
+        </section>
+        <section class="modal-actions">
+          <button class="btn" type="submit">Save</button>
+          <button class="btn" name="cancel">Cancel</button>
+        </section>
+      </form>
+    </div>
+    <div class="hide modal" id="remove-diary-modal">
+      <header class="modal-header">
+        <h1>Remove day?</h1>
+      </header>
+      <section class="modal-actions">
+        <button class="btn" name="remove">Remove</button>
+        <button class="btn" name="cancel">Cancel</button>
+      </section>
+    </div>
+    <div class="hide modal" id="publish-diary-modal">
+      <header class="modal-header">
+        <h1>Publish day?</h1>
+      </header>
+      <section class="modal-actions">
+        <button class="btn" name="publish">Publish</button>
+        <button class="btn" name="cancel">Cancel</button>
+      </section>
+    </div>
+    <div class="hide modal" id="remove-public-diary-modal">
+      <header class="modal-header">
+        <h1>Remove day from public?</h1>
+      </header>
+      <section class="modal-actions">
+        <button class="btn" name="remove">Remove</button>
+        <button class="btn" name="cancel">Cancel</button>
+      </section>
+    </div>
+    <div class="hide modal" id="view-diary-modal">
+      <header class="modal-header">
+        <h1>
+          View modal
+        </h1>
+      </header>
+      <section class="modal-content">
+        <div class="form-control">
+          <label for="title">Title</label>
+          <h1 class="title">Title</h1>
+        </div>
+        <div class="form-control">
+          <label for="note-text">Notes </label>
+          <p class="note-text">
+            Note text
+          </p>
+        </div>
+        <div class="form-control">
+          <label for="image">Image file</label>
+          <img
+            class="image"
+            width="160px"
+            height="160px"
+            src="images/no-image.jpg"
+            alt="image"
+          />
+        </div>
+
+        <div class="form-control">
+          <label for="mood">Mood</label>
+        </div>
+        <h2 class="mood">Mood</h2>
+        <div class="form-control">
+          <label for="things">Things I did</label>
+          <h3 class="things">Things</h3>
+        </div>
+        <div class="form-control">
+          <label for="datetime">Date</label>
+          <h3 class="datetime">Datetime</h3>
+        </div>
+      </section>
+      <section class="modal-actions">
+        <button class="btn" name="close">Close</button>
+      </section>
+    </div>
+    <script src="js/serialize.js"></script>
+    <script src="js/userdiary.js"></script>
+  </body>
+</html>

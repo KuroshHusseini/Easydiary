@@ -1,0 +1,36 @@
+{
+  "name": "week2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint .",
+    "dev": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "consolidate": "^0.15.1",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "exif": "^0.6.0",
+    "express": "^4.17.1",
+    "express-session": "^1.17.0",
+    "express-validator": "^6.4.0",
+    "jsonwebtoken": "^8.5.1",
+    "multer": "^1.4.2",
+    "mysql2": "^2.1.0",
+    "nodemon": "^2.0.3",
+    "passport": "^0.4.0",
+    "passport-jwt": "^4.0.0",
+    "passport-local": "^1.0.0",
+    "pug": "^2.0.4",
+    "sharp": "^0.25.2",
+    "swig": "^1.4.2"
+  },
+  "devDependencies": {
+    "eslint": "^6.8.0"
+  }
+}
