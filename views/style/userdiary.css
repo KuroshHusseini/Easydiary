@@ -1,0 +1,96 @@
+/* Mood radio buttons */
+
+.mood {
+  margin-bottom: -5px;
+}
+
+.mood .wrapper {
+  background-color: black;
+}
+.mood-flex-control,
+.grid-header {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  flex: 1 0 auto;
+  height: auto;
+}
+
+.header-item {
+  width: 90px;
+  margin-left: -10px;
+  text-align: center;
+  border: 1px solid transparent;
+}
+.header-item:nth-child(1) {
+  width: 180px;
+}
+.subtitle {
+  font-size: 0.7em;
+}
+
+.flex-item:before {
+  content: '';
+  padding-top: 10%;
+}
+
+.flex-item {
+  display: flex;
+  width: 90px;
+  margin-left: -10px;
+  border-bottom: 1px solid #ffffff;
+  justify-content: center;
+  align-items: center;
+  font-size: 1em;
+  font-weight: normal;
+  color: #999;
+}
+
+.flex-item:nth-child(1) {
+  border: none;
+  font-size: 1.15em;
+  color: #000;
+  width: 180px;
+  justify-content: left;
+}
+
+[type='radio'],
+[type='checkbox'] {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+/* the basic, unchecked style */
+[type='radio'] + span:before,
+[type='checkbox'] + span:before {
+  content: '';
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.25em;
+  border-radius: 0.25em;
+  border: 0.05em solid #fff;
+  box-shadow: 0 0 0 0.15em #555;
+  transition: 0.5s ease all;
+}
+
+[type='radio']:checked + span:before,
+[type='checkbox']:checked + span:before {
+  background: #5593ff;
+  box-shadow: 0 0 0 0.25em #666;
+}
+
+.mood {
+  margin-left: -10px;
+  color: #fff;
+  background: #1976d2;
+  padding: 0.25em 1em;
+  border-radius: 0.2em;
+  width: 35px;
+}
