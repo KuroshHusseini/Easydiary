@@ -26,3 +26,8 @@ Vie uudelle sivulle, jonka formiin täytetään seuraavat tiedot
   <li>Valitseman päivän tekemiset, esim. ollut perheen tai kavereiden kaa, rentoutumista jne.</li>
   <li>Tekstikenttä muistiinpanoille</li>
 </ul>
+
+
+
+### Change log
+See CHANGELOG [here](CHANGELOG.md)
