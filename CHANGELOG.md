@@ -6,11 +6,11 @@
    <li>	Settings</li>
    <li>	Modify your information</li>
    <li>Create diary
-      	Title
-      	Note
-      	 Image
-      	Mood
-      	Date</li>
+     <li>	Title</li>
+     <li>	Note</li>
+     <li>	Image</li>
+     <li>	Mood</li>
+     <li>	Date</li>
    <li>	Modify diary</li>
    <li>	Search diary</li>
    <li>	Check Statistics(uses Google API)</li>
