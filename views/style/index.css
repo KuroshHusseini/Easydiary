@@ -102,6 +102,7 @@ a {
 .form-control,
 .form-control input,
 .form-control textarea {
+  resize: none;
   width: 100%;
   display: block;
 }
@@ -176,6 +177,20 @@ a {
 
 .day-entry-item p {
   margin: 0;
+}
+
+/* END */
+
+/* Footer */
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #1976d2;
+  color: white;
+  text-align: center;
 }
 
 /* END */
