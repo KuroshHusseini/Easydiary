@@ -1,6 +1,6 @@
 'use strict'
 
-const url = 'http://localhost:3000' // change url when uploading to server
+const url = 'https://localhost:8000' // change url when uploading to server
 
 console.log('Hello do you copy?')
 /* DOM elements */
@@ -87,7 +87,6 @@ const fetchDayEntries = async () => {
 
       console.log('diaryEntries', diaryEntries)
       return diaryEntries
-      //createDiaryListItem(diaryEntries)
     } catch (err) {
       console.log(err.message)
     }
@@ -150,10 +149,6 @@ const showEditDiaryModal = (dayEntry) => {
     10
   )
 
-  /*   editForm.querySelector('.date-time').value = new Date(
-    dayEntry.dateTime
-  ).toLocaleDateString() */
-
   editForm.querySelectorAll('input[name="mood"]').forEach((mood) => {
     if (mood.value == dayEntry.mood) {
       mood.checked = true
@@ -199,16 +194,11 @@ removeSelectedDiary.addEventListener('click', async () => {
   closeAllModals()
 
   const options = {
-    method: 'DELETE', // *GET, POST, PUT, DELETE, etc.
-    /*     mode: 'cors', // no-cors, *cors, same-origin
-    cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-    credentials: 'same-origin', // include, *same-origin, omit */
+    method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
       Authorization: 'Bearer ' + localStorage.getItem('token'),
     },
-    /*     redirect: 'follow', // manual, *follow, error
-    referrer: 'no-referrer', // no-referrer, *client */
   }
 
   console.log(options)
@@ -353,13 +343,7 @@ const showPublishDiaryModal = (id) => {
   console.log('showPublishDiaryModal id', id)
   publishSelectedDiary.setAttribute('id', id)
 
-  //publishSelectedDiary.setAttribute('createdAt', new Date().toISOString())
-
   console.log("showPublishDiaryModal's id", removeSelectedDiary.id)
-  /*   console.log(
-    "showPublishDiaryModal's createdAt",
-    removeSelectedDiary.createdAt
-  ) */
 
   publishModal.classList.remove('hide')
   backDrop.classList.remove('hide')

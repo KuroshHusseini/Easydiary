@@ -1,4 +1,4 @@
-const url = 'http://localhost:3000' // change url when uploading to server
+const url = 'https://localhost:8000' // change url when uploading to server
 
 /* DOM elements */
 const diaryList = document.querySelector('#diary-list ul')

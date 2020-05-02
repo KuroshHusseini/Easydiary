@@ -47,6 +47,14 @@ app.use(passport.session())
 
 app.use(middleware.requestLogger)
 
+/* For localhsot or VM */
+process.env.NODE_ENV = process.env.NODE_ENV || 'development'
+if (process.env.NODE_ENV === 'production') {
+  require('./remote')(app, process.env.PORT)
+} else {
+  require('./localhost')(app, process.env.PORT)
+}
+
 // ROUTES
 app.use('/', pageRoute)
 
@@ -69,6 +77,10 @@ app.use(
 
 app.use('/', authRoute)
 
-app.listen(process.env.PORT, () =>
+app.get('/', (req, res) => {
+  res.send(`Hello secure? ${req.secure}`)
+})
+
+/* app.listen(process.env.PORT, () =>
   console.log(`Example app listening on port ${process.env.PORT}!`)
-)
+) */

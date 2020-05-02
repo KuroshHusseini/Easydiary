@@ -1,6 +1,6 @@
 'use strict'
 
-const url = 'http://localhost:3000'
+const url = 'https://localhost:8000'
 
 /* DOM elements */
 const statsList = document.querySelector('#stats-list')
