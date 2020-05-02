@@ -15,4 +15,4 @@
    <li>	Modify diary</li>
    <li>	Search diary</li>
    <li>	Check Statistics(uses Google API)</li>
-<ul>
+</ul>
