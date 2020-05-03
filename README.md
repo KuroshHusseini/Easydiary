@@ -23,8 +23,9 @@ These instructions should get you started on running this project on your local 
 To get started you need:
 <ul>
   <li>A computer</li>
-  <li>A connection to the internet</li>
-  <li>Your favorite code editor that suits your web development needs.</li>
+  <li>Connection to the internet</li>
+  <li>Your favorite code editor that suits your web development needs</li>
+  <li>Server for production (we used LAMP stack)</li>
 </ul>
 
 ### Usage
@@ -35,18 +36,21 @@ I've provided instructions on how to use this software for localhost or server u
 #### Local computer
 <details><summary>Show instructions</summary>
 1. Open project in code editor.
+  <br/>
 2. Change branch to loginPage4 in project with git:
   
 ```sh 
   $ git checkout loginPage4
 ```
-  
+<br/>
 3. Install node module packages:
 
 ```sh 
 $ npm i
 ```
+<br/>
 4. To configure your MariaDB/MySQL database among other things you need to create a .env file and create the following variables:
+
 ```sh 
 DB_HOST=(e.g. mysql.me.../root/etc.)
 DB_USER=(e.g root)
@@ -56,33 +60,43 @@ TOKEN=(For JsonWebToken)
 
 PORT=(Port that app uses)
 ```
+<br/>
 5. Start Node JS app
+
 ```sh 
 $ npm run dev
 ```
+<br/>
 or 
+
 ```sh 
 $ node app.js
 ```
+<br/>
 </details>
 
 #### Server computer
 <details><summary>Show instructions</summary>
 Following instructions might not work or be needed depending what you might be using
+<br/>
 1. Open project in code editor.
+<br/>
 2. You should be in master branch. If not, you can try this git command:
 
 ```sh 
   $ git checkout master
 ```
+</br>
   
 3. Install node module packages:
-
 ```sh 
 $ npm i
 ```
+<br/>
 5. You should change all <strong>url</strong> variables in frontend JS files to your server IP address.
+<br/>
 4. To configure your MariaDB/MySQL database among other things you need to create a .env file and create the following variables:
+
 ```sh 
 DB_HOST=(usually localhost)
 DB_USER=(e.g root)
@@ -94,14 +108,20 @@ PORT=(Port that app uses)
 NODE_ENV=development/production # Production for server side
 PROXY_PASS=(If you're using proxy pass)
 ```
+
+<br/>
 3. Start Node JS app in your server.
+
 ```sh 
 $ npm run dev
 ```
+
 or 
+
 ```sh 
 $ node app.js
 ```
+
 </details>
 
 ### Diagrams
