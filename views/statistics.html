@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link href="style/index.css" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Statistics</title>
+  </head>
+  <body>
+    <div class="nav">
+      <ul>
+        <li>
+          <a id="logout-anchor" href="logout">
+            <i class="fa fa-sign-out"> Log out </i>
+          </a>
+        </li>
+        <li>
+          <a href="settings">
+            <i class="fa fa-gear"> Settings</i>
+          </a>
+        </li>
+        <li>
+          <a href="statistics"> <i class="fa fa-line-chart">Statistics</i> </a>
+        </li>
+        <li>
+          <a href="diary">
+            <i class="fa fa-book">My diary</i>
+          </a>
+        </li>
+        <li>
+          <a href="home">
+            <i class="fa fa-home">Home</i>
+          </a>
+        </li>
+        <li>
+          <a
+            href="create"
+            class="fa fa-plus"
+            id="cn-button"
+            style="border-radius: 50%;"
+          >
+          </a>
+        </li>
+      </ul>
+    </div>
+    <header><h1>Statistics</h1></header>
+    <h2>My report</h2>
+    <ul id="stats-list"></ul>
+    <div id="chart_div"></div>
+    <div class="footer">
+      <p>© 2020 Michael, Kurosh and Otto</p>
+    </div>
+    <script src="js/statistics.js"></script>
+    <script
+      type="text/javascript"
+      src="https://www.gstatic.com/charts/loader.js"
+    ></script>
+  </body>
+</html>

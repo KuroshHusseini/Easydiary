@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link href="style/index.css" rel="stylesheet" />
+    <link href="style/settings.css" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Home</title>
+  </head>
+  <body>
+    <div class="nav">
+      <ul>
+        <li>
+          <a id="logout-anchor" href="logout">
+            <i class="fa fa-sign-out"> Log out </i>
+          </a>
+        </li>
+
+        <li>
+          <a href="settings">
+            <i class="fa fa-gear"> Settings</i>
+          </a>
+        </li>
+        <li>
+          <a href="statistics"> <i class="fa fa-line-chart">Statistics</i> </a>
+        </li>
+        <li>
+          <a href="diary">
+            <i class="fa fa-book">My diary</i>
+          </a>
+        </li>
+        <li>
+          <a href="home">
+            <i class="fa fa-home">Home</i>
+          </a>
+        </li>
+
+        <li>
+          <a
+            href="create"
+            class="fa fa-plus"
+            id="cn-button"
+            style="border-radius: 50%;"
+          >
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div id="settings-section">
+      <h1>Change home address</h1>
+      <form id="home-name-form">
+        <div class="form-control">
+          <label for="street-address">Street address</label>
+          <input
+            class="street-address"
+            placeholder="Street address"
+            name="strAddress"
+          />
+        </div>
+        <div class="form-control">
+          <label for="city">City</label>
+          <input class="city" placeholder="City" name="city" />
+        </div>
+        <div class="form-control">
+          <label for="post-code">Post code</label>
+          <input class="post-code" placeholder="Post code" name="postCode" />
+        </div>
+        <h1>Change name</h1>
+        <div class="form-control">
+          <label for="first-name">First name</label>
+          <input class="first-name" placeholder="First name" name="firstName" />
+        </div>
+        <div class="form-control">
+          <label for="Last name">Last name</label>
+          <input class="last-name" placeholder="Last name" name="lastName" />
+        </div>
+        <section id="settings-actions">
+          <button class="btn" type="submit">Save</button>
+        </section>
+      </form>
+      <form id="change-password-form">
+        <h1>Change password</h1>
+        <div class="form-control">
+          <label for="old-password">Current password</label>
+          <input
+            type="password"
+            pattern="(?=.*[A-Z]).{8,}"
+            class="old-password"
+            placeholder="Type old password"
+            name="oldPwd"
+            required
+          />
+        </div>
+        <div class="form-control">
+          <label for="new-password">New password</label>
+          <input
+            type="password"
+            pattern="(?=.*[A-Z]).{8,}"
+            class="new-password"
+            placeholder="Type new password"
+            name="newPwd"
+            required
+          />
+        </div>
+        <div class="form-control">
+          <label for="retype-password">Confirm password</label>
+          <input
+            type="password"
+            pattern="(?=.*[A-Z]).{8,}"
+            class="retype-password"
+            placeholder="Retype new password"
+            name="retypePwd"
+            required
+          />
+        </div>
+        <div class="modal-actions">
+          <button class="btn">Change password</button>
+        </div>
+      </form>
+    </div>
+    <div class="footer">
+      <p>© 2020 Michael, Kurosh and Otto</p>
+    </div>
+    <script src="./js/serialize.js"></script>
+    <script src="js/settings.js"></script>
+  </body>
+</html>

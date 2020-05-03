@@ -1,0 +1,129 @@
+CREATE OR REPLACE TABLE location
+(
+  LivesID int AUTO_INCREMENT NOT NULL,
+  City text,
+  StrAddress text ,
+  PostCode text,
+  Country text,
+  PRIMARY KEY (LivesID)
+);
+
+CREATE OR REPLACE TABLE user
+(
+  UserID int AUTO_INCREMENT NOT NULL,
+  FName text NOT NULL,
+  LName text NOT NULL,
+  Gender text NOT NULL,
+  Username VARCHAR(40) NOT NULL,
+  Email VARCHAR(40) NOT NULL,
+  Password text NOT NULL,
+  BirthDate datetime NOT NULL,
+  LivesID int NOT NULL,
+  PRIMARY KEY (UserID),
+  FOREIGN KEY (LivesID) REFERENCES location(LivesID),
+  CONSTRAINT unique_username UNIQUE (Username),
+  CONSTRAINT unique_email UNIQUE (Email)
+);
+
+CREATE OR REPLACE TABLE day_entry
+(
+  DayEntryID int AUTO_INCREMENT NOT NULL,
+  DateTime datetime NOT NULL,
+  Title text NOT NULL,
+  NoteText text NOT NULL,
+  Mood int NOT NULL,
+  Things text,
+  Filename text,
+  Coords text,
+  UserID int NOT NULL,
+  PRIMARY KEY (DayEntryID),
+  FOREIGN KEY (UserID) REFERENCES user(UserID)
+);
+
+CREATE OR REPLACE TABLE public_day_entry
+(
+  PublicDayEntryID INT AUTO_INCREMENT NOT NULL,
+  CreatedAt datetime NOT NULL,
+  UpdatedAt datetime,
+  DayEntryID INT NOT NULL,
+  UserID INT NOT NULL,
+  PRIMARY KEY (PublicDayEntryID),
+  FOREIGN KEY (DayEntryID) REFERENCES day_entry(DayEntryID),
+  FOREIGN KEY (UserID) REFERENCES user(UserID),
+  CONSTRAINT unique_dayEntryId UNIQUE (DayEntryID)
+);
+
+/*
+CREATE OR REPLACE TABLE thing
+(
+  image text NOT NULL,
+  name int NOT NULL,
+  ThingID int AUTO_INCREMENT NOT NULL,
+  DayEntryID int NOT NULL,
+  PRIMARY KEY (ThingID),
+  FOREIGN KEY (DayEntryID) REFERENCES day_entry(DayEntryID)
+);
+*/
+
+/* INSERTS AND ADDS LOCATION REFERENCE TO USER WITH LAST_INSERT_ID */
+INSERT INTO location (City) VALUES("Espoo");
+
+INSERT INTO user (FName, LName, Gender, Email, Username, Password, BirthDate, LivesID)
+VALUES ("Michael", "Lock", "male", "michalo@metropolia.fi", "michalo", "1234", "  ", LAST_INSERT_ID());
+
+
+/* INSERTS AND ADDS LOCATION REFERENCE TO USER WITH LAST_INSERT_ID */
+INSERT INTO location (City, StrAddress, PostCode, Country) VALUES("Helsinki", "Tepposentulpunkuja", "05623", "Finland");
+INSERT INTO user (FName, LName, Gender, Email, Username, Password, BirthDate, LivesID)
+VALUES ("Matti", "Kaljalainen", "female", "mattisen-äijäo@metropolia.fi", "matteo", "qwer", "2021-02-20 15:23:59", LAST_INSERT_ID());
+
+/* INSERTS AND ADDS LOCATION REFERENCE TO USER WITH LAST_INSERT_ID */
+INSERT INTO location (City, StrAddress, PostCode, Country) VALUES("Helsinki", "Tepposentulpunkuja", "05623", "Finland");
+INSERT INTO user (FName, LName, Gender, Email, Username, Password, BirthDate, LivesID)
+VALUES ("Matti", "Kaljalainen", "female", "mattisen-äijäo@metropolia.com", "matteola", "qwer", "2021-02-20 15:23:59", LAST_INSERT_ID());
+
+/* Selects all users and addresses */
+SELECT FName firstName,
+      LName lastName,
+      Gender gender,
+      BirthDate birthDate,
+      Email email,
+      Username username,
+      Password password,
+      City city,
+      StrAddress streetAddress,
+      PostCode postCode,
+      Country country 
+      FROM user INNER JOIN location ON user.LivesID = location.LivesID;
+
+
+/* Create new diary entry */ 
+INSERT INTO day_entry
+ (DateTime,
+  Title,
+  NoteText,
+  Mood,
+  Things,
+  Filename,
+  Coords,
+  UserID
+  )
+  VALUES ("2020-04-28T17:42:22.176Z",
+  "This is epic title",
+  "This is note text",
+  4,
+  "swimming, wathing tv",
+  "fuaishat8yy89wytw8f8hw",
+  "65, 42",
+  24);
+
+
+/* Public day entry SQL injection */
+INSERT INTO public_day_entry (CreatedAt, UpdatedAt, DayEntryID, UserID)
+ VALUES("2020-04-28T17:42:22.176Z", NULL, 1, 5);
+
+/* Select all public diary entries */
+SELECT Username, Title, NoteText, Filename, DateTime, Things, Mood  
+   FROM public_day_entry 
+      INNER JOIN day_entry ON public_day_entry.DayEntryID = day_entry.DayEntryID 
+      INNER JOIN user ON day_entry.UserID = user.UserID;

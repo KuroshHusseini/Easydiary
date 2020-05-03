@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link href="style/index.css" rel="stylesheet" />
+    <link href="style/home.css" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Home</title>
+  </head>
+  <body>
+    <div class="nav">
+      <ul>
+        <li>
+          <a id="logout-anchor" href="logout">
+            <i class="fa fa-sign-out"> Log out </i>
+          </a>
+        </li>
+        <li>
+          <a href="settings">
+            <i class="fa fa-gear">Settings</i>
+          </a>
+        </li>
+        <li>
+          <a href="statistics"> <i class="fa fa-line-chart">Statistics</i> </a>
+        </li>
+        <li>
+          <a href="diary">
+            <i class="fa fa-book">My diary</i>
+          </a>
+        </li>
+        <li>
+          <a href="home">
+            <i class="fa fa-home">Home</i>
+          </a>
+        </li>
+        <li>
+          <a
+            href="create"
+            class="fa fa-plus"
+            id="cn-button"
+            style="border-radius: 50%;"
+          >
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <section id="search">
+      <form id="search-form">
+        <input
+          name="search"
+          class="search-term"
+          placeholder="Search for user diary"
+        />
+        <button class="search-button"><i class="fa fa-search"></i></button>
+      </form>
+    </section>
+    <section id="diary-list">
+      <ul class="day-entry-list"></ul>
+    </section>
+    <div class="hide backdrop"></div>
+    <div class="hide modal" id="view-diary-modal">
+      <header class="modal-header">
+        <h1>
+          View modal
+        </h1>
+      </header>
+      <section class="modal-content">
+        <div class="form-control">
+          <label for="title">
+            <h1 class="title">Title</h1>
+          </label>
+        </div>
+        <div class="form-control">
+          <label for="note-text">
+            <p class="note-text">Note text</p>
+          </label>
+        </div>
+        <div class="form-control">
+          <label for="image">
+            <img
+              class="image"
+              width="160px"
+              height="160px"
+              src="images/no-image.jpg="
+            />
+          </label>
+        </div>
+        <div class="form-control">
+          <label for="datetime">
+            <h3 class="datetime">Datetime</h3>
+          </label>
+        </div>
+        <div class="form-control">
+          <label for="mood">
+            <h2 class="mood">Mood</h2>
+          </label>
+        </div>
+        <div class="form-control">
+          <label for="things">
+            <h3 class="things">Things</h3>
+          </label>
+        </div>
+      </section>
+      <section class="modal-actions">
+        <button class="btn" name="close">Close</button>
+      </section>
+    </div>
+    <div class="footer">
+      <p>© 2020 Michael, Kurosh and Otto</p>
+    </div>
+    <script src="js/serialize.js"></script>
+    <script src="js/home.js"></script>
+  </body>
+</html>
