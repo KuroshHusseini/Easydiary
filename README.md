@@ -5,17 +5,6 @@ Instead of using Dialogflow and Firebase database I had decided to use MongoDB, 
 NodeJS uses a RESTful API endpoint to receive a request body. Request body is forwarded to HeadAI's API. 
 Response is validated and notification message is displayed to the user in front-end. Axios library is used to post a request.
 
-### Uusien päivien luonti || Haluaisin ottaa täst vastuun —Michael
-Käyttäjä pitäisi pystyä merkitsemään uuden päivän päiväkirjaansa painamalla lisäysnappulaa oikeassa yläkulmassa.
-Vie uudelle sivulle, jonka formiin täytetään seuraavat tiedot
-<ul>
-  <li>Otsikko</li>
-  <li>Päivämäärä ja aika</li>
-  <li>Fiilis</li>
-  <li>Valitseman päivän tekemiset, esim. ollut perheen tai kavereiden kaa, rentoutumista jne.</li>
-  <li>Tekstikenttä muistiinpanoille</li>
-</ul>
-
 ## Getting Started
 These instructions should get you started on running this project on your local or virtual machine for development or testing purposes.
 
