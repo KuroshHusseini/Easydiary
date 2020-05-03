@@ -94,16 +94,16 @@ loginForm.addEventListener('submit', async (evt) => {
     cache: 'no-cache',
     credentials: 'same-origin',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
     },
     redirect: 'follow',
     referrerPolicy: 'no-referrer',
-    body: JSON.stringify(data)
-  }  
+    body: JSON.stringify(data),
+  }
 
   try {
-   console.log('WTF!?', url + '/login') 
-   const response = await fetch(url + '/login', fetchOptions)
+    console.log('WTF!?', url + '/login')
+    const response = await fetch(url + '/login', fetchOptions)
 
     const json = await response.json()
     console.log('jsonwebtoken', json)

@@ -1,7 +1,5 @@
 'use strict'
 
-console.log('hello world')
-
 const path = require('path')
 const cors = require('cors')
 const express = require('express')
@@ -49,20 +47,7 @@ app.use(passport.session())
 
 app.use(middleware.requestLogger)
 
-/*
-app.get('/test', (req, res) => {
-
-  console.log('im here daddy')
-  res.send(`coming to get you baby`)
-})*/
-/*
-app.listen(process.env.PORT, () =>
-  console.log(`Example app listening on port ${process.env.PORT}!`)
-)
-*/
-
 /* For localhsot or VM */
-
 process.env.NODE_ENV = process.env.NODE_ENV || 'development'
 if (process.env.NODE_ENV === 'production') {
   require('./remote')(app, process.env.PORT)
@@ -78,7 +63,6 @@ app.use(
   passport.authenticate('jwt', { session: false }),
   diaryEntryRoute
 )
-
 app.use(
   '/diary/all',
   passport.authenticate('jwt', { session: false }),
@@ -92,12 +76,3 @@ app.use(
 )
 
 app.use('/', authRoute)
-
-/*
-app.get('/', (req, res) => {
-  res.send(`Hello secure? ${req.secure}`)
-})
-*/
-/* app.listen(process.env.PORT, () =>
-  console.log(`Example app listening on port ${process.env.PORT}!`)
-) */

@@ -15,7 +15,7 @@ function fileFilter(req, file, done) {
 
   // To reject this file pass `false`, like so:
   if (!file.mimetype.includes('image')) {
-    return done(null, false, new Error('I don\'t have a clue!'))
+    return done(null, false, new Error("I don't have a clue!"))
   } else {
     // To accept the file pass `true`, like so:
     done(null, true)
