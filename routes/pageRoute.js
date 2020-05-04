@@ -6,17 +6,17 @@ const loggedIn = (req, res, next) => {
   if (req.user) {
     next()
   } else {
-    res.redirect('/login')
+    res.redirect('./login')
   }
 }
 
 router.get('/', loggedIn, (req, res) => {
-  res.redirect('/home')
+  res.redirect('./home')
 })
 
 router.get('/login', (req, res) => {
   if (req.user) {
-    res.redirect('/home')
+    res.redirect('./home')
   } else {
     res.render('login')
   }
@@ -49,7 +49,7 @@ router.get('/create', loggedIn, (req, res) => {
 
 router.get('/logout', function (req, res) {
   req.logout()
-  res.redirect('/login')
+  res.redirect('./login')
 })
 
 module.exports = router

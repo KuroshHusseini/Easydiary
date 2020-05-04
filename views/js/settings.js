@@ -1,6 +1,7 @@
 'use strict'
 
-const url = 'http://localhost:3000'
+//const url = 'https://localhost:8000'
+const url = 'https://10.114.34.20/app'
 
 /* DOM elements */
 const homeNameForm = document.querySelector('#home-name-form')

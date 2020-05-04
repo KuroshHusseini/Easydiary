@@ -2,9 +2,11 @@
 ### Example user template template
 ### Example user template
 
-# Diary app ignores
+# Diary app project ignores
 uploads/*
 thumbnails/*
+certs/*
+
 
 # IntelliJ project files
 .idea

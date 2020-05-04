@@ -1,6 +1,7 @@
 'use strict'
 
-const url = 'http://localhost:3000' // change url when uploading to server
+//const url = 'https://localhost:8000' // change url when uploading to server
+const url = 'https://10.114.34.20/app'
 
 const alertNotification = (message, status = 'danger') => {
   const newAlert = document.createElement('div')
@@ -78,14 +79,30 @@ loginForm.addEventListener('submit', async (evt) => {
   const data = serializeJson(loginForm)
 
   console.log('daaata', data)
-  const fetchOptions = {
+  /*
+ * const fetchOptions = {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(data),
+  }*/
+
+  const fetchOptions = {
+    method: 'POST',
+    mode: 'cors',
+    cache: 'no-cache',
+    credentials: 'same-origin',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    redirect: 'follow',
+    referrerPolicy: 'no-referrer',
+    body: JSON.stringify(data),
   }
+
   try {
+    console.log('WTF!?', url + '/login')
     const response = await fetch(url + '/login', fetchOptions)
 
     const json = await response.json()
@@ -97,7 +114,7 @@ loginForm.addEventListener('submit', async (evt) => {
     }
 
     if (response) {
-      window.location.href = '/home'
+      window.location.href = './home'
     }
   } catch (err) {
     console.log('err message', err.message)
