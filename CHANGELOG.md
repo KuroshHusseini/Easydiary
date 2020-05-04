@@ -20,17 +20,3 @@
    <li>	Search diary</li>
    <li>	Check Statistics(uses Google API)</li>
 </ul>
-<details><summary>Show instructions</summary>
-
-1.   	Title
-```sh
-
-2.  Image
-```sh 
-
-3.  Mood
-```sh 
-4.  Date
-```sh 
-
-</details>
