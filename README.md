@@ -1,7 +1,7 @@
 # DiaryKeeper App / Vanilla JS / Node JS
 
 ## Description
-EasyDiary is a diary application that allows you to keep a diary with daily entries. It has been made with the word easy on mind. We mean easy by it being easy to handle, fill and manage. With our app you can make it a habbit to write down your feelings.
+EasyDiary is a diary application that allows you to keep a diary with daily entries. It has been made with the word easy on mind. We mean easy by it being easy to handle, fill and manage. With our app you can make it a habit to write down your feelings.
 
   EasyDiary creates an imaginable page of actual diary for every day. Then it's up to the user to report their thoughts on. That can mean only a few words or a considerable amount in multible chapters. Either of these can obviously sometimes be a challenge, so we came up with a helping hand. We added mood presets to make it easier to fill the diary when you're not in your most productive state. Sometimes that might still not be what you wanted, so we included the ability to add pictures to your pages as well.
   
@@ -21,9 +21,7 @@ To get started you need:
 </ul>
 
 ### Usage
-I've provided instructions on how to use this software for localhost or server use.
-
-
+I've provided instructions on how to use this software for localhost or server use
 
 #### Local computer
 <details><summary>Show instructions</summary>
