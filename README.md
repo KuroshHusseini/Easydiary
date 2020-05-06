@@ -1,9 +1,12 @@
 # DiaryKeeper App / Vanilla JS / Node JS
 
 ## Description
-Instead of using Dialogflow and Firebase database I had decided to use MongoDB, React and Heroku to publish the app. 
-NodeJS uses a RESTful API endpoint to receive a request body. Request body is forwarded to HeadAI's API. 
-Response is validated and notification message is displayed to the user in front-end. Axios library is used to post a request.
+EasyDiary is a diary application that allows you to keep a diary with daily entries. It has been made with the word easy on mind. We mean easy by it being easy to handle, fill and manage. With our app you can make it a habit to write down your feelings.
+
+  EasyDiary creates an imaginable page of actual diary for every day. Then it's up to the user to report their thoughts on. That can mean only a few words or a considerable amount in multible chapters. Either of these can obviously sometimes be a challenge, so we came up with a helping hand. We added mood presets to make it easier to fill the diary when you're not in your most productive state. Sometimes that might still not be what you wanted, so we included the ability to add pictures to your pages as well.
+  
+  Whether you plan to use the app to let out your overall feelings or for more serius reporting, EasyDiary is a great choice for all imaginable groups of people.
+
 
 ## Getting Started
 These instructions should get you started on running this project on your local or virtual machine for development or testing purposes.
@@ -18,9 +21,7 @@ To get started you need:
 </ul>
 
 ### Usage
-I've provided instructions on how to use this software for localhost or server use.
-
-
+I've provided instructions on how to use this software for localhost or server use
 
 #### Local computer
 <details><summary>Show instructions</summary>
